@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import {Dashboard} from './Dashboard';
+import Dashboard from './screen/Dashboard';
 
 function HomeScreen( {route}) {
     const { name, password } = route.params;
