@@ -1,9 +1,13 @@
-import { View, Image, Text, StyleSheet } from "react-native";
-export const Item = ({ title, icon }) => (
-    <View style={styles.item}>
-      <Image style = {styles.icon} source={icon}/>
-      <Text style={styles.title}>{title}</Text>
-    </View>
+import { Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+export const Item = ({ data, navigation }: any) => (
+    <TouchableOpacity 
+    onPress={() => navigation.navigate("ListProduct",{
+        id: data.id,
+    })}
+    style={styles.item}>
+      <Image style = {styles.icon} source={{uri: 'https://163clone.bmdapp.store:4164'+data.thumbnail}}/>
+      <Text numberOfLines={2} style={styles.title}>{data.name}</Text>
+    </TouchableOpacity>
   );
 
   const styles = StyleSheet.create({
@@ -12,7 +16,6 @@ export const Item = ({ title, icon }) => (
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: 5,
         width: 100,
       
     },

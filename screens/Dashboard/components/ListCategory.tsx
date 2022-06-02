@@ -1,27 +1,25 @@
-import { StyleSheet, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, FlatList, ScrollView, View } from 'react-native';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Item } from './CategoryItem';
 
-export  const CategoriesRender = ({ data }) => {
-    const renderItem = ({ item }) => (
-      <Item title={item.title} icon = {item.icon} />
+export  const CategoriesRender = ({ data, navigation }: any) => {
+    const renderItem = ({ item }: any) => (
+      <Item data = {item}  navigation = {navigation}/>
     );
   
     return (
-      <SafeAreaView>
+      <View>
         <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false}>
         <FlatList style={styles.flatList}
           data={data}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           horizontal = {false}
-          numColumns = {7}
+          numColumns = {6}
           showsHorizontalScrollIndicator = {false}
         />
         </ScrollView>
-
-      </SafeAreaView>
+      </View>
     );
   }
   
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
     flatList: {
         display: 'flex',
         flexDirection: 'row',
-        marginHorizontal: 10,
+        marginRight: 10,
     },
     
 });

@@ -1,27 +1,27 @@
 const Banner = [
     {
         id: 1,
-        img: require('../assets/Dashboard.png'),
+        img: 'https://images.clipartlogo.com/files/istock/previews/9199/91998893-wind-station-alternative-energy-generation-resource-nature-background-banner.jpg',
     },
     {
         id: 2,
-        img: require('../assets/Dashboard.png'),
+        img: 'https://images.clipartlogo.com/files/istock/previews/9199/91998893-wind-station-alternative-energy-generation-resource-nature-background-banner.jpg',
     },
     {
         id: 3,
-        img: require('../assets/Dashboard.png'),
+        img: 'https://images.clipartlogo.com/files/istock/previews/9199/91998893-wind-station-alternative-energy-generation-resource-nature-background-banner.jpg',
     },
     {
         id: 4,
-        img: require('../assets/Dashboard.png'),
+        img: 'https://images.clipartlogo.com/files/istock/previews/9199/91998893-wind-station-alternative-energy-generation-resource-nature-background-banner.jpg',
     },
     {
         id: 5,
-        img: require('../assets/Dashboard.png'),
+        img: 'https://images.clipartlogo.com/files/istock/previews/9199/91998893-wind-station-alternative-energy-generation-resource-nature-background-banner.jpg',
     },
     {
         id: 6,
-        img: require('../assets/Dashboard.png'),
+        img: 'https://images.clipartlogo.com/files/istock/previews/9199/91998893-wind-station-alternative-energy-generation-resource-nature-background-banner.jpg',
     },
    
 ]
