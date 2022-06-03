@@ -1,13 +1,12 @@
 import { ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import { CarouselCard } from './components/CarouselBannerCard';
-import Banner from '../../types/Banner';
 import { CategoriesRender } from './components/ListCategory';
 import axios from 'axios';
 import { ListNews } from './components/ListNews';
-
 import { Header } from './components/Header';
 import { Title } from './components/Title';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthContext } from '../../types/Context';
 
 var apiKey = '79dd627c667e46498c7d8f019f302797';
@@ -16,10 +15,10 @@ var from = new Date().getDate();
 var url = `https://newsapi.org/v2/everything?q=${query}&from=${from}&domains=vnexpress.net&apiKey=${apiKey}`
 
 export const Dashboard = ({navigation} : any) => {
-    const [auth] = useContext(AuthContext);
     const [news, setnews] = useState('');
     const [banner, setbanner] = useState([]);
     const [categories, setcategories] = useState([])
+    const [auth] = useContext(AuthContext);
     useEffect(() => {
         fecht(url);
         fetchCategories();

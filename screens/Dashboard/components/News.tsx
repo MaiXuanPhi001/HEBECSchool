@@ -39,13 +39,11 @@ const styles = StyleSheet.create({
           shadowRadius: 7,
           elevation: 2,
           marginBottom: 10,
-        
+        overflow: 'hidden',
     },
     image: {
         width: 160,
         height: 113,
-        borderTopLeftRadius: 7,
-        borderTopRightRadius: 7,
     },
     content: {
         flexDirection: 'column',

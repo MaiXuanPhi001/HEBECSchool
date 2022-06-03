@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React, { useContext } from "react";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -17,11 +18,14 @@ export const Item = ({data, notice, navigation}: any) => {
                         token: auth,
                     },
                 })
-                .then(() => { setauth('');})
+                .then(async () => { 
+                    setauth('');
+                    await AsyncStorage.setItem('TOKEN','');})
                 .catch(() => {
                     Alert.alert('Thông báo!', 'Đăng xuất không thành công');
                 });
                 break;
+
             default:
                 break;
         }

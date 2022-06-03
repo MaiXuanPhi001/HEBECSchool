@@ -44,8 +44,6 @@ export const Product = ({data, navigation}:any) => {
             overflow: "hidden",
         },
         image: {
-            borderTopLeftRadius: 7,
-            borderTopRightRadius: 7,
             height: 177,
             width: 177,
         },

@@ -1,12 +1,13 @@
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert, AsyncStorage } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../types/Context';
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
   
 
 
-export const LoginScreen = ({navigation}: any) => {
+export const LoginScreen =  ({navigation}: any) => {
   const [auth, setauth] = useContext(AuthContext);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -23,9 +24,9 @@ export const LoginScreen = ({navigation}: any) => {
               Accept: 'application/json',
               },
               })
-              .then((response) => {
+              .then(async (response) => {
                   setauth(response.data.data.token);
-                  navigation.navigate('Dashboard');
+                  await AsyncStorage.setItem('TOKEN', response.data.data.token);
               }
         ).catch(() => {
           Alert.alert('Thông báo!', 'Tên đăng nhập hoặc mật khẩu không đúng');
@@ -65,7 +66,7 @@ export const LoginScreen = ({navigation}: any) => {
       <Image source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
   
       <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', width: 207, height: 150,opacity: 0.7, transform: [{rotate:'180deg'}]}}/>
-      <Image source={require('../../assets/WaterMark.png')} style = {{justifyContent: 'flex-end', position: 'absolute',opacity: 0.7, bottom:0}}/>
+      <Image source={require('../../assets/WaterMark.png')} style = {{position: 'relative',opacity: 0.7}}/>
     </View>
     )
 }
@@ -74,7 +75,10 @@ export const LoginScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
       backgroundColor: '#fff',
+      justifyContent: 'space-between',
     },
     password:{
       display: 'flex',
