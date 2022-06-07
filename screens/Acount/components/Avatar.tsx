@@ -4,9 +4,9 @@ import { Image, StyleSheet, Text, View } from "react-native";
 export const Avatar = ({ data }: any) => {
     return (
         <View style={styles.container}>
-            <Image source={{uri: data.image}} style={styles.image} />
+            <Image source={{uri: 'https://163clone.bmdapp.store:4164'+data.avatar}} style={styles.image} />
             <Text style={styles.name}>{data.name}</Text>
-            <Text style = {styles.info}>{data.class} - MS: {data.id}</Text>
+            <Text style = {styles.info}>{data.classroom} MS: {+data.id}</Text>
         </View>
     );
 };

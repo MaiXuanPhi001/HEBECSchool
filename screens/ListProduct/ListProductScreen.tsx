@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react"
 import { ScrollView, Text, View } from "react-native"
-import { Header } from "./components/Header";
+import { HeaderSearchBar } from "../../components/HeaderWithSearchBar";
 import { ListProduct } from "./components/ListProduct";
 import axios from "axios";
 import { AuthContext } from "../../types/Context";
@@ -27,7 +27,7 @@ export const ListProductScreen = ({ navigation, route }: any) => {
     }
     return (
         <ScrollView>
-            <Header navigation = {navigation}/>
+            <HeaderSearchBar navigation = {navigation}/>
             <Text style = {{fontSize: 16, color: "#231F20", marginLeft: 20}}>Có <Text style = {{color: '#489620', fontWeight:'700'}}>{products.length}</Text> kết quả phù hợp</Text>
             <ListProduct data = {products} navigation = {navigation}/>
         </ScrollView>

@@ -4,12 +4,20 @@ import React, { useContext } from "react";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../../types/Context";
 
-export const Item = ({data, notice, navigation}: any) => {
+export const Item = ({user,data, notice, navigation}: any) => {
     const [auth, setauth] = useContext(AuthContext);
     return(
     <TouchableOpacity 
     onPress={() => {
         switch(data.id){
+            case 2:
+                navigation.navigate('AccountInfor', {
+                    data: user,
+                });
+                break;
+            case 3:
+                navigation.navigate('ChangePassword');
+                break;
             case 5:
                 axios('https://163clone.bmdapp.store:4164/v1/customer/auth/logout', {
                     method: 'POST',

@@ -22,12 +22,13 @@ export const CarouselCard = ({ banner} : any) => {
            />
            <Pagination
             dotsLength={banner.length}
+            containerStyle={{paddingTop: 3, paddingBottom: 30}}
             activeDotIndex={index}
             dotStyle={{
                 width: 10,
                 height: 10,
                 borderRadius: 5,
-                marginHorizontal: 8,
+                marginHorizontal: 3,
                 borderColor: '#C9C2C0',
                 borderStyle: 'solid',
                 borderWidth: 1,

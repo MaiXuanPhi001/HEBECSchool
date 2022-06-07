@@ -17,7 +17,7 @@ export const Item = ({ data, navigation }: any) => (
         justifyContent: 'flex-start',
         alignItems: 'center',
         width: 100,
-      
+        marginBottom: 20,
     },
     title: {
         fontSize: 14,
@@ -26,6 +26,7 @@ export const Item = ({ data, navigation }: any) => (
         maxWidth: 85,
         maxHeight: 100,
         flexWrap: 'wrap',
+        color: '#231F20',
     },
     icon: {
         width: 60,

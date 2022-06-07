@@ -1,16 +1,18 @@
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert, Dimensions } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../types/Context';
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
   
-
+//get with and height of screen
+const { width, height } = Dimensions.get('window');
 
 export const LoginScreen =  ({navigation}: any) => {
   const [auth, setauth] = useContext(AuthContext);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [hidePass, setHidePass] = useState(true);
 
     const Login = ({userName, password}: any) => {
         axios({
@@ -46,12 +48,16 @@ export const LoginScreen =  ({navigation}: any) => {
       <View style = {styles.password}>
         <Text style={styles.titleInput}>Mật khẩu</Text>
         <TextInput 
-          secureTextEntry 
+          secureTextEntry = {hidePass} 
           style = {styles.input} 
           placeholder = "Nhập mật khẩu"
           defaultValue={password}
           onChangeText = {newText => setPassword(newText)}/>
-        <Image source={require('../../assets/icons/EyeIcon.png')} style = {styles.icon}/>
+        <TouchableOpacity
+          onPress={() => {setHidePass(!hidePass)}}
+          style = {styles.eye}>
+        <Image source={hidePass? require('../../assets/icons/HidePass.png') :require('../../assets/icons/EyeIcon.png')}/>
+        </TouchableOpacity>
       </View>
   
       <View style = {styles.userName}>
@@ -66,7 +72,7 @@ export const LoginScreen =  ({navigation}: any) => {
       <Image source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
   
       <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', width: 207, height: 150,opacity: 0.7, transform: [{rotate:'180deg'}]}}/>
-      <Image source={require('../../assets/WaterMark.png')} style = {{position: 'relative',opacity: 0.7}}/>
+      <Image source={require('../../assets/WaterMark.png')} style = {{position: 'absolute',opacity: 0.7, top: height-223}}/>
     </View>
     )
 }
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
       width: 374,
       height: 50,
       borderRadius: 7,
-      paddingHorizontal: 10,
+      paddingHorizontal: 20,
       alignSelf: 'stretch',
       flexGrow : 0,
     },
@@ -121,11 +127,6 @@ const styles = StyleSheet.create({
       left:82,
       position: 'absolute',
       zIndex: 1.2,
-    },
-    icon: {
-      alignSelf: 'flex-end',
-      marginTop: -35,
-      marginEnd: 20, 
     },
     register:{
       position: 'absolute',
@@ -159,5 +160,10 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       alignSelf: 'center',
       marginTop: 2,
-    }
+    },
+    eye: {
+      position: 'absolute',
+      right: 20,
+      top: 60,
+    },
   });

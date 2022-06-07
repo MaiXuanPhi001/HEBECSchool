@@ -1,13 +1,34 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { AcountScreen } from '../../screens/Acount/AcountScreen';
+import { AcountScreen } from '../../screens/Acount/AccountMenuScreen';
 import Dashboard from '../../screens/Dashboard/Dashboard';
+import { ListNewsScreen } from '../../screens/News/ListNewScrens';
+import { NewsContext } from '../../types/Context';
 
 const Tab = createBottomTabNavigator();
+let apiKey = '79dd627c667e46498c7d8f019f302797';
+let query = 'vietnam';
+let from = new Date().getDate();
+let url = `https://newsapi.org/v2/everything?q=${query}&from=${from}&domains=vnexpress.net&apiKey=${apiKey}`
 
 export function TabNavigator() {
+  const [news, setnews] = useState('');
+  useEffect(() => {
+    fecht(url);
+}, [])
+
+async function fecht(url :string) {
+    try {
+        const res = await axios.get(url);
+       setnews(res.data.articles);
+    } catch (err) {
+        console.log(err);
+    }
+}
   return (
+    <NewsContext.Provider value={[news, setnews]}>
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({color, focused}) => {
@@ -38,7 +59,7 @@ export function TabNavigator() {
       })}
     >
       <Tab.Screen name="Trang chủ" component={Dashboard} options={{headerShown: false}}/>
-      <Tab.Screen name="Tin tức" component={Dashboard} options={{headerShown: false,
+      <Tab.Screen name="Tin tức" component={ListNewsScreen} options={{headerShown: false,
        tabBarIcon: ({color, focused}) => {
           let iconName;
             iconName = require('../../assets/icons/NewsIcon.png');
@@ -47,6 +68,7 @@ export function TabNavigator() {
         }}} />
       <Tab.Screen name="Tài khoản" component={AcountScreen} options={{headerShown: false}}/>
     </Tab.Navigator>
+    </NewsContext.Provider>
   );
 }
 const styles = StyleSheet.create({

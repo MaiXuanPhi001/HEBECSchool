@@ -2,9 +2,9 @@ import { StyleSheet, FlatList, ScrollView, View } from 'react-native';
 import React from 'react';
 import { Item } from './Item';
 
-export  const GroupMenu = ({ data, notice, navigation }: any) => {
+export  const GroupMenu = ({ user,data, notice, navigation }: any) => {
     const renderItem = ({ item }: any) => (
-      <Item data = {item} notice = {notice}  navigation = {navigation}/>
+      <Item user ={user} data = {item} notice = {notice}  navigation = {navigation}/>
     );
   
     return (

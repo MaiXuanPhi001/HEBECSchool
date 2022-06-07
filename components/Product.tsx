@@ -1,5 +1,6 @@
 import React from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import NumberFormat from 'react-number-format';
 
 export const Product = ({data, navigation}:any) => {
     return (
@@ -7,6 +8,7 @@ export const Product = ({data, navigation}:any) => {
         style = {styles.container}>
             <View>
                 {data.isOutOfStock?  <><View style={styles.mask}></View><Text style={styles.textMask}>Hết hàng</Text></>:null}
+
                 {/* {(data.promotion !=null) ?  
                 <View style = {styles.promotion}>
                     <Text style = {styles.promotionText}>{data.promotion}</Text>
@@ -17,8 +19,18 @@ export const Product = ({data, navigation}:any) => {
 
             <View style = {styles.content}>
                 <Text numberOfLines={2} style = {styles.name}>{data.name}</Text>
-                <Text style = {styles.price}>{data.finalPrice} đ</Text>
-                <Text style = {styles.oldPrice}>{data.originPrice} đ</Text>
+                <NumberFormat 
+                        value={data.finalPrice } 
+                        displayType ={'text'} 
+                        thousandSeparator = '.'
+                        decimalSeparator=","
+                        renderText={(value) => <Text style = {styles.price}>{value} đ</Text>} />
+                 <NumberFormat 
+                        value={data.originPrice } 
+                        displayType ={'text'} 
+                        thousandSeparator = '.'
+                        decimalSeparator=","
+                        renderText={(value) => <Text style = {styles.oldPrice}>{value} đ</Text>} />
             </View>
         </TouchableOpacity>
     )

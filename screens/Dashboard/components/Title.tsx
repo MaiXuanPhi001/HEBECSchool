@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 export const Title = ({ title, icon, subTitle }: any) => {
     return (
         <View style = {styles.title}>
+        <TouchableOpacity style = {{position: 'absolute', left: 300}}>
         <Text style = {styles.more}>{subTitle}</Text>
+        </TouchableOpacity>
         <Image style = {styles.icon} source = {icon}/>
         <Text style = {styles.text}>{title}</Text>
     </View>
@@ -27,15 +29,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         fontSize: 16,
         fontWeight: '700',
-        color: '#000',
+        color: '#231F20',
         left: 30,
     },
     more: {
-        position: 'absolute',
         fontWeight: '500',
         fontSize: 16,
         color: '#489620',
-        left: 300,
     },
     icon: {
         position: 'absolute',

@@ -6,9 +6,9 @@ export const SplashScreen = ({navigation} : any) => {
     return (
       <View style={styles.container}>
         <StatusBar hidden />
-        <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', width: 207, height: 150,opacity: 0.7, transform: [{rotate:'180deg'}]}}/>
+        <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', width: 207, height: 150,opacity: 0.1, transform: [{rotate:'180deg'}]}}/>
         <Image source={require('../../assets/HEBEC_School_White.png')} />
-        <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-start',opacity: 0.7, bottom:0}}/>
+        <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-start',opacity: 0.1, bottom:0}}/>
     </View>
     )
 }

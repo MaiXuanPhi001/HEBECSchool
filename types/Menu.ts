@@ -51,7 +51,7 @@ export const SupportMenu = [
     },
     {
         id: 9,
-        title: "Các vấn đề thương gặp",
+        title: "Các vấn đề thường gặp",
         icon: require("../assets/icons/FAQ.png"),
         arrow: true,
     }
