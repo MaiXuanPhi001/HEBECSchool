@@ -1,25 +1,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as React from 'react';
 import {  useState } from 'react';
-import { Router } from './route/Router';
+import Router from './route/Router';
 import { SplashScreen } from './screens/Splash/SplashScreen';
-import { AuthContext } from './types/Context';
+import userStore from './store/userStore';
 
 function App() {
-  const [auth, setauth] = useState('');
   React.useEffect(() => {
     restoreToken();
   }, []);
   
   const restoreToken = async () => {
     try {
-      const value = await AsyncStorage.getItem('TOKEN');
-      if (value !== null) {
-        setauth(value);
-      }
-      else {
-        setauth('');
-      }
+      const value = await AsyncStorage.getItem('token');
+        userStore.setToken(value);
     } catch (error) {
       console.log(error);
     }
@@ -30,9 +24,7 @@ function App() {
   }, 3000)
   return (
     timePassed ? 
-    <AuthContext.Provider value={[auth, setauth]}>
-      <Router/>
-    </AuthContext.Provider>:
+      <Router />:
     <SplashScreen/>
   );
 }

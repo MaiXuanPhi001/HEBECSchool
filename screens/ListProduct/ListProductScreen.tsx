@@ -1,35 +1,30 @@
-import React, { useContext, useEffect } from "react"
-import { ScrollView, Text, View } from "react-native"
+import React, { useEffect } from "react"
+import { StyleSheet, Text, View } from "react-native"
 import { HeaderSearchBar } from "../../components/HeaderWithSearchBar";
 import { ListProduct } from "./components/ListProduct";
-import axios from "axios";
-import { AuthContext } from "../../types/Context";
+import bookStore from "../../store/bookStore";
+import { observer } from "mobx-react";
 
-export const ListProductScreen = ({ navigation, route }: any) => {
-    const [products, setProducts] = React.useState([]);
-    const[auth] = useContext(AuthContext);
+export const ListProductScreen = observer( ({ navigation, route }: any) => {
     const { id } = route.params;
     useEffect(() => {
-        fetchBooks();
+       bookStore.setBooks(id);
     }, [])
-    async function fetchBooks() {
-        axios('https://163clone.bmdapp.store:4164/v1/customer/book?categoryId='+id, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                token: auth,
-            },
-        })
-        .then((response) => {setProducts(response.data.data.data);})
-        .catch(() => {
-            console.log('error');
-        });
-    }
+
     return (
-        <ScrollView>
-            <HeaderSearchBar navigation = {navigation}/>
-            <Text style = {{fontSize: 16, color: "#231F20", marginLeft: 20}}>Có <Text style = {{color: '#489620', fontWeight:'700'}}>{products.length}</Text> kết quả phù hợp</Text>
-            <ListProduct data = {products} navigation = {navigation}/>
-        </ScrollView>
+        <View style = {{flex:1}}>
+            <HeaderSearchBar style = {styles.titlebar} navigation = {navigation}/>
+            <Text style = {{fontSize: 16, color: "#231F20", marginLeft: 20}}>Có <Text style = {{color: '#489620', fontWeight:'700'}}>{bookStore.booksCount}</Text> kết quả phù hợp</Text>
+            <ListProduct style = {styles.container} cateId = {id} navigation = {navigation}/>
+        </View>
     )
-}
+
+})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    titlebar: {
+        height: 100,
+    },
+});

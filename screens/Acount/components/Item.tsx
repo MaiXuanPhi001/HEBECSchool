@@ -1,11 +1,9 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+
 import React, { useContext } from "react";
-import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { AuthContext } from "../../../types/Context";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import userStore from "../../../store/userStore";
 
 export const Item = ({user,data, notice, navigation}: any) => {
-    const [auth, setauth] = useContext(AuthContext);
     return(
     <TouchableOpacity 
     onPress={() => {
@@ -19,19 +17,7 @@ export const Item = ({user,data, notice, navigation}: any) => {
                 navigation.navigate('ChangePassword');
                 break;
             case 5:
-                axios('https://163clone.bmdapp.store:4164/v1/customer/auth/logout', {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        token: auth,
-                    },
-                })
-                .then(async () => { 
-                    setauth('');
-                    await AsyncStorage.setItem('TOKEN','');})
-                .catch(() => {
-                    Alert.alert('Thông báo!', 'Đăng xuất không thành công');
-                });
+                userStore.logout();
                 break;
 
             default:

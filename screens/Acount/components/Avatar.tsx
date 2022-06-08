@@ -1,10 +1,11 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { BASE_URL } from "../../../config";
 
 export const Avatar = ({ data }: any) => {
     return (
         <View style={styles.container}>
-            <Image source={{uri: 'https://163clone.bmdapp.store:4164'+data.avatar}} style={styles.image} />
+            <Image source={data.avatar? {uri: BASE_URL+data.avatar}: require("../../../assets/Avartar.png")} style={styles.image} />
             <Text style={styles.name}>{data.name}</Text>
             <Text style = {styles.info}>{data.classroom} MS: {+data.id}</Text>
         </View>

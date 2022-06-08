@@ -2,8 +2,9 @@ import React from "react"
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { SearchBar } from "./SearchBar"
 
-export const HeaderSearchBar = ({navigation}: any) => {
+export const HeaderSearchBar = ({navigation, style}: any) => {
     return (
+        <View style = {style}>
         <View style={styles.header}>
             <TouchableOpacity
             onPress={() => {navigation.goBack() }}
@@ -14,6 +15,7 @@ export const HeaderSearchBar = ({navigation}: any) => {
            <TouchableOpacity>
             <Image style={styles.filter} source={require("../assets/icons/FilterWhite.png")}/>
            </TouchableOpacity>
+        </View>
         </View>
     )
 }

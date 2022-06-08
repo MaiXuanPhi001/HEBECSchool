@@ -1,6 +1,7 @@
 import React from "react"
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native"
 import { HeaderName } from "../../../components/HeaderWithName";
+import { BASE_URL } from "../../../config";
 
 let width = Dimensions.get('window').width;
 let withCard = width - 40;
@@ -13,7 +14,7 @@ export const AccountInforScreen = ({ navigation, route }: any) => {
             <HeaderName name = {'Thông tin cá nhân'} navigation = {navigation}/>
             <View style={{ flex: 1, marginTop: 20 }}>
                 <View style = {styles.header}>
-                    <Image style={{ width: 100, height: 100, borderRadius: 50, borderColor: '#9E9E9E', borderWidth: 3 }} source={{uri: 'https://163clone.bmdapp.store:4164'+data.avatar}} />
+                    <Image style={{ width: 100, height: 100, borderRadius: 50, borderColor: '#9E9E9E', borderWidth: 3 }} source={data.avatar? {uri: BASE_URL+data.avatar}: require("../../../assets/Avartar.png")} />
                 </View>
                 <View style = {styles.body}>
                     <Text style = {styles.title}>THÔNG TIN CHUNG</Text>
@@ -72,7 +73,8 @@ const styles = StyleSheet.create({
         zIndex: 1.5,
         left: withCard/2 - 50,
         borderRadius: 60,
-        backgroundColor: '#EEEEEE',
+        backgroundColor: '#f2f2f2',
+        
     },
     title: {
         fontSize: 18,

@@ -2,62 +2,46 @@ import { ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import { CarouselCard } from './components/CarouselBannerCard';
 import { CategoriesRender } from './components/ListCategory';
-import axios from 'axios';
 import { ListNews } from '../../components/ListNews';
 import { Header } from './components/Header';
 import { Title } from './components/Title';
-import { AuthContext, NewsContext } from '../../types/Context';
+import { NewsContext } from '../../types/Context';
+import bookStore from '../../store/bookStore';
+import { bannerApi } from '../../api/banner';
+import { Loading } from '../../components/Loading';
+import { observer } from 'mobx-react';
 
 
-export const Dashboard = ({navigation} : any) => {
-    const [banner, setbanner] = useState([]);
-    const [categories, setcategories] = useState([])
-    const [auth] = useContext(AuthContext);
+export const Dashboard = observer(({navigation} : any) => {
+    const [banner, setBanner] = useState([]);
     const [news] = useContext(NewsContext)
     useEffect(() => {
-        fetchCategories();
-        fechtBanner();
+        bookStore.setCategories([]);
+        bannerApi.getBanner().then(res => {
+            setBanner(res.data.data);
+        })  
     }, [])
-
-    async function fetchCategories() {
-        axios('https://163clone.bmdapp.store:4164/v1/customer/category?limit=12', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                token: auth,
-            },
-        })
-        .then((response) => {setcategories(response.data.data.categories);})
-        .catch(() => {
-            console.log('error');
-        });
-    }
-    async function fechtBanner() {
-        axios('https://163clone.bmdapp.store:4164/v1/customer/banner', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                token: auth,
-            },
-        })
-        .then((response) => {setbanner(response.data.data.data);})
-        .catch(() => {
-            console.log('error');
-        });
-    }
-    
+    if(bookStore.isLoadingCategories == false)
+    {
     return (
             <ScrollView style = {styles.container}>
                 <StatusBar  backgroundColor = "#489620" />
                 <Header/>
                 <CarouselCard banner={banner} />
                 <View style = {styles.bgBanner}/>
-                <CategoriesRender data={categories} navigation = {navigation}/>
+                <CategoriesRender data={bookStore.categories} navigation = {navigation}/>
                 <Title title = "Tiêu điểm nổi bật" icon = {require('../../assets/icons/NewsIconGreen.png')} subTitle ="Xem thêm"/>
                 <ListNews data={news} navigation = {navigation} vertical = {true} />
             </ScrollView>
     )
+    }
+    else{
+        return(
+            <Loading/>
+        )
+    }
 }
+)
 
 const styles = StyleSheet.create({
     container: {

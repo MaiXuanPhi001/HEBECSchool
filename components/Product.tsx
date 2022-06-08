@@ -1,11 +1,20 @@
-import React from "react"
+import React, { useState } from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import NumberFormat from 'react-number-format';
+import { BASE_URL } from "../config";
 
 export const Product = ({data, navigation}:any) => {
+    const [imageError, setimageError] = useState(false);
+    const onImageError = () => {
+        setimageError(true);
+    }
+    
+
+
     return (
         <TouchableOpacity 
-        style = {styles.container}>
+        style = {styles.container}
+        onPress = {() => navigation.navigate('Detail', {data})}>
             <View>
                 {data.isOutOfStock?  <><View style={styles.mask}></View><Text style={styles.textMask}>Hết hàng</Text></>:null}
 
@@ -14,7 +23,9 @@ export const Product = ({data, navigation}:any) => {
                     <Text style = {styles.promotionText}>{data.promotion}</Text>
                 </View>
                 :null} */}
-                <Image source={{uri: 'https://163clone.bmdapp.store:4164'+data.thumbnail}} style = {styles.image} />
+                <Image source={imageError?require("../assets/ProductDefault.png"):{uri: BASE_URL+data.thumbnail}} 
+                style = {styles.image} 
+                onError = {() => onImageError()}/>
             </View>
 
             <View style = {styles.content}>

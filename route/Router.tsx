@@ -1,15 +1,16 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { UnAuthStack } from './stack/UnAuthStack';
 import { AuthStack } from './stack/AuthStack';
-import { AuthContext } from '../types/Context';
+import userStore from '../store/userStore';
+import { observer } from 'mobx-react';
 
-export const Router = () => {
-  const [auth] = useContext(AuthContext);
+ const Router = () => {
   return (
     <NavigationContainer>
-      {auth ==''? <UnAuthStack/>: <AuthStack/>}
+      {userStore.token == null? <UnAuthStack/>: <AuthStack/>}
     </NavigationContainer>
   )
 }
+export default observer(Router);
 

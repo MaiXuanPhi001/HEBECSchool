@@ -1,44 +1,21 @@
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert, Dimensions } from 'react-native'
-import React, { useContext, useState } from 'react'
-import { AuthContext } from '../../types/Context';
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Dimensions } from 'react-native'
+import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import userStore from '../../store/userStore';
+import { observer } from 'mobx-react';
   
 //get with and height of screen
 const { width, height } = Dimensions.get('window');
 
-export const LoginScreen =  ({navigation}: any) => {
-  const [auth, setauth] = useContext(AuthContext);
+export const LoginScreen =  observer(() => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [hidePass, setHidePass] = useState(true);
-
-    const Login = ({userName, password}: any) => {
-        axios({
-          method: 'post',
-          url: 'https://163clone.bmdapp.store:4164/v1/customer/auth/login',
-          data: {
-            username: userName,
-            password: password
-            },
-            headers: {
-              Accept: 'application/json',
-              },
-              })
-              .then(async (response) => {
-                  setauth(response.data.data.token);
-                  await AsyncStorage.setItem('TOKEN', response.data.data.token);
-              }
-        ).catch(() => {
-          Alert.alert('Thông báo!', 'Tên đăng nhập hoặc mật khẩu không đúng');
-        });
-    }
     return (
       <View style={styles.container}>
       <StatusBar style="auto" />
       <TouchableOpacity
-        onPress={() => {Login({userName, password})}}
+        onPress={() => {userStore.login(userName, password)}}
           style = {styles.button}>
           <Text style = {styles.buttonText}>Đăng nhập</Text>
       </TouchableOpacity>
@@ -76,6 +53,7 @@ export const LoginScreen =  ({navigation}: any) => {
     </View>
     )
 }
+)
 
 
 const styles = StyleSheet.create({
