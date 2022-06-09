@@ -24,7 +24,7 @@ export const apiBook = {
         method: "GET"
     }),
     getBookRelations: (id: number) => request({
-        url: `/v1/customer/book/${id}/relations`,
+        url: `/v1/customer/book/${id}/relations?limit=10`,
         method: "GET"
     }),
     };
@@ -90,7 +90,7 @@ export const apiBook = {
         @action
         setBookRelations = async (id: number) => {
             const res = await apiBook.getBookRelations(id);
-            this.bookRelations = res.data;
+            this.bookRelations = res.data.books;
         }
         @action
         loadMoreBooks = async (categoryId: number) => {

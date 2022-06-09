@@ -1,11 +1,13 @@
+import React from "react";
 import { Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { BASE_URL } from "../../../config";
 export const Item = ({ data, navigation }: any) => (
     <TouchableOpacity 
     onPress={() => navigation.navigate("ListProduct",{
         id: data.id,
     })}
     style={styles.item}>
-      <Image style = {styles.icon} source={{uri: 'https://163clone.bmdapp.store:4164'+data.thumbnail}}/>
+      <Image style = {styles.icon} source={{uri: BASE_URL+data.thumbnail}}/>
       <Text numberOfLines={2} style={styles.title}>{data.name}</Text>
     </TouchableOpacity>
   );

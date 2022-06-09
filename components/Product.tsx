@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import NumberFormat from 'react-number-format';
 import { BASE_URL } from "../config";
+import { width } from "../utils/dimensions";
+import { PriceText } from "./Price";
 
 export const Product = ({data, navigation}:any) => {
     const [imageError, setimageError] = useState(false);
@@ -23,25 +25,15 @@ export const Product = ({data, navigation}:any) => {
                     <Text style = {styles.promotionText}>{data.promotion}</Text>
                 </View>
                 :null} */}
-                <Image source={imageError?require("../assets/ProductDefault.png"):{uri: BASE_URL+data.thumbnail}} 
-                style = {styles.image} 
+                <Image source={imageError?require("../assets/HEBEC.png"):{uri: BASE_URL+data.thumbnail}} 
+                style = {imageError? styles.imageErr:styles.image} 
                 onError = {() => onImageError()}/>
             </View>
 
             <View style = {styles.content}>
                 <Text numberOfLines={2} style = {styles.name}>{data.name}</Text>
-                <NumberFormat 
-                        value={data.finalPrice } 
-                        displayType ={'text'} 
-                        thousandSeparator = '.'
-                        decimalSeparator=","
-                        renderText={(value) => <Text style = {styles.price}>{value} đ</Text>} />
-                 <NumberFormat 
-                        value={data.originPrice } 
-                        displayType ={'text'} 
-                        thousandSeparator = '.'
-                        decimalSeparator=","
-                        renderText={(value) => <Text style = {styles.oldPrice}>{value} đ</Text>} />
+                <PriceText price = {data.finalPrice} style = {styles.price}/>
+                <PriceText price = {data.originPrice} style = {styles.oldPrice}/>
             </View>
         </TouchableOpacity>
     )
@@ -50,7 +42,7 @@ export const Product = ({data, navigation}:any) => {
     const styles = StyleSheet.create({
         container: {
             flexDirection: "column",
-            width: 177,
+            width: (width-60)/2,
             height: 269,
             borderRadius: 7,
             backgroundColor: "#fff",
@@ -68,7 +60,14 @@ export const Product = ({data, navigation}:any) => {
         },
         image: {
             height: 177,
-            width: 177,
+            width: (width-60)/2,
+            resizeMode: "contain",
+        },
+        imageErr: {
+            height: 177,
+            width: (width-60)/2-20,
+            resizeMode: "contain",
+            marginHorizontal: 10,
         },
         name: {
             fontSize: 14,

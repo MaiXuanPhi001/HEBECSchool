@@ -12,7 +12,7 @@ export const ListProductScreen = observer( ({ navigation, route }: any) => {
     }, [])
 
     return (
-        <View style = {{flex:1}}>
+        <View style = {{flex:1,backgroundColor: "#fff",}}>
             <HeaderSearchBar style = {styles.titlebar} navigation = {navigation}/>
             <Text style = {{fontSize: 16, color: "#231F20", marginLeft: 20}}>Có <Text style = {{color: '#489620', fontWeight:'700'}}>{bookStore.booksCount}</Text> kết quả phù hợp</Text>
             <ListProduct style = {styles.container} cateId = {id} navigation = {navigation}/>

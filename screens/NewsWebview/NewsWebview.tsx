@@ -4,7 +4,6 @@ import { WebView } from 'react-native-webview';
 
 export const News = ({ route } : any) => {
     const { url } = route.params;
-    console.log(url);
     return (
         <View style = {styles.container}>
             <WebView
