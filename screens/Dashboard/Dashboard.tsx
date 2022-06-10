@@ -3,13 +3,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CarouselCard } from './components/CarouselBannerCard';
 import { CategoriesRender } from './components/ListCategory';
 import { ListNews } from '../../components/ListNews';
-import { Header } from './components/Header';
 import { Title } from './components/Title';
 import { NewsContext } from '../../types/Context';
 import bookStore from '../../store/bookStore';
 import { bannerApi } from '../../api/banner';
 import { Loading } from '../../components/Loading';
 import { observer } from 'mobx-react';
+import { HeaderName } from '../../components/HeaderWithName';
 
 
 export const Dashboard = observer(({navigation} : any) => {
@@ -26,7 +26,7 @@ export const Dashboard = observer(({navigation} : any) => {
     return (
             <ScrollView style = {styles.container}>
                 <StatusBar  backgroundColor = "#489620" />
-                <Header/>
+                <HeaderName isSearch = {true} icon = {true} nonback={true}  navigation = {navigation}/>
                 <CarouselCard banner={banner} />
                 <View style = {styles.bgBanner}/>
                 <CategoriesRender data={bookStore.categories} navigation = {navigation}/>

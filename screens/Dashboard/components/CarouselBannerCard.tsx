@@ -31,7 +31,7 @@ export const CarouselCard = ({ banner} : any) => {
                 marginHorizontal: 3,
                 borderColor: '#C9C2C0',
                 borderStyle: 'solid',
-                borderWidth: 1,
+                borderWidth: 1
             }}
             dotColor={'#489620'}
             inactiveDotColor={'#fff'}

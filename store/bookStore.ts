@@ -1,5 +1,4 @@
 import { action, computed, makeAutoObservable, observable } from "mobx";
-import { IBook } from "../types/book";
 import request from "../utils/request";
 
 export const apiBook = {

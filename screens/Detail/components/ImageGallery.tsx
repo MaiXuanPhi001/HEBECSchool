@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
     },
     containerMain: {
         flex: 1,
-        marginBottom: 10,
     },
     containerThumnail: {
         flex: 1,
-        marginHorizontal: 5,
+        marginTop: 20,
+        marginRight: 10,
     },
     main: {
         flex: 1,
@@ -118,22 +118,22 @@ const styles = StyleSheet.create({
     thumbnail: {
         width:60,
         height:60,
-        margin:5,
         borderRadius:10,
         borderWidth:1,
-        borderColor:"#ddd",
+        borderColor:"#C9C2C0",
         alignItems:"center",
         overflow:"hidden",
+       marginLeft:10,
     },
     thumbnailCurent: {
         width:60,
         height:60,
-        margin:5,
         borderRadius:10,
         borderWidth:1,
         borderColor:"#231F20",
         alignItems:"center",
         overflow:"hidden",
+        marginLeft:10,
     },
 
    
