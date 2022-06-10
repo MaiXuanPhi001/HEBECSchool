@@ -1,10 +1,10 @@
 import React from "react";
 import { View, ActivityIndicator } from "react-native";
 
-export const Loading = () => {
+export const Loading = ({style, large}: any) => {
     return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" color="#00ff00" />
+        <View style={style}>
+        <ActivityIndicator size= {large?"large": "small"} color="#489620" />
         </View>
     );
     };

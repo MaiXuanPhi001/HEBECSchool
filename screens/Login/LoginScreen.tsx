@@ -33,7 +33,7 @@ export const LoginScreen =  observer(() => {
         <TouchableOpacity
           onPress={() => {setHidePass(!hidePass)}}
           style = {styles.eye}>
-        <Image source={hidePass? require('../../assets/icons/HidePass.png') :require('../../assets/icons/EyeIcon.png')}/>
+        <Image source={!hidePass? require('../../assets/icons/HidePass.png') :require('../../assets/icons/EyeIcon.png')}/>
         </TouchableOpacity>
       </View>
   

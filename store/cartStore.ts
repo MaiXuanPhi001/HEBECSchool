@@ -8,6 +8,8 @@ class Store{
 @observable cart: any[] = [];
 @observable totalQuantity: number = 0;
 @observable total: number = 0;
+@observable isLoading: boolean = false;
+
 @computed get getCart(){
     return this.cart;
 }
@@ -17,6 +19,10 @@ class Store{
 @computed get getTotal(){
     return this.total;
 }
+@computed get getIsLoading(){
+    return this.isLoading;
+}
+
 @action
 addToCart = async (book: any, quantity: any) => {
     const index = this.cart.findIndex(item => item.book.id === book.id);
@@ -42,6 +48,8 @@ clearCart = async () => {
 @action
 getCartFromStore = async () => {
     const cart = await AsyncStorage.getItem("cart");
+    this.totalQuantity = 0;
+    this.total = 0;
     if(cart){
         this.cart = JSON.parse(cart);
         this.cart.forEach(item => {
@@ -64,7 +72,23 @@ updateCart = async (book: any, quantity: any) => {
         this.totalQuantity += item.quantity;
         this.total += Number(item.book.price) * item.quantity; });
     await AsyncStorage.setItem("cart", JSON.stringify(this.cart));    
-}}
+}
+@action 
+reloadCart = async () => {
+    this.isLoading = true;
+    const cart = await AsyncStorage.getItem("cart");
+    if(cart){
+        this.cart = JSON.parse(cart);
+        this.totalQuantity = 0;
+        this.total = 0;
+        this.cart.forEach(item => {
+            this.totalQuantity += item.quantity;
+            this.total += Number(item.book.price) * item.quantity;
+        });
+    }
+    this.isLoading = false;
+}
+}
 
 const cartStore = new Store();
 export default cartStore;

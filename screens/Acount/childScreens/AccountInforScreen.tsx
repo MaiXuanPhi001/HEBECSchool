@@ -1,7 +1,8 @@
 import React from "react"
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native"
+import { Dimensions, Image, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native"
 import { HeaderName } from "../../../components/HeaderWithName";
 import { BASE_URL } from "../../../config";
+import userStore from "../../../store/userStore";
 
 let width = Dimensions.get('window').width;
 let withCard = width - 40;
@@ -12,7 +13,19 @@ export const AccountInforScreen = ({ navigation, route }: any) => {
     return (
         <View style={{ flex: 1}}>
             <HeaderName name = {'Thông tin cá nhân'} navigation = {navigation}/>
-            <View style={{ flex: 1, marginTop: 20 }}>
+            <ScrollView style={{ flex: 1, marginTop: 20 }}
+            refreshControl={
+                <RefreshControl
+                refreshing={userStore.isLoading}
+                onRefresh={() => {
+                    userStore.getInfo();
+                }
+                }
+                colors={["#489620"]}
+                progressBackgroundColor="#fff"
+            />
+            }>
+            
                 <View style = {styles.header}>
                     <Image style={{ width: 100, height: 100, borderRadius: 50, borderColor: '#9E9E9E', borderWidth: 3 }} source={data.avatar? {uri: BASE_URL+data.avatar}: require("../../../assets/Avartar.png")} />
                 </View>
@@ -28,7 +41,7 @@ export const AccountInforScreen = ({ navigation, route }: any) => {
                     <Column title = {'Địa chỉ'} content = {data.address !=''? data.address:null}/>
                     <Column title = {'Số điện thoại'} content = {data.phone}/>
                 </View>
-            </View>
+            </ScrollView>
         </View>
     )
 }
@@ -43,7 +56,6 @@ const Column = ({title, content}: any) => {
 
 const styles = StyleSheet.create({
     body:{
-        flex: 1,
         backgroundColor: '#fff',
         borderRadius: 10,
         height:490,
@@ -51,8 +63,7 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingTop: 70,
         display: 'flex',
-        position: 'absolute',
-        top: 70,
+        top: -50,
         flexDirection: 'column',
         width: withCard,
         shadowColor: "#000",
@@ -69,7 +80,6 @@ const styles = StyleSheet.create({
         width: 120,
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'absolute',
         zIndex: 1.5,
         left: withCard/2 - 50,
         borderRadius: 60,

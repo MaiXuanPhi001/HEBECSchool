@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import React from "react";
-import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { HeaderName } from "../../components/HeaderWithName";
 import { PriceText } from "../../components/Price";
@@ -12,8 +12,20 @@ export const CartScreen = observer(({ navigation }: any) => {
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
             <HeaderName name="Giỏ hàng" navigation={navigation} />
             <ScrollView 
+             refreshControl={
+                <RefreshControl
+                refreshing={cartStore.isLoading}
+                onRefresh={() => {
+                   cartStore.reloadCart();
+                }
+                }
+                colors={["#489620"]}
+                progressBackgroundColor="#fff"
+                />
+             }
             showsVerticalScrollIndicator={false}
-            style={{ flex: 1, margin: 20, }}>
+            style={{ flex: 1, margin: 20, }}
+            >
                 <View style={styles.container}>
                     <View style = {{flexDirection: 'row'}}>
                         <Image source={require("../../assets/icons/Books.png")} style={styles.image} />

@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import React, { useEffect } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native"
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native"
 import userStore from "../../store/userStore";
 import { AccountMenu, ContactMenu, SupportMenu, UnAuthMenu } from "../../types/Menu";
 import { Avatar } from "./components/Avatar";
@@ -12,7 +12,16 @@ export const AcountScreen = observer(({navigation}: any) => {
     }, [])
     
     return (
-        <ScrollView style = {{flexGrow: 1, flex: 1}} >
+        <ScrollView style = {{flexGrow: 1, flex: 1}} 
+        refreshControl = {
+            <RefreshControl
+                refreshing={userStore.isLoading}
+                onRefresh={() => {
+                    userStore.getInfo();}}
+                colors={["#489620"]}
+                progressBackgroundColor="#fff"
+                />
+        }>
              {userStore.token==null? null: <Avatar data = {userStore.info}/>}
              <View style = {styles.container}>
                 <Text style = {styles.sectionName}>TÀI KHOẢN</Text>

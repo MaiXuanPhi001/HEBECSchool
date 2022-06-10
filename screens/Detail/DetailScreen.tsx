@@ -70,12 +70,12 @@ export const DetailScreen = observer(({navigation, route} : any) => {
     const onTextLayout = useCallback(e =>{
         setLengthMore(e.nativeEvent.lines.length >=4);
     },[]);
-    //show component in 3s toast when press button add to cart
     const showToast = () => {
+        settoast(true);
         setTimeout(() => {
-            settoast(true);
+            settoast(false);
         }, 2000);
-        settoast(false);
+       
     }
 
     return (
@@ -121,7 +121,7 @@ export const DetailScreen = observer(({navigation, route} : any) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            {!toast? <Toast/>: null}
+            {toast? <Toast/>: null}
         </View>
     )
 }

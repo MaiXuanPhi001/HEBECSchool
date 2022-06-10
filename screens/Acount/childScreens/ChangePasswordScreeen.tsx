@@ -1,39 +1,21 @@
 import axios from "axios"
-import React, { useContext, useEffect, useState } from "react"
+import { observer } from "mobx-react"
+import React, { useState } from "react"
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { HeaderName } from "../../../components/HeaderWithName"
-import { AuthContext } from "../../../types/Context"
+import userStore from "../../../store/userStore"
 
-export const ChangePassWordScreen = ({ navigation }: any) => {
+export const ChangePassWordScreen = observer(({ navigation }: any) => {
     const [password, setPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [auth, setauth] = useContext(AuthContext)
     const Submit = () => {
         if (password === "" || newPassword === "" || confirmPassword === "") {
             Alert.alert("Thông báo","Vui lòng nhập đầy đủ thông tin")
         } else if (newPassword !== confirmPassword) {
             Alert.alert("Thông báo","Mật khẩu không trùng khớp")
         } else {
-            axios({
-                method: "post",
-                url: "https://163clone.bmdapp.store:4164/v1/customer/auth/password/update",
-                data: {
-                    oldPassword: password,
-                    newPassword: newPassword
-                    },
-                    headers: {
-                        Accept: "application/json",
-                        token: auth
-                        },
-                        })
-                        .then(() => {
-                            Alert.alert("Đổi mật khẩu thành công", "Tài khoản của bạn đã được cập nhật lại mật khẩu mới.")
-                            setauth("");
-                        })
-                        .catch(() => {
-                            Alert.alert("Đổi mật khẩu thất bại", "Mật khẩu cũ không đúng")
-                        })
+           userStore.updatePassword(password, newPassword)
         }
     }
     return (
@@ -54,6 +36,7 @@ export const ChangePassWordScreen = ({ navigation }: any) => {
         </View>
     )
 }
+)
 
 
 const Input = ({ label, value, onChangeText, placeholder }: any) => {
@@ -74,7 +57,7 @@ const Input = ({ label, value, onChangeText, placeholder }: any) => {
             <TouchableOpacity
             onPress={() => {setHidePass(!hidePass) }}
             style = {styles.showPass}>
-                <Image source={hidePass?require('../../../assets/icons/HidePass.png') : require('../../../assets/icons/EyeIcon.png')}/>
+                <Image source={!hidePass?require('../../../assets/icons/HidePass.png') : require('../../../assets/icons/EyeIcon.png')}/>
             </TouchableOpacity>
            
         </View>

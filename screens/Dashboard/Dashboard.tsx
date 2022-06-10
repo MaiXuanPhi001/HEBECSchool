@@ -1,46 +1,61 @@
-import { ScrollView, StatusBar, StyleSheet, View} from 'react-native';
+import { RefreshControl, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import { CarouselCard } from './components/CarouselBannerCard';
 import { CategoriesRender } from './components/ListCategory';
-import { ListNews } from '../../components/ListNews';
-import { Title } from './components/Title';
+import { CategoryHighlight } from '../../components/CategoryHighlight';
 import { NewsContext } from '../../types/Context';
 import bookStore from '../../store/bookStore';
 import { bannerApi } from '../../api/banner';
-import { Loading } from '../../components/Loading';
 import { observer } from 'mobx-react';
 import { HeaderName } from '../../components/HeaderWithName';
 
 
 export const Dashboard = observer(({navigation} : any) => {
     const [banner, setBanner] = useState([]);
-    const [news] = useContext(NewsContext)
     useEffect(() => {
         bookStore.setCategories([]);
         bannerApi.getBanner().then(res => {
             setBanner(res.data.data);
-        })  
+        });
+        bookStore.setCategoryHightlight([]);
+
     }, [])
-    if(bookStore.isLoadingCategories == false)
-    {
     return (
-            <ScrollView style = {styles.container}>
-                <StatusBar  backgroundColor = "#489620" />
+        <View style={styles.container}>
+            <StatusBar  backgroundColor = "#489620" />
                 <HeaderName isSearch = {true} icon = {true} nonback={true}  navigation = {navigation}/>
+            <ScrollView style = {styles.container}
+            refreshControl = {
+                <RefreshControl
+                    refreshing={bookStore.isLoadingCategories}
+                    onRefresh={() => {
+                        bookStore.setCategories([]);
+                        bannerApi.getBanner().then(res => {
+                            setBanner(res.data.data);
+                        }
+                        )
+                    }
+                    }
+                    colors={["#489620"]}
+                    progressBackgroundColor="#fff"
+                    />
+            }
+            >
                 <CarouselCard banner={banner} />
                 <View style = {styles.bgBanner}/>
                 <CategoriesRender data={bookStore.categories} navigation = {navigation}/>
-                <Title title = "Tiêu điểm nổi bật" icon = {require('../../assets/icons/NewsIconGreen.png')} subTitle ="Xem thêm"/>
-                <ListNews data={news} navigation = {navigation} vertical = {true} />
+                {
+                    bookStore.categoryHightlight.map((item, index) => {
+                        return (
+                            <CategoryHighlight data = {item} navigation = {navigation} key = {index}/>
+                        )
+                    }
+                    )
+                }
             </ScrollView>
+        </View>
     )
     }
-    else{
-        return(
-            <Loading/>
-        )
-    }
-}
 )
 
 const styles = StyleSheet.create({
@@ -50,11 +65,17 @@ const styles = StyleSheet.create({
     },
     bgBanner: {
         width: '100%',
-        height: 140,
+        height:100,
         backgroundColor: '#489620',
         position: 'absolute',
         top: 0,
         zIndex: -1,
+    },
+    loading: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
     }
 });
 export default Dashboard;

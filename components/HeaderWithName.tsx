@@ -52,7 +52,6 @@ nameNonBack: {
     fontSize: 18,
     fontWeight: '700',
     color: '#fff',
-    marginLeft: 30,
 },
 back: {
     marginLeft: 20,

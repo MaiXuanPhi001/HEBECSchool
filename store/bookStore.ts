@@ -10,12 +10,13 @@ export const apiBook = {
         url: "/v1/customer/category/highlight",
         method: "GET"
     }),
-    getBooks: ( page: number,categoryId: number) => request({
+    getBooks: ( page: number,categoryId: number, search: string) => request({
         url: "/v1/customer/book",
         method: "GET",
         params: {
             page: page,
             categoryId: categoryId,
+            search: search
         }
     }),
     getBook: (id: number) => request({
@@ -25,7 +26,7 @@ export const apiBook = {
     getBookRelations: (id: number) => request({
         url: `/v1/customer/book/${id}/relations?limit=10`,
         method: "GET"
-    }),
+    })
     };
 
     class Store {
@@ -42,6 +43,7 @@ export const apiBook = {
         @observable isLoadingCategories: boolean = false;
         @observable isLoadingBooks: boolean = false;
         @observable page: number = 1;
+        @observable isLoadingMore:boolean = false;
 
 
         @computed get getCategories(){
@@ -62,6 +64,18 @@ export const apiBook = {
         @computed get getBooksCount(){
             return this.booksCount;
         }
+        @computed get getIsLoadingCategories(){
+            return this.isLoadingCategories;
+        }
+        @computed get getIsLoadingBooks(){
+            return this.isLoadingBooks;
+        }
+        @computed get getPage(){
+            return this.page;
+        }
+        @computed get getIsLoadingMore(){
+            return this.isLoadingMore;
+        }
 
         @action 
          setCategories = async (categories: any[]) => {
@@ -76,8 +90,8 @@ export const apiBook = {
             this.categoryHightlight = res.data;
         }
         @action
-        setBooks = async (categoryId: number) => {
-            const res = await apiBook.getBooks(1,categoryId);
+        setBooks = async (categoryId: number, search: string) => {
+            const res = await apiBook.getBooks(1,categoryId, search);
             this.books = res.data.data;
             this.booksCount = res.data.total;
         }
@@ -92,12 +106,14 @@ export const apiBook = {
             this.bookRelations = res.data.books;
         }
         @action
-        loadMoreBooks = async (categoryId: number) => {
+        loadMoreBooks = async (categoryId: number, search: string) => {
+            this.isLoadingMore = true;
             if(this.books.length < this.booksCount){
             this.page += 1;
-            const res = await apiBook.getBooks(this.page,categoryId);
+            const res = await apiBook.getBooks(this.page,categoryId, search);
             this.books = [...this.books, ...res.data.data];
             }
+            this.isLoadingMore = false;
         }
     }
     const bookStore = new Store();
