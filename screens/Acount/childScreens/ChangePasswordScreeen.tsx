@@ -1,4 +1,3 @@
-import axios from "axios"
 import { observer } from "mobx-react"
 import React, { useState } from "react"
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
