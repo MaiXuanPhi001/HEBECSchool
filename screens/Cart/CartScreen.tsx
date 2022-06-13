@@ -48,7 +48,9 @@ export const CartScreen = observer(({ navigation }: any) => {
                 <Text style={styles.footerTitle}>Tổng tạm tính</Text>
                 <PriceText style={styles.footerText} price = {cartStore.total}/>
             </View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}
+            onPress={() => navigation.navigate("PaymentProcess")}
+            >
                 <Text style={styles.buttonText}>Đặt sách</Text>
             </TouchableOpacity>
 

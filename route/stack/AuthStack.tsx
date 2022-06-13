@@ -7,6 +7,7 @@ import { AccountInforScreen } from '../../screens/Acount/childScreens/AccountInf
 import { ChangePassWordScreen } from '../../screens/Acount/childScreens/ChangePasswordScreeen';
 import { DetailScreen } from '../../screens/Detail/DetailScreen';
 import { CartScreen } from '../../screens/Cart/CartScreen';
+import { PaymentProcessScreen } from '../../screens/PaymentProcess/PaymentProcessScreen';
 
 const Stack = createNativeStackNavigator();
 export function AuthStack() {
@@ -19,6 +20,7 @@ export function AuthStack() {
         <Stack.Screen name = 'ChangePassword' component = {ChangePassWordScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Detail' component={DetailScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Cart' component={CartScreen} options={{headerShown: false}}/>
+        <Stack.Screen name='PaymentProcess' component={PaymentProcessScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
   );
 }
