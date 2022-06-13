@@ -43,6 +43,7 @@ export const apiBook = {
         @observable isLoadingCategories: boolean = false;
         @observable isLoadingBooks: boolean = false;
         @observable page: number = 1;
+        @observable key: string = "";
         @observable isLoadingMore:boolean = false;
 
 
@@ -76,6 +77,9 @@ export const apiBook = {
         @computed get getIsLoadingMore(){
             return this.isLoadingMore;
         }
+        @computed get getKey(){
+            return this.key;
+        }
 
         @action 
          setCategories = async (categories: any[]) => {
@@ -90,8 +94,8 @@ export const apiBook = {
             this.categoryHightlight = res.data;
         }
         @action
-        setBooks = async (categoryId: number, search: string) => {
-            const res = await apiBook.getBooks(1,categoryId, search);
+        setBooks = async (categoryId: number) => {
+            const res = await apiBook.getBooks(1,categoryId, this.key);
             this.books = res.data.data;
             this.booksCount = res.data.total;
         }
@@ -106,14 +110,18 @@ export const apiBook = {
             this.bookRelations = res.data.books;
         }
         @action
-        loadMoreBooks = async (categoryId: number, search: string) => {
+        loadMoreBooks = async (categoryId: number) => {
             this.isLoadingMore = true;
             if(this.books.length < this.booksCount){
             this.page += 1;
-            const res = await apiBook.getBooks(this.page,categoryId, search);
+            const res = await apiBook.getBooks(this.page,categoryId, this.key);
             this.books = [...this.books, ...res.data.data];
             }
             this.isLoadingMore = false;
+        }
+        @action
+        setKey = (key: string) => {
+            this.key = key;
         }
     }
     const bookStore = new Store();

@@ -1,11 +1,9 @@
 import React from "react"
-import { Dimensions, Image, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Image, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native"
 import { HeaderName } from "../../../components/HeaderWithName";
 import { BASE_URL } from "../../../config";
 import userStore from "../../../store/userStore";
-
-let width = Dimensions.get('window').width;
-let withCard = width - 40;
+import { width } from "../../../utils/dimensions";
 
 
 export const AccountInforScreen = ({ navigation, route }: any) => {
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         top: -50,
         flexDirection: 'column',
-        width: withCard,
+        width: width-40,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1.5,
-        left: withCard/2 - 50,
+        left: width/2 - 60,
         borderRadius: 60,
         backgroundColor: '#f2f2f2',
         
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
     infoContent: {
         fontSize: 16,
         lineHeight: 20,
-        width: withCard - 130,
+        width: width - 170,
         fontWeight: '500',
         color: '#231F20',
     },

@@ -13,7 +13,7 @@ export const HeaderName = observer(({ isSearch,name, navigation, icon, nonback }
                 <Image style = {styles.back}  source={require("../assets/icons/icBack.png")}/>
             </TouchableOpacity>:null}
             {
-                isSearch ? <SearchBar style = {styles.searchBar}/> :  
+                isSearch ? <SearchBar style = {styles.searchBar} navigation ={navigation}/> :  
                 <View style = {{flex: 1, alignItems: 'center'}}>
                 <Text style = {!nonback? styles.nameBack: styles.nameNonBack}>{name}</Text>
             </View>

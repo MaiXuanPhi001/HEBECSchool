@@ -1,13 +1,13 @@
 import { RefreshControl, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CarouselCard } from './components/CarouselBannerCard';
 import { CategoriesRender } from './components/ListCategory';
-import { CategoryHighlight } from '../../components/CategoryHighlight';
-import { NewsContext } from '../../types/Context';
+import { CategoryHighlight } from './components/CategoryHighlight';
 import bookStore from '../../store/bookStore';
 import { bannerApi } from '../../api/banner';
 import { observer } from 'mobx-react';
 import { HeaderName } from '../../components/HeaderWithName';
+import { width } from '../../utils/dimensions';
 
 
 export const Dashboard = observer(({navigation} : any) => {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         flex:1
     },
     bgBanner: {
-        width: '100%',
+        width: width,
         height:100,
         backgroundColor: '#489620',
         position: 'absolute',

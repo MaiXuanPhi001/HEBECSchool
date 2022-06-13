@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { observer } from "mobx-react";
 import React, { useCallback, useEffect, useState } from "react"
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { ControlQuantity } from "../../components/ControlQuantity";
 import { HeaderName } from "../../components/HeaderWithName"
 import { ListProductHorizontal } from "../../components/ListProductHorizontal";
@@ -81,9 +81,20 @@ export const DetailScreen = observer(({navigation, route} : any) => {
     return (
         <View style={styles.container}>
               <HeaderName name="Thông tin sách" navigation={navigation} icon = {true}/>
-        <ScrollView style = {styles.container}>
-          
-              
+        <ScrollView style = {styles.container}
+        // refreshControl={
+        //     <RefreshControl
+        //         refreshing={bookStore.isLoadingBooks}
+        //         onRefresh={() => {
+        //             bookStore.setBooks
+        //             bookStore.setBookRelations(data.id);
+        //         }
+        //         }
+        //         colors={["#489620"]}
+        //         progressBackgroundColor="#fff"
+        //     />
+        // }
+        >
                 <ImageGallery data = {data.bookGalleries.length == 0? dataDefault: data.bookGalleries}/>
                 <Text style = {styles.title}>{data.name}</Text>
                 <PriceText price = {data.finalPrice} style = {styles.price}/>

@@ -11,7 +11,7 @@ export const ListProduct = observer(({navigation, cateId, style, key }: any) => 
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = () => {
     setRefreshing(true);
-    bookStore.setBooks(cateId,key);
+    bookStore.setBooks(cateId);
     setRefreshing(false);
   }
     const renderItem = ({ item }: any) => (
@@ -28,7 +28,7 @@ export const ListProduct = observer(({navigation, cateId, style, key }: any) => 
           showsVerticalScrollIndicator = {false}
           onEndReachedThreshold = {0.5}
           onEndReached = {() => {
-            bookStore.loadMoreBooks(cateId,key);
+            bookStore.loadMoreBooks(cateId);
           }}
           refreshControl = {
             <RefreshControl

@@ -24,7 +24,6 @@ function App() {
   setTimeout(() => {
     setTimePassed(true);
   }, 3000)
-  console.log(userStore.token);
   return (
     timePassed ? 
       <Router />:
