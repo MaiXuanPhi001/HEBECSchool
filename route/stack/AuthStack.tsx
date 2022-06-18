@@ -8,6 +8,9 @@ import { ChangePassWordScreen } from '../../screens/Acount/childScreens/ChangePa
 import { DetailScreen } from '../../screens/Detail/DetailScreen';
 import { CartScreen } from '../../screens/Cart/CartScreen';
 import { PaymentProcessScreen } from '../../screens/PaymentProcess/PaymentProcessScreen';
+import { SuccessScreen } from '../../screens/PaymentProcess/Success/SuccessScreen';
+import { HistoryScreen } from '../../screens/History/HistoryScreen';
+import { DetailOrderScreen } from '../../screens/DetailOrder/DetailOrderScreen';
 
 const Stack = createNativeStackNavigator();
 export function AuthStack() {
@@ -21,6 +24,9 @@ export function AuthStack() {
         <Stack.Screen name='Detail' component={DetailScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Cart' component={CartScreen} options={{headerShown: false}}/>
         <Stack.Screen name='PaymentProcess' component={PaymentProcessScreen} options={{headerShown: false}}/>
+        <Stack.Screen name = 'PaymentSuccess' component = {SuccessScreen} options={{headerShown: false}}/>
+        <Stack.Screen name = 'History' component = {HistoryScreen} options={{headerShown: false}}/>
+        <Stack.Screen name = 'OrderDetail' component = {DetailOrderScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
   );
 }

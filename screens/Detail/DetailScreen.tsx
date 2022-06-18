@@ -8,6 +8,7 @@ import { ListProductHorizontal } from "../../components/ListProductHorizontal";
 import { PriceText } from "../../components/Price";
 import bookStore from "../../store/bookStore";
 import cartStore from "../../store/cartStore";
+import paymentStore from "../../store/paymentStore";
 import { width } from "../../utils/dimensions";
 import { ImageGallery } from "./components/ImageGallery";
 
@@ -127,7 +128,13 @@ export const DetailScreen = observer(({navigation, route} : any) => {
                    }}>
                         <Text style = {styles.btnTextAdd}>Thêm vào giỏ hàng</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style = {styles.btn}>
+                    <TouchableOpacity
+                    onPress={() => {
+                        paymentStore.setStep(1);
+                        cartStore.buyNow(params, quantity);
+                        navigation.navigate("PaymentProcess")
+                    }}
+                    style = {styles.btn}>
                         <Text style = {styles.btnText}>Mua ngay</Text>
                     </TouchableOpacity>
                 </View>

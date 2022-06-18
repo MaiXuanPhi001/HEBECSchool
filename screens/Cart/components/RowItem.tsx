@@ -1,17 +1,29 @@
 import { observer } from "mobx-react";
 import React, { useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { AlertCustom } from "../../../components/Alert";
 import { ControlQuantity } from "../../../components/ControlQuantity";
 import { PriceText } from "../../../components/Price";
 import cartStore from "../../../store/cartStore";
 
 export const RowItem = observer(({ item }: any) => {
+    const [showAlert, setShowAlert] = React.useState(false);
     const onChangeQuantity = useCallback(
         (quantity: number) => {
+            if(quantity == 0) {
+                setShowAlert(true)
+            } else {
             cartStore.updateCart(item.book, quantity);
+            }
         }
         , [item.id]);
 
+    const onConfirm = (confirm: any) => {
+        if (confirm === true) {
+            cartStore.updateCart(item.book,0);
+        }
+        setShowAlert(false)
+    }
 
     return (
         <View style={styles.container}>
@@ -24,8 +36,15 @@ export const RowItem = observer(({ item }: any) => {
                     quantity={item.quantity}
                     onChangeQuantity={onChangeQuantity}
                 />
-        
             </View>
+            {showAlert && <AlertCustom 
+            title = "Xác nhận xoá" 
+            message = "Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?"
+            callback = {onConfirm}
+            visible = {showAlert} 
+            cancelText = "Thoát"
+            confirmText = "Xoá"
+            />}
         </View>
     )
 }

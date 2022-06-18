@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable } from "mobx";
 import { action, computed, observable,  } from "mobx";
-import { Alert } from "react-native";
+import { Alert, NativeModules } from "react-native";
 import request from "../utils/request";
 export const apiUser = {
     login: (username: string, password: string) => request({
@@ -28,6 +28,16 @@ export const apiUser = {
         url: "/v1/customer/auth/profile",
         method: "GET"
     }),
+    register: (username: string, password: string, name: string) => request({
+        url: "v1/customer/auth/signup",
+        method: "POST",
+        data: {
+            username: username,
+            password: password,
+            name: name
+        }
+    }),
+
 };
 
 class Store{

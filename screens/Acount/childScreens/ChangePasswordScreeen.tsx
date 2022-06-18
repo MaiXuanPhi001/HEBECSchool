@@ -21,9 +21,9 @@ export const ChangePassWordScreen = observer(({ navigation }: any) => {
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
             <HeaderName name="Đổi mật khẩu" navigation={navigation} />
             <View style={{ flex: 1, marginHorizontal:20, marginTop: 20 }}>
-                <Input onChangeText = {setPassword} label="Mật khẩu hiện tại" placeholder='Nhập mật khẩu hiện tại'isShow ={false}/>
-                <Input onChangeText = {setNewPassword} label="Mật khẩu mới" placeholder='Nhập mật khẩu mới' isShow ={false}/>
-                <Input onChangeText = {setConfirmPassword} label="Xác nhận mật khẩu mới" placeholder='Xác nhận mật khẩu mới'isShow ={false}/>
+                <InputPass onChangeText = {setPassword} label="Mật khẩu hiện tại" placeholder='Nhập mật khẩu hiện tại'isShow ={false}/>
+                <InputPass onChangeText = {setNewPassword} label="Mật khẩu mới" placeholder='Nhập mật khẩu mới' isShow ={false}/>
+                <InputPass onChangeText = {setConfirmPassword} label="Xác nhận mật khẩu mới" placeholder='Xác nhận mật khẩu mới'isShow ={false}/>
                 <View style={{ marginTop: 40, alignItems: 'center' }}>
                 <TouchableOpacity
                 onPress={() => {Submit()}}
@@ -38,7 +38,7 @@ export const ChangePassWordScreen = observer(({ navigation }: any) => {
 )
 
 
-const Input = ({ label, value, onChangeText, placeholder }: any) => {
+export const InputPass = ({ label, value, onChangeText, placeholder }: any) => {
     const [hidePass, setHidePass] = useState(true);
     
     return (

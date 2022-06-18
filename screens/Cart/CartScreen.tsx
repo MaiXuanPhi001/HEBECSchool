@@ -2,12 +2,21 @@ import { observer } from "mobx-react";
 import React from "react";
 import { Image, RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
+import { AlertCustom } from "../../components/Alert";
 import { HeaderName } from "../../components/HeaderWithName";
 import { PriceText } from "../../components/Price";
 import cartStore from "../../store/cartStore";
+import paymentStore from "../../store/paymentStore";
 import { RowItem } from "./components/RowItem";
 
 export const CartScreen = observer(({ navigation }: any) => {
+    const [showAlert, setShowAlert] = React.useState(false);
+    const onConfirm = (confirm: any) => {
+        if (confirm === true) {
+            cartStore.clearCart();
+        }
+        setShowAlert(false)
+    }
     return (
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
             <HeaderName name="Giỏ hàng" navigation={navigation} />
@@ -31,8 +40,12 @@ export const CartScreen = observer(({ navigation }: any) => {
                         <Image source={require("../../assets/icons/Books.png")} style={styles.image} />
                         <Text style={styles.titleText}>Sản phẩm đã chọn</Text>
                     </View>
-                    <TouchableOpacity onPress={() => cartStore.clearCart()}>
-                        <Text style={styles.clear}>Xoá tất cả</Text>
+                    <TouchableOpacity onPress={() => {
+                        setShowAlert(true)
+                    }}
+                    disabled={cartStore.totalQuantity == 0}
+                    >
+                        <Text style={cartStore.totalQuantity == 0? styles.clearDisable: styles.clear}>Xoá tất cả</Text>
                     </TouchableOpacity>
                    
                 </View>
@@ -48,12 +61,22 @@ export const CartScreen = observer(({ navigation }: any) => {
                 <Text style={styles.footerTitle}>Tổng tạm tính</Text>
                 <PriceText style={styles.footerText} price = {cartStore.total}/>
             </View>
-            <TouchableOpacity style={styles.button}
-            onPress={() => navigation.navigate("PaymentProcess")}
+            <TouchableOpacity 
+            style={cartStore.totalQuantity > 0 ? styles.button : styles.buttonDisable}
+            disabled={cartStore.totalQuantity === 0}
+            onPress={() => {
+                paymentStore.setStep(1);
+                navigation.navigate("PaymentProcess")}}
             >
                 <Text style={styles.buttonText}>Đặt sách</Text>
             </TouchableOpacity>
-
+            {showAlert && <AlertCustom 
+            title = "Xoá giỏ hàng"
+            message = "Bạn có chắc chắn muốn xoá tất cả trong giỏ hàng?" 
+            callback = {onConfirm}
+            visible = {showAlert} 
+            cancelText = {"Huỷ"}
+            confirmText = {"Xoá"}/>}
         </View>
     )
 })
@@ -111,6 +134,17 @@ const styles = StyleSheet.create({
     },
     clear: {
         color: '#F44336',
+        fontSize: 14,
+    },
+    buttonDisable: {
+        backgroundColor: 'gray',
+        paddingVertical: 10,
+        margin: 20,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    clearDisable: {
+        color: '#9E9E9E',
         fontSize: 14,
     }
 

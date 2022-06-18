@@ -8,6 +8,9 @@ export const Item = ({user,data, notice, navigation}: any) => {
     <TouchableOpacity 
     onPress={() => {
         switch(data.id){
+            case 1:
+                navigation.navigate("History");
+                break;
             case 2:
                 navigation.navigate('AccountInfor', {
                     data: user,

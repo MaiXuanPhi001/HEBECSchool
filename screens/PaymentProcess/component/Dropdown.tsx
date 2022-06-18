@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "reac
 import paymentStore from "../../../store/paymentStore";
 import { ModalList } from "./ModalList";
 
-export const Dropdown = observer(({type, _value}: any) => {
+export const Dropdown = observer(({type}: any) => {
   const [placeholder, setPlaceholder] = useState("");
   const [label, setLabel] = useState("");
   const [currentType, setCurrentType] = useState(type);

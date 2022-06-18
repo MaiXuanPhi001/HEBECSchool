@@ -9,7 +9,6 @@ import userStore from './store/userStore';
 function App() {
   React.useEffect(() => {
     restoreToken();
-    cartStore.getCartFromStore();
   }, []);
   
   const restoreToken = async () => {

@@ -7,7 +7,7 @@ import { observer } from 'mobx-react';
 //get with and height of screen
 const { width, height } = Dimensions.get('window');
 
-export const LoginScreen =  observer(() => {
+export const LoginScreen =  observer(({navigation}: any) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [hidePass, setHidePass] = useState(true);
@@ -19,9 +19,13 @@ export const LoginScreen =  observer(() => {
           style = {styles.button}>
           <Text style = {styles.buttonText}>Đăng nhập</Text>
       </TouchableOpacity>
-  
-      <Text style={styles.register}>Đăng ký tài khoản</Text>
-  
+      <TouchableOpacity 
+      onPress={() => {
+        navigation.navigate('Register')
+      }}
+      style = {styles.register} >
+      <Text style={styles.textRegister}>Đăng ký tài khoản</Text>
+      </TouchableOpacity>
       <View style = {styles.password}>
         <Text style={styles.titleInput}>Mật khẩu</Text>
         <TextInput 
@@ -108,13 +112,15 @@ const styles = StyleSheet.create({
     },
     register:{
       position: 'absolute',
-      fontSize: 14,
       display: 'flex',
       alignItems: 'center',
       right: 10,
       top: 450,
-      color: '#489620',
       marginEnd: 20,
+    },
+    textRegister:{
+      fontSize: 14,
+      color: '#489620',
     },
     button: {
       display: 'flex',

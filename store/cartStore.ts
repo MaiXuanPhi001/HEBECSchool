@@ -9,6 +9,7 @@ class Store{
 @observable totalQuantity: number = 0;
 @observable total: number = 0;
 @observable isLoading: boolean = false;
+@observable isBuyNow : boolean = false;
 
 @computed get getCart(){
     return this.cart;
@@ -21,6 +22,9 @@ class Store{
 }
 @computed get getIsLoading(){
     return this.isLoading;
+}
+@computed get getIsBuyNow(){
+    return this.isBuyNow;
 }
 
 @action
@@ -48,6 +52,7 @@ clearCart = async () => {
 @action
 getCartFromStore = async () => {
     const cart = await AsyncStorage.getItem("cart");
+    this.setIsBuyNow(false);
     this.totalQuantity = 0;
     this.total = 0;
     if(cart){
@@ -87,6 +92,15 @@ reloadCart = async () => {
         });
     }
     this.isLoading = false;
+}
+@action buyNow = async (book: any, quantity: any) => {
+    this.cart = [{book, quantity}];
+    this.totalQuantity = quantity;
+    this.total += Number(book.price) * quantity;
+    this.setIsBuyNow(true);
+}
+@action setIsBuyNow = async (isBuyNow: boolean) => {
+    this.isBuyNow = isBuyNow;
 }
 }
 

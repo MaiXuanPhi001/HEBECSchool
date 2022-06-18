@@ -8,6 +8,7 @@ import { bannerApi } from '../../api/banner';
 import { observer } from 'mobx-react';
 import { HeaderName } from '../../components/HeaderWithName';
 import { width } from '../../utils/dimensions';
+import cartStore from '../../store/cartStore';
 
 
 export const Dashboard = observer(({navigation} : any) => {
@@ -18,7 +19,7 @@ export const Dashboard = observer(({navigation} : any) => {
             setBanner(res.data.data);
         });
         bookStore.setCategoryHightlight([]);
-
+        cartStore.getCartFromStore();
     }, [])
     return (
         <View style={styles.container}>
@@ -34,6 +35,7 @@ export const Dashboard = observer(({navigation} : any) => {
                             setBanner(res.data.data);
                         }
                         )
+                        cartStore.getCartFromStore();
                     }
                     }
                     colors={["#489620"]}
