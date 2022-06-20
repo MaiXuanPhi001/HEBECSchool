@@ -1,64 +1,36 @@
-import React from "react";
+import { observer } from "mobx-react";
+import React, { useState } from "react";
 import { TouchableOpacity, Image, View, Text, StyleSheet } from "react-native";
+import { BASE_URL } from "../config";
+import { convertDate } from "../types/DateTime";
+import { width } from "../utils/dimensions";
 
-export const NewsItem = ({data, navigation, vertical}: any) => {
-    let day = data.publishedAt.split('T')[0];
-    day = day.split('-').join('/');
-    let dayRevert = day.split('/');
-    dayRevert = dayRevert[2]+ '/' + dayRevert[1] + '/' + dayRevert[0] ;
-    let time = data.publishedAt.split('T')[1].split(':')[0] + ':' + data.publishedAt.split(':')[1];
+export const NewsItem = observer(({data, navigation}: any) => {
+    const [imageError, setimageError] = useState(false);
+    const onImageError = () => {
+        setimageError(true);
+    }
+
     return(
     <TouchableOpacity
     onPress={() => navigation.navigate('News',{
-        url: data.url,
+        id: data.id,
       })}
-    style={vertical? styles.item : styles.itemRow}>
-        <Image style = {vertical? styles.image : styles.imageRow} source={{uri: data.urlToImage}}/>
+    style={styles.itemRow}>
+         <Image source={imageError?require("../assets/HEBEC.png"):{uri: BASE_URL+data.thumbnail}} 
+                style = {imageError? styles.imageErr:styles.imageRow} 
+                onError = {() => onImageError()}/>
         <View style={styles.content}>
-            <Text numberOfLines={2} style={vertical? styles.title : styles.titleRow}>{data.title}</Text>
-            <Text style={styles.date}>{time}  {dayRevert}</Text>
+            <Text numberOfLines={2} style={styles.titleRow}>{data.title}</Text>
+            <Text style={styles.date}>{convertDate(data.createdAt)}</Text>
         </View>
     </TouchableOpacity>
-)};
+)}
+);
 const styles = StyleSheet.create({
-    item: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        width: 160,
-        height: 185,
-        marginRight: 10,
-        marginLeft: 10,
-        backgroundColor: '#fff',
-        borderRadius: 7,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 3,
-            height: 3,
-          },
-          shadowOpacity: 0.29,
-          shadowRadius: 7,
-          elevation: 2,
-          marginBottom: 10,
-        overflow: 'hidden',
-    },
-    image: {
-        width: 160,
-        height: 113,
-    },
     content: {
         flexDirection: 'column',
         padding: 10,
-    },
-    title: {
-        marginBottom: 5,
-        fontSize: 14,
-        fontFamily: 'Roboto-Regular',
-        fontWeight: '400',
-        justifyContent: 'center',
-        textAlign: 'left',
-        flexWrap: 'wrap',
-        lineHeight: 16,
     },
     date: {
         fontSize: 12,
@@ -89,6 +61,7 @@ const styles = StyleSheet.create({
           marginBottom: 20,
         overflow: 'hidden',
         marginRight: 10,
+        paddingRight: 10,
     },
     imageRow: {
         width: 130,
@@ -97,13 +70,18 @@ const styles = StyleSheet.create({
     titleRow: {
         marginTop: 10,
         marginBottom: 5,
-        paddingRight: 10,
         fontSize: 16,
         fontFamily: 'Roboto-Regular',
         fontWeight: '400',
         justifyContent: 'center',
         textAlign: 'left',
         lineHeight: 24,
-        maxWidth: '80%',
+        width: width-170,
+    },
+    imageErr: {
+        width: 90,
+        height: 100,
+        marginHorizontal: 20,
+        resizeMode: 'contain',
     }
 });

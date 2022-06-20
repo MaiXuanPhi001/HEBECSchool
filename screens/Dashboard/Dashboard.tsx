@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import { HeaderName } from '../../components/HeaderWithName';
 import { width } from '../../utils/dimensions';
 import cartStore from '../../store/cartStore';
+import notiStore from '../../store/NotificationStore';
 
 
 export const Dashboard = observer(({navigation} : any) => {
@@ -20,6 +21,7 @@ export const Dashboard = observer(({navigation} : any) => {
         });
         bookStore.setCategoryHightlight([]);
         cartStore.getCartFromStore();
+        notiStore.setNotiList();
     }, [])
     return (
         <View style={styles.container}>
@@ -36,6 +38,7 @@ export const Dashboard = observer(({navigation} : any) => {
                         }
                         )
                         cartStore.getCartFromStore();
+                        notiStore.setNotiList();
                     }
                     }
                     colors={["#489620"]}

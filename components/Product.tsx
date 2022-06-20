@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import React, { useState } from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import NumberFormat from 'react-number-format';
@@ -5,7 +6,7 @@ import { BASE_URL } from "../config";
 import { width } from "../utils/dimensions";
 import { PriceText } from "./Price";
 
-export const Product = ({data, navigation}:any) => {
+export const Product = observer(({data, navigation}:any) => {
     const [imageError, setimageError] = useState(false);
     const onImageError = () => {
         setimageError(true);
@@ -38,6 +39,7 @@ export const Product = ({data, navigation}:any) => {
         </TouchableOpacity>
     )
     }
+)
 
     const styles = StyleSheet.create({
         container: {
