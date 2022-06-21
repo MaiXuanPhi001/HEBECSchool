@@ -22,7 +22,13 @@ export const Dashboard = observer(({navigation} : any) => {
         bookStore.setCategoryHightlight([]);
         cartStore.getCartFromStore();
         notiStore.setNotiList();
+
+        const unsubscribe = messaging().onMessage(async remoteMessage => {
+            Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+          });
+
     }, [])
+
     return (
         <View style={styles.container}>
             <StatusBar  backgroundColor = "#489620" />
