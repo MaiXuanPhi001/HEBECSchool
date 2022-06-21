@@ -64,7 +64,6 @@ export const ItemOrder = observer(({data, navigation} : any) => {
 
                 </View>
             </TouchableOpacity>
-            <View style = {styles.line}/>
         </View>
     )
 }
@@ -76,7 +75,6 @@ const styles = StyleSheet.create({
     },
     content: {
         flexDirection: "row",
-        marginBottom: 15,
     },
     icon: {
         width: 30,

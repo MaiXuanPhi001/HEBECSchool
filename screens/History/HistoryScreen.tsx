@@ -39,6 +39,8 @@ export const HistoryScreen = observer(({navigation}: any) => {
                       data={historyOrdersStore.historyOrders}
                       renderItem={({item}) => <ItemOrder data={item} navigation={navigation} />}
                       keyExtractor={item => item.id.toString()}
+                      ItemSeparatorComponent={() => <View style={styles.separator} />}
+                      showsVerticalScrollIndicator={false}
                     />
                     }
             </View>
@@ -90,6 +92,11 @@ const styles = StyleSheet.create({
         bottom: 0,
         justifyContent: "center",
         alignItems: "center",
+    },
+    separator: {
+        height: 1,
+        backgroundColor: "#C9C2C0",
+        marginHorizontal: 20,
     },
    
 }
