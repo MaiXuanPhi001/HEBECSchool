@@ -5,10 +5,17 @@ import Router from './route/Router';
 import { SplashScreen } from './screens/Splash/SplashScreen';
 import cartStore from './store/cartStore';
 import userStore from './store/userStore';
+import messaging from '@react-native-firebase/messaging';
+import { Alert } from 'react-native';
 
 function App() {
   React.useEffect(() => {
     restoreToken();
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+    return unsubscribe;
+
   }, []);
   
   const restoreToken = async () => {
