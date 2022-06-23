@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "name": "HEBECSChool",
+    "slug": "HEBECSCHOOL",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.AwesomeProject.App"
+      "package": "com.bmd.demoabh.tuan"
     },
     "web": {
       "favicon": "./assets/favicon.png"

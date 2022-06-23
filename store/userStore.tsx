@@ -37,6 +37,13 @@ export const apiUser = {
             name: name
         }
     }),
+    submitFcmToken: (fcmToken: string) => request({
+        url: "/v1/customer/auth/profile",
+        method: "GET",
+        headers: {
+            fcmToken: fcmToken
+        }
+    }),
 
 };
 
@@ -99,6 +106,13 @@ async updatePassword(password: string, newPassword: string){
 async resetDataUser(){
     await AsyncStorage.removeItem("token");
     this.setToken(null);
+}
+
+@action async submitFcmToken(fcmToken: string){
+    await apiUser.submitFcmToken(fcmToken).catch(err => {
+        console.log(err);
+    }
+    );
 }
 }
 const userStore = new Store();

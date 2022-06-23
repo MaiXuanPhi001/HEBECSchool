@@ -1,4 +1,4 @@
-package com.AwesomeProject.App;
+package com.bmd.demoabh.tuan;
 
 import android.os.Build;
 import android.os.Bundle;

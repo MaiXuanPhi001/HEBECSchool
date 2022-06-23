@@ -39,11 +39,8 @@ class Store {
     @action cancelOrder = async (id: number) => {
         this.setIsLoadingHistoryOrders(true);
         await apiHistoryOrder.cancelOrder(id).then(res => {
-            if(res.data.status === true){
                 this.setHistoryOrders();
-            }
         }).catch(err => {
-            this.setMessage(err.response.data.message);
             console.log(err.response.data.message);
         }
         )

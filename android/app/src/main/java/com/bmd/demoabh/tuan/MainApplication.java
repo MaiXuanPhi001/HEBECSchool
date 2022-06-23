@@ -1,4 +1,4 @@
-package com.AwesomeProject.App;
+package com.bmd.demoabh.tuan;
 
 import android.app.Application;
 import android.content.Context;
@@ -12,7 +12,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.AwesomeProject.App.newarchitecture.MainApplicationReactNativeHost;
+import com.bmd.demoabh.tuan.newarchitecture.MainApplicationReactNativeHost;
 
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;

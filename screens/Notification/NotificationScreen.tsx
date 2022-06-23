@@ -8,9 +8,6 @@ import { width } from "../../utils/dimensions";
 import { NotificationItem } from "./components/NotiItem";
 
 export const NotificationScreen = observer(({ navigation }: any) => {
-    const [opacity, setOpacity] = useState(1);
-
-
     useEffect(() => {
         notiStore.setNotiList();
     }, [])
@@ -32,13 +29,6 @@ export const NotificationScreen = observer(({ navigation }: any) => {
             </Text>
         </View>:
         <View>
-            <Animated.View style={{ opacity: opacity}}>
-        <TouchableOpacity onPress={() => navigation.navigate("NotiDetail")}>
-            <Text style={styles.mark}>
-                Đánh dấu đã xem tất cả
-            </Text>
-        </TouchableOpacity>
-        </Animated.View>
         <FlatList
             data={notiStore.notiList}
             renderItem={({ item }) => <NotificationItem item={item} navigation={navigation} />}
@@ -57,13 +47,12 @@ export const NotificationScreen = observer(({ navigation }: any) => {
                 />
             }
             showsVerticalScrollIndicator={false}
-            onScroll={(e) => {
-                if (e.nativeEvent.contentOffset.y > 0) {
-                    setOpacity(0);
-                } else {
-                    setOpacity(1);
-                }
-            }}
+            ListHeaderComponent={() =>  
+                                    <TouchableOpacity onPress={() => {
+                                        notiStore.seenAllNoti();
+                                    }}>
+                                        <Text style={styles.mark}> Đánh dấu đã xem tất cả </Text>
+                                    </TouchableOpacity>}
         />
         </View>
         }
@@ -108,7 +97,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     list: {
-        paddingTop: 50,
+        paddingTop: 20,
         paddingBottom: 20,
     },
     loading: {
@@ -132,8 +121,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#489620",
         alignSelf: "flex-end",
-        top: 10,
-        right: 20,
-        position: "absolute",
+        marginBottom: 10
     }
 });

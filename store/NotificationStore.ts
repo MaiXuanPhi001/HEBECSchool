@@ -15,7 +15,7 @@ export const notiApi = {
         method: "POST",
     }),
     seenAllNoti: () => request({
-        url: `/v1/customer/notification/seen/all`,
+        url: `/v1/customer/notificationCustomer/seen/all`,
         method: "POST",
     }),
 }

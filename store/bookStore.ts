@@ -1,5 +1,6 @@
 import { action, computed, makeAutoObservable, observable } from "mobx";
 import request from "../utils/request";
+import userStore from "./userStore";
 
 export const apiBook = {
     getCategories: () => request({
@@ -84,8 +85,12 @@ export const apiBook = {
         @action 
          setCategories = async (categories: any[]) => {
             this.isLoadingCategories = true;
-            const res = await apiBook.getCategories();
-            this.categories = res.data.categories;
+            await apiBook.getCategories().then(res => {
+                this.categories = res.data.categories;})
+                .catch(err => {
+                    userStore.resetDataUser();
+                }
+            )
             this.isLoadingCategories = false;
         }
         @action
