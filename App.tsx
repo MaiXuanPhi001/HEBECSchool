@@ -7,16 +7,27 @@ import cartStore from './store/cartStore';
 import userStore from './store/userStore';
 import messaging from '@react-native-firebase/messaging';
 import { Alert } from 'react-native';
+import * as Updates from 'expo-updates';
 
 function App() {
   React.useEffect(() => {
     restoreToken();
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-    });
-    return unsubscribe;
+    // const unsubscribe = messaging().onMessage(async remoteMessage => {
+    //   Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    // });
+    // return unsubscribe;
+    checkUpdate()
 
   }, []);
+  const checkUpdate = async () =>{
+   const res= await  Updates.checkForUpdateAsync();
+   if(res.isAvailable){
+     await Updates.fetchUpdateAsync();
+     await Updates.reloadAsync();
+   }
+  }
+
+  //get token expo install expo-updates
   
   const restoreToken = async () => {
     try {

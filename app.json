@@ -1,14 +1,14 @@
 {
   "expo": {
     "name": "HEBECSChool",
-    "slug": "HEBECSCHOOL",
+    "slug": "HEBECSchool-Tuan",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ic_La.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/splashscreen_image.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -18,14 +18,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bmd.demoabh.tuan",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/ic_La.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.bmd.demoabh.tuan"
+      "package": "com.bmd.demoabh.tuan",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
