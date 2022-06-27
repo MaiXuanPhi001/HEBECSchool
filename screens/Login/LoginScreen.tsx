@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
+import { Loading } from '../../components/Loading';
   
 //get with and height of screen
 const { width, height } = Dimensions.get('window');
@@ -150,4 +151,9 @@ const styles = StyleSheet.create({
       right: 20,
       top: 60,
     },
+    loading: {
+      position: 'absolute',
+      top: height/2,
+      left: width/2,
+    }
   });

@@ -1,5 +1,6 @@
 import { action, computed, makeAutoObservable, observable } from "mobx";
 import request from "../utils/request";
+import userStore from "./userStore";
 
 export const notiApi = {
     getNoti: (page:number) => request({
@@ -67,6 +68,7 @@ class Store {
     @action seenAllNoti = async () => {
         await notiApi.seenAllNoti().then(res => {
                 this.setNotiList();
+                userStore.getInfo();
         }).catch(err => {
             console.log(err.response.data.message);
         }

@@ -1,5 +1,5 @@
 import { RefreshControl, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { CarouselCard } from './components/CarouselBannerCard';
 import { CategoriesRender } from './components/ListCategory';
 import { CategoryHighlight } from './components/CategoryHighlight';
@@ -10,6 +10,8 @@ import { HeaderName } from '../../components/HeaderWithName';
 import { width } from '../../utils/dimensions';
 import cartStore from '../../store/cartStore';
 import notiStore from '../../store/NotificationStore';
+import { NotificationService } from '../../plugins/notificationService';
+import userStore from '../../store/userStore';
 
 
 export const Dashboard = observer(({navigation} : any) => {
@@ -22,8 +24,29 @@ export const Dashboard = observer(({navigation} : any) => {
         bookStore.setCategoryHightlight([]);
         cartStore.getCartFromStore();
         notiStore.setNotiList();
+        checkNotificationPermission();
+
+        const notifyService = new NotificationService();
+       
+        notifyService.onNotification(handleNotification)
+        notifyService.onNotificationClick(handleNotification)
+        notifyService.onNotificationBackground(handleNotification)
+        notifyService.onNotificationLocalClick(handleNotification)
+        return () => {
+            notifyService.unSubscribe();
+        }
+
     }, [])
 
+    const handleNotification = useCallback((data, trigger) => {
+        switchNotification(data, trigger);
+      }, []);
+    
+      const checkNotificationPermission = useCallback(async () => {
+        await NotificationService.checkPermission();
+        await NotificationService.onRegister();
+        await userStore.getInfo();
+      }, []);
     return (
         <View style={styles.container}>
             <StatusBar  backgroundColor = "#489620" />
@@ -85,3 +108,7 @@ const styles = StyleSheet.create({
     }
 });
 export default Dashboard;
+
+function switchNotification(data: any, trigger: any) {
+    throw new Error('Function not implemented.');
+}

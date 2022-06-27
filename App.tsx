@@ -12,12 +12,7 @@ import * as Updates from 'expo-updates';
 function App() {
   React.useEffect(() => {
     restoreToken();
-    // const unsubscribe = messaging().onMessage(async remoteMessage => {
-    //   Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-    // });
-    // return unsubscribe;
     checkUpdate()
-
   }, []);
   const checkUpdate = async () =>{
    const res= await  Updates.checkForUpdateAsync();
@@ -26,9 +21,6 @@ function App() {
      await Updates.reloadAsync();
    }
   }
-
-  //get token expo install expo-updates
-  
   const restoreToken = async () => {
     try {
       const value = await AsyncStorage.getItem('token');

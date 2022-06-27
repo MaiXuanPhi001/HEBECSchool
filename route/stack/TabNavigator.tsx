@@ -1,14 +1,17 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { observer } from 'mobx-react';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { NotificationService } from '../../plugins/notificationService';
 import { AcountScreen } from '../../screens/Acount/AccountMenuScreen';
 import Dashboard from '../../screens/Dashboard/Dashboard';
 import { ListNewsScreen } from '../../screens/News/ListNewScrens';
 import { NotificationScreen } from '../../screens/Notification/NotificationScreen';
+import userStore from '../../store/userStore';
 
 const Tab = createBottomTabNavigator();
 
-export function TabNavigator() {
+export const TabNavigator = observer(() => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -25,10 +28,6 @@ export function TabNavigator() {
           }
           else if (route.name === 'Tin tức') {
             iconName = require('../../assets/icons/NewsIcon.png');
-            color = focused ? '#489620' : '#9E9E9E'
-          }
-          else if (route.name === 'Thông báo') {
-            iconName = require('../../assets/icons/Union.png');
             color = focused ? '#489620' : '#9E9E9E'
           }
 
@@ -49,13 +48,20 @@ export function TabNavigator() {
       })}
     >
       <Tab.Screen name="Trang chủ" component={Dashboard} options={{headerShown: false}}/>
-      <Tab.Screen name='Thông báo' component={NotificationScreen} options={{headerShown: false}}/>
+      <Tab.Screen name='Thông báo' component={NotificationScreen} options={{headerShown: false,
+        tabBarIcon: ({color, focused}) => {
+          let iconName;
+            iconName = require('../../assets/icons/Union.png');
+            color = focused ? '#489620' : '#9E9E9E'
+          return <View>{userStore.info.totalNotifyNormal >0 && <View style = {{position: 'absolute', backgroundColor: '#F44336', borderRadius: 9, width: 9, height: 9, left: 19, top: 7 }}/>}<Image source={iconName} style={{ width: 23, height: 23, tintColor: color, marginTop: 10, marginBottom: 5 }} /></View>;
+        }}} />
       <Tab.Screen name="Tin tức" component={ListNewsScreen} options={{headerShown: false}} />
       <Tab.Screen name="Tài khoản" component={AcountScreen} options={{headerShown: false}}/>
       
     </Tab.Navigator>
   );
 }
+);
 const styles = StyleSheet.create({
   focused: {
     fontSize: 14, 
