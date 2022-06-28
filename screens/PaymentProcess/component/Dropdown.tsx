@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react"
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import paymentStore from "../../../store/paymentStore";
+import { colors } from "../../../styles/themes";
 import { ModalList } from "./ModalList";
 
 export const Dropdown = observer(({type}: any) => {
@@ -41,7 +42,7 @@ export const Dropdown = observer(({type}: any) => {
 
   return (
     <View style={styles.dropdown}>
-            <Text style={styles.labelStyle}>{label}<Text style={{color:'#F44336'}}> *</Text></Text>
+            <Text style={styles.labelStyle}>{label}<Text style={{color:colors.error}}> *</Text></Text>
             <TouchableOpacity
             onPress={() => {openModal()}}
             style = {styles.dropdownItem}>
@@ -69,14 +70,14 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
     },
     inputStyle: {
-      color: '#000',
+      color: colors.darkGrey,
       paddingLeft: 20,
       paddingRight: 50,
       paddingVertical: 15,
       fontSize: 16,
       lineHeight: 20,
       height: 50,
-      borderColor: '#9E9E9E',
+      borderColor: colors.mediumGrey,
       borderWidth: 1,
       borderRadius: 7,
   },
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
       fontSize: 14,
       lineHeight: 16,
       marginBottom: 5,
-      color: '#231F20',
+      color: colors.darkGrey,
   },
   icon: {
       marginLeft: 10,

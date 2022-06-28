@@ -4,6 +4,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Vi
 import paymentStore from "../../../store/paymentStore"
 import { height, width } from "../../../utils/dimensions"
 import { AlertCustom } from "../../../components/Alert"
+import { colors } from "../../../styles/themes"
 
 const RadioButton = ({ label, checked, onPress }: any) => {
     return (
@@ -37,7 +38,7 @@ export const PayMentMethod = observer(({navigation}: any) => {
         setShowError(false)
     }
     return (
-       <View style = {{ flex: 1,backgroundColor: "#fff", marginTop: 30, marginHorizontal: 20, justifyContent: "space-between", height:height-200}}>
+       <View style = {{ flex: 1,backgroundColor: colors.white, marginTop: 30, marginHorizontal: 20, justifyContent: "space-between", height:height-200}}>
         <View>
         <View style = {styles.title}>
             <Image source = {require("../../../assets/icons/PaymentMethod.png")} style = {styles.icon}/>
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 18,
         fontWeight: "bold",
-        color: "#231F20",
+        color: colors.darkGrey,
     },
     radio: {
         flexDirection: "column",
@@ -107,24 +108,24 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 16,
         fontWeight: "400",
-        color: "#231F20",
+        color: colors.darkGrey,
         marginLeft: 10,
     },
     button: {
         width: 20,
         height: 20,
         borderRadius: 10,
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
         justifyContent: "center",
         alignItems: "center",
         borderWidth: 1,
-        borderColor: "#231F20",
+        borderColor: colors.darkGrey,
     },
     buttonInner: {
         width: 10,
         height: 10,
         borderRadius: 5,
-        backgroundColor: "#489620",
+        backgroundColor: colors.primary,
         justifyContent: "center",
         alignItems: "center",
     },
@@ -137,16 +138,16 @@ const styles = StyleSheet.create({
     buttonPrev: {
         width: (width - 60)/2,
         height: 50,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 10,
-        borderColor: '#489620',
+        borderColor: colors.primary,
         borderWidth: 1,
     },
     buttonTextPrev: {
-        color: '#489620',
+        color: colors.primary,
         fontSize: 16,
         textAlign: 'center',
         fontWeight: '700',
@@ -154,14 +155,14 @@ const styles = StyleSheet.create({
     buttonNext: {
         width: (width - 60)/2,
         height: 50,
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 10,
     },
     buttonTextNext: {
-        color: '#fff',
+        color: colors.white,
         fontSize: 16,
         textAlign: 'center',
         fontWeight: '700',

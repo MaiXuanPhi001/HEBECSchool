@@ -5,6 +5,7 @@ import { AlertCustom } from "../../../components/Alert";
 import { ControlQuantity } from "../../../components/ControlQuantity";
 import { PriceText } from "../../../components/Price";
 import cartStore from "../../../store/cartStore";
+import { colors } from "../../../styles/themes";
 
 export const RowItem = observer(({ item }: any) => {
     const [showAlert, setShowAlert] = React.useState(false);
@@ -69,11 +70,11 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 16,
         fontWeight: '400',
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     price: {
         fontSize: 14,
         fontWeight: '400',
-        color: '#489620',
+        color: colors.primary,
     },
 });

@@ -1,11 +1,22 @@
 import { useRoute } from "@react-navigation/native";
 import { observer } from "mobx-react";
-import React from "react";
+import React from "react"; 
 import { View, TextInput, StyleSheet, Image, TouchableOpacity, Keyboard } from "react-native";
 import bookStore from "../store/bookStore";
+import { colors } from "../styles/themes";
 
 export const SearchBar = observer(({style, navigation}:any) => {
     const router = useRoute();
+    const Search = () => {
+        if(bookStore.key != "") {
+            Keyboard.dismiss();
+            bookStore.setBooks(0);
+            if (router.name == "Trang chủ") {
+                navigation.navigate("ListProduct", {id: 0});
+            }
+        }
+    }
+
     return (
         <View style = {style}>
             <TextInput
@@ -19,16 +30,11 @@ export const SearchBar = observer(({style, navigation}:any) => {
                     bookStore.setKey(text)
                 }
                 }
+               onSubmitEditing={Search}
             />
             <TouchableOpacity
             onPress={() => {
-                bookStore.setBooks(0);
-                Keyboard.dismiss();
-                console.log(navigation.state)
-                if (router.name == "Trang chủ") {
-                navigation.navigate("ListProduct", {
-                    id: 0});
-                }
+              Search();
             }}
             style={styles.icon}>
             <Image source={require("../assets/Vector.png")}/>
@@ -40,11 +46,11 @@ export const SearchBar = observer(({style, navigation}:any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
     },
     input: {
         height: 50,
-        backgroundColor: "#FFF",
+        backgroundColor: colors.white,
         borderRadius: 7,
         justifyContent: "center",
         paddingLeft: 20,

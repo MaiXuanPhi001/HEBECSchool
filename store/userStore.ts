@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable } from "mobx";
 import { action, computed, observable,  } from "mobx";
-import { Alert, NativeModules } from "react-native";
 import { NotificationService } from "../plugins/notificationService";
 import request from "../utils/request";
 export const apiUser = {
@@ -36,9 +35,11 @@ export const apiUser = {
         url: "v1/customer/auth/signup",
         method: "POST",
         data: {
-            username: username,
-            password: password,
-            name: name
+            customer: {
+                username: username,
+                password: password,
+                name: name
+            }
         }
     }),
 
@@ -55,6 +56,8 @@ class Store{
 @observable _isLoadingLogin: boolean = false;
 @observable _messageError: string = "";
 @observable _messageChangePassword: string = "";
+@observable _success: boolean = false;
+@observable _isLoadingChangePassword: boolean = false;
 
 @computed get token(){
     return this._token;
@@ -69,6 +72,12 @@ class Store{
 @computed get messageChangePassword(){
     return this._messageChangePassword;
 }
+@computed get success(){
+    return this._success;
+}
+@computed get isLoadingChangePassword(){
+    return this._isLoadingChangePassword;
+}
 
 @action
 async setToken(token: any){
@@ -82,6 +91,7 @@ async login (username: string, password: string){
     await apiUser.login(username, password).then(async res => {
         this.setToken(res.data.token);
         this.getInfo();
+        this.setMessageError("");
     }
     ).catch(err => {
         this.setMessageError(err.response.data.message);
@@ -108,19 +118,25 @@ async logout(){
 }
 @action
 async updatePassword(password: string, newPassword: string){
+    this.setIsLoadingChangePassword(true);
     await apiUser.updatePassword(password, newPassword).then(res => {
-       this.setMessageChangePassword(res.data.message);
-        this.logout();
-        this.resetDataUser();
+       this.setMessageChangePassword(res.message +". Vui lòng đăng nhập lại");
+       this.setSuccess(true);
     }
     ).catch(err => {
         this.setMessageChangePassword(err.response.data.message);
     }
     );
+    this.setIsLoadingChangePassword(false);
    
+}
+@action setSuccess(success: boolean){
+    this._success = success;
 }
 @action
 async resetDataUser(){
+    this.setMessageError("");
+    this.setSuccess(false);
     await AsyncStorage.removeItem("token");
     NotificationService.setBadge(0);
     this.setToken(null);
@@ -134,6 +150,20 @@ async resetDataUser(){
 }
 @action async setMessageChangePassword(messageChangePassword: string){
     this._messageChangePassword = messageChangePassword;
+}
+@action setIsLoadingChangePassword(isLoading: boolean){
+    this._isLoadingChangePassword = isLoading;
+}
+@action async register (username: string, password: string, name: string){
+    this.setIsLoadingLogin(true);
+    await apiUser.register(username, password, name).then(res => {
+        this.setMessageError("");
+    }
+    ).catch(err => {
+        this.setMessageError(err.response.data.message);
+    }
+    );
+    this.setIsLoadingLogin(false);
 }
 
 }

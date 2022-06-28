@@ -1,13 +1,15 @@
 import { observer } from "mobx-react";
-import React, { useEffect } from "react";
-import { Alert, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { AlertCustom } from "../../../components/Alert";
 import paymentStore from "../../../store/paymentStore";
+import { colors } from "../../../styles/themes";
 import { height, width } from "../../../utils/dimensions";
 import { Dropdown } from "./Dropdown";
 export const Input = ({ label, value, onChangeText, placeholder }: any) => {
     return (
         <View style={styles.inputItem}>
-            <Text style={styles.labelStyle}>{label}<Text style={{color:'#F44336'}}> *</Text></Text>
+            <Text style={styles.labelStyle}>{label}<Text style={{color:colors.error}}> *</Text></Text>
             <TextInput
                 placeholder={placeholder}
                 placeholderTextColor="#C9C2C0"
@@ -20,7 +22,8 @@ export const Input = ({ label, value, onChangeText, placeholder }: any) => {
 }
 
 export const DeliveryAddress = observer(() => {
-
+    const [showAlert, setShowAlert] = useState(false);
+    const [message, setMessage] = useState("");
     useEffect(() => {
         paymentStore.setListCity();
         paymentStore.setDataFromStorage();
@@ -30,7 +33,8 @@ export const DeliveryAddress = observer(() => {
     const checkInput = () => {
         if (paymentStore.name && paymentStore.phone && paymentStore.address && paymentStore.city.code  && paymentStore.district.code && paymentStore.ward.code) {
             if (paymentStore.phone.length < 10) {
-                Alert.alert("Thông báo", "Số điện thoại không hợp lệ");
+                setMessage("Số điện thoại không hợp lệ");
+                setShowAlert(true);
                 return;
             }
             else {
@@ -40,12 +44,16 @@ export const DeliveryAddress = observer(() => {
             }
         }
         else {
-            Alert.alert("Vui lòng nhập đầy đủ thông tin");
+            setMessage("Vui lòng nhập đầy đủ thông tin");
+            setShowAlert(true);
         }
+    }
+    const onClose = () => {
+        setShowAlert(false)
     }
 
     return (
-        <View style = {{marginTop: 30, height: height-200, justifyContent: "space-between"}}>
+        <View style = {{marginTop: 30, justifyContent: "space-between"}}>
             <View>
             <Input label = "Họ và tên" value = {paymentStore.name} onChangeText = {paymentStore.setName} placeholder = "Nhập họ và tên người nhận hàng" />
             <Input label = "Số điện thoại" value = {paymentStore.phone} onChangeText = {paymentStore.setPhone} placeholder = "Nhập số điện thoại người nhận hàng" />
@@ -62,20 +70,26 @@ export const DeliveryAddress = observer(() => {
                     <Text style = {styles.buttonText}>Tiếp theo</Text>
                 </TouchableOpacity>
             </View>
+            {showAlert && <AlertCustom 
+            title = {"Thông báo"}
+            message = {message}
+            callback = {onClose}
+            visible = {showAlert} 
+            confirmText = {"OK"}/>}
         </View>
     );
     }
 );
 const styles = StyleSheet.create({
     inputStyle: {
-        color: '#000',
+        color: colors.darkGrey,
         paddingLeft: 20,
         paddingRight: 50,
         paddingVertical: 15,
         fontSize: 16,
         lineHeight: 20,
         height: 50,
-        borderColor: '#9E9E9E',
+        borderColor: colors.mediumGrey,
         borderWidth: 1,
         borderRadius: 7,
     },
@@ -83,7 +97,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 16,
         marginBottom: 5,
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     inputItem: {
         flexDirection: 'column',
@@ -91,7 +105,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     button: {
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         padding: 10,
         borderRadius: 7,
         marginHorizontal: 20,
@@ -101,7 +115,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     buttonText: {
-        color: '#fff',
+        color: colors.white,
         fontSize: 16,
         textAlign: 'center',
         fontWeight: '700',

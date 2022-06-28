@@ -1,17 +1,26 @@
 import { observer } from "mobx-react";
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import NumberFormat from 'react-number-format';
 import { BASE_URL } from "../config";
+import { colors } from "../styles/themes";
 import { width } from "../utils/dimensions";
 import { PriceText } from "./Price";
 
 export const Product = observer(({data, navigation}:any) => {
     const [imageError, setimageError] = useState(false);
+    useEffect(() => {
+        promotionCalculate();
+    }
+    , [])
     const onImageError = () => {
         setimageError(true);
     }
-    
+    const promotionCalculate = () => {
+        let promotion = (data.originPrice-data.finalPrice)/data.originPrice*100;
+        promotion = Math.round(promotion);
+        return promotion;
+    }
 
 
     return (
@@ -21,11 +30,11 @@ export const Product = observer(({data, navigation}:any) => {
             <View>
                 {data.isOutOfStock?  <><View style={styles.mask}></View><Text style={styles.textMask}>Hết hàng</Text></>:null}
 
-                {/* {(data.promotion !=null) ?  
+                {(promotionCalculate() != 0) ?  
                 <View style = {styles.promotion}>
-                    <Text style = {styles.promotionText}>{data.promotion}</Text>
+                    <Text  style = {styles.promotionText}>{promotionCalculate() + "%"}</Text>
                 </View>
-                :null} */}
+                :null}
                 <Image source={imageError?require("../assets/HEBEC.png"):{uri: BASE_URL+data.thumbnail}} 
                 style = {imageError? styles.imageErr:styles.image} 
                 onError = {() => onImageError()}/>
@@ -47,8 +56,8 @@ export const Product = observer(({data, navigation}:any) => {
             width: (width-60)/2,
             height: 269,
             borderRadius: 7,
-            backgroundColor: "#fff",
-            shadowColor: "#000",
+            backgroundColor: colors.white,
+            shadowColor: colors.darkGrey,
             shadowOffset: {
                 width: 3,
                 height: 3,
@@ -63,7 +72,6 @@ export const Product = observer(({data, navigation}:any) => {
         image: {
             height: 177,
             width: (width-60)/2,
-            resizeMode: "contain",
         },
         imageErr: {
             height: 177,
@@ -74,7 +82,7 @@ export const Product = observer(({data, navigation}:any) => {
         name: {
             fontSize: 14,
             fontWeight: "400",
-            color: "#000",
+            color: colors.darkGrey,
             marginTop: 10,
         },
         price: {
@@ -102,11 +110,11 @@ export const Product = observer(({data, navigation}:any) => {
             left: 0,
             width: 177,
             height: 177,
-            backgroundColor: "#231F20",
+            backgroundColor: colors.darkGrey,
             opacity: 0.3,
         },
         textMask: {
-            color: "#fff",
+            color: colors.white,
             fontSize: 14,
             fontWeight: "700",
             alignSelf: "center",
@@ -118,22 +126,24 @@ export const Product = observer(({data, navigation}:any) => {
         promotion: {
             position: "absolute",
             transform: [{ rotate: "45deg" }],
-            top: 16,
+            top: 20,
             zIndex: 1.2,
-            right: -20,
-            width: 100,
+            right: -width/10,
+            width: Math.sqrt(((width)/5)*((width)/5)*2),
             height: 22,
             backgroundColor: "#F44336",
             paddingHorizontal: 50,
             paddingVertical: 5,
+            alignItems: "center",
+            justifyContent: "center",
         },
         promotionText: {
-            color: "#fff",
+            color: colors.white,
             fontSize: 14,
             fontWeight: "700",
-            alignSelf: "center",
-            justifyContent: "center",
             position: "absolute",
             zIndex: 1.3,
+            width: Math.sqrt(((width)/5)*((width)/5)*2),
+            right: -(width)/10+7,
         },
     });

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { useRef } from "react"
 import { FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native"
 import { BASE_URL } from "../../../config"
+import { colors } from "../../../styles/themes"
 import { width } from "../../../utils/dimensions"
 
 export const ImageGallery = observer(({ data } : any) => {
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
         height:60,
         borderRadius:10,
         borderWidth:1,
-        borderColor:"#231F20",
+        borderColor:colors.darkGrey,
         alignItems:"center",
         overflow:"hidden",
         marginLeft:10,

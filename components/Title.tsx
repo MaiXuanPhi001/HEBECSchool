@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { BASE_URL } from "../config";
+import { colors } from "../styles/themes";
 
 export const Title = ({ title, icon }: any) => {
     return (
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         fontWeight: '700',
-        color: '#231F20',
+        color: colors.darkGrey,
         marginLeft: 10,
     },
     icon: {

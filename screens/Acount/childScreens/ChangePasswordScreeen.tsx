@@ -1,24 +1,43 @@
 import { observer } from "mobx-react"
 import React, { useState } from "react"
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { AlertCustom } from "../../../components/Alert"
 import { HeaderName } from "../../../components/HeaderWithName"
 import userStore from "../../../store/userStore"
+import { colors } from "../../../styles/themes"
 
 export const ChangePassWordScreen = observer(({ navigation }: any) => {
     const [password, setPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [showAlert, setShowAlert] = useState(false)
+    const [title, setTitle] = useState("")
+    const [message, setMessage] = useState("")
     const Submit = () => {
         if (password === "" || newPassword === "" || confirmPassword === "") {
-            Alert.alert("Thông báo","Vui lòng nhập đầy đủ thông tin")
+            setTitle("Thông báo")
+            setMessage("Vui lòng nhập đầy đủ thông tin")
+            setShowAlert(true)
         } else if (newPassword !== confirmPassword) {
-            Alert.alert("Thông báo","Mật khẩu không trùng khớp")
+            setTitle("Thông báo")
+            setMessage("Mật khẩu mới và xác nhận mật khẩu không trùng khớp")
+            setShowAlert(true)
         } else {
-           userStore.updatePassword(password, newPassword)
+           userStore.updatePassword(password, newPassword).then(() => {
+            userStore.success? setTitle("Đổi mật khẩu thành công") : setTitle("Đổi mật khẩu không thành công")
+            setMessage(userStore.messageChangePassword)
+            setShowAlert(true)
+           })
+        }
+    }
+    const onClose = () => {
+        setShowAlert(false)
+        if(userStore.success){
+            userStore.logout()
         }
     }
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={{ flex: 1, backgroundColor: colors.white }}>
             <HeaderName name="Đổi mật khẩu" navigation={navigation} />
             <View style={{ flex: 1, marginHorizontal:20, marginTop: 20 }}>
                 <InputPass onChangeText = {setPassword} label="Mật khẩu hiện tại" placeholder='Nhập mật khẩu hiện tại'isShow ={false}/>
@@ -28,10 +47,16 @@ export const ChangePassWordScreen = observer(({ navigation }: any) => {
                 <TouchableOpacity
                 onPress={() => {Submit()}}
                 style = {styles.button}>
-                    <Text style = {styles.buttonText}>Lưu</Text>
+                    {userStore.isLoadingChangePassword ? <ActivityIndicator size="small" color={colors.white} /> : <Text style={styles.buttonText}>Lưu</Text>}
                 </TouchableOpacity>
                 </View>
             </View>
+            {showAlert && <AlertCustom 
+            title = {title}
+            message = {message}
+            callback = {onClose}
+            visible = {showAlert} 
+            confirmText = {"OK"}/>}
         </View>
     )
 }
@@ -43,7 +68,7 @@ export const InputPass = ({ label, value, onChangeText, placeholder }: any) => {
     
     return (
         <View style={styles.containerStyle}>
-            <Text style={styles.labelStyle}>{label}<Text style={{color:'#F44336'}}> *</Text></Text>
+            <Text style={styles.labelStyle}>{label}<Text style={{color:colors.error}}> *</Text></Text>
             <TextInput
                 secureTextEntry= {hidePass}
                 placeholder={placeholder}
@@ -65,14 +90,14 @@ export const InputPass = ({ label, value, onChangeText, placeholder }: any) => {
 
 const styles = StyleSheet.create({
     inputStyle: {
-        color: '#000',
+        color: colors.darkGrey,
         paddingLeft: 20,
         paddingRight: 50,
         paddingVertical: 15,
         fontSize: 16,
         lineHeight: 20,
         height: 50,
-        borderColor: '#9E9E9E',
+        borderColor: colors.mediumGrey,
         borderWidth: 1,
         borderRadius: 7,
     },
@@ -80,7 +105,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 16,
         marginBottom: 5,
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     containerStyle: {
         flexDirection: 'column',
@@ -92,7 +117,7 @@ const styles = StyleSheet.create({
         top: 35,
     },
     button: {
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         height: 50,
         width: 200,
         borderRadius: 7,
@@ -100,7 +125,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     buttonText: {
-        color: '#fff',
+        color: colors.white,
         fontSize: 16,
         fontWeight: '700',
     }

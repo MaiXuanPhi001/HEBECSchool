@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React, {  } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import cartStore from "../store/cartStore";
+import { colors } from "../styles/themes";
 import { SearchBar } from "./SearchBar";
 
 export const HeaderName = observer(({ isSearch,name, navigation, icon, nonback }: any) => {
@@ -39,19 +40,19 @@ header: {
     height: 70,
     paddingVertical: 10,
     flexDirection: "row",
-    backgroundColor: '#489620',
+    backgroundColor: colors.primary,
     alignItems: 'center',
 },
 nameBack: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: colors.white,
     marginLeft: -30,
 },
 nameNonBack: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: colors.white,
 },
 back: {
     marginLeft: 20,
@@ -73,15 +74,15 @@ badge: {
     width: 15,
     height: 15,
     borderRadius: 7.5,
-    backgroundColor: '#F44336',
+    backgroundColor: colors.error,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: '#489620',
+    borderColor: colors.primary,
     borderWidth: 1,
 },
 textBadge: {
     fontSize: 7,
-    color: '#fff',
+    color: colors.white,
     fontWeight: '700',
 } 
 })

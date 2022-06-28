@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"; 
 import { View } from "react-native";
 import  Carousel, {Pagination} from "react-native-snap-carousel";
 import CarouselItem, {ITEM_WIDTH, SLIDER_WIDTH} from "./CarouselBannerItem";
-
+import {colors} from "../../../styles/themes";
 export const CarouselCard = ({ banner} : any) => {
     const ref = React.useRef(null);
     const [index, setIndex] = React.useState(0)
@@ -33,8 +33,8 @@ export const CarouselCard = ({ banner} : any) => {
                 borderStyle: 'solid',
                 borderWidth: 1
             }}
-            dotColor={'#489620'}
-            inactiveDotColor={'#fff'}
+            dotColor={colors.primary}
+            inactiveDotColor={colors.white}
             inactiveDotOpacity={0.5}
             inactiveDotScale = {1}
             tappableDots={true}

@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { Image, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
 import { PriceText } from "../../../components/Price"
 import paymentStore from "../../../store/paymentStore"
+import { colors } from "../../../styles/themes"
 import { height, width } from "../../../utils/dimensions"
 
 const RowItem = ({ title, value, icon, stylePrice }: any) => {
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         marginTop: 30,
         marginHorizontal: 20,
         height: height - 200,
@@ -121,19 +122,19 @@ const styles = StyleSheet.create({
     rowItemTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     rowItemRight: {
         alignItems: 'center',
     },
     rowItemValue: {
         fontSize: 16,
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     rowItemPrice: {
         fontSize: 16,
         fontWeight: '500',
-        color: '#489620',
+        color: colors.primary,
     },
     rowItemInput: {
         width: 100,
@@ -144,23 +145,23 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
         fontSize: 16,
-        color: '#231F20',
-        backgroundColor: '#fff',
+        color: colors.darkGrey,
+        backgroundColor: colors.white,
     },
     promotionText: {
         fontSize: 16,
         fontWeight: '400',
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     promotionValue: {
         fontSize: 16,
         fontWeight: '500',
-        color: '#489620',
+        color: colors.primary,
     },
     promotionFail: {
         fontSize: 16,
         fontWeight: '400',
-        color: '#F44336',
+        color: colors.error,
         fontStyle: 'italic',
     },
     noteInput: {
@@ -172,8 +173,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
         fontSize: 16,
-        color: '#231F20',
-        backgroundColor: '#fff',
+        color: colors.darkGrey,
+        backgroundColor: colors.white,
         marginTop: 20,
     },
     loading: {
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     priceTotal: {
         fontSize: 18,
         fontWeight: '700',
-        color: '#489620',
+        color: colors.primary,
     },
     footer: {
         flexDirection: 'row',
@@ -204,16 +205,16 @@ const styles = StyleSheet.create({
     buttonPrev: {
         width: (width - 60)/2,
         height: 50,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 10,
-        borderColor: '#489620',
+        borderColor: colors.primary,
         borderWidth: 1,
     },
     buttonTextPrev: {
-        color: '#489620',
+        color: colors.primary,
         fontSize: 16,
         textAlign: 'center',
         fontWeight: '700',
@@ -221,14 +222,14 @@ const styles = StyleSheet.create({
     buttonNext: {
         width: (width - 60)/2,
         height: 50,
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 10,
     },
     buttonTextNext: {
-        color: '#fff',
+        color: colors.white,
         fontSize: 16,
         textAlign: 'center',
         fontWeight: '700',

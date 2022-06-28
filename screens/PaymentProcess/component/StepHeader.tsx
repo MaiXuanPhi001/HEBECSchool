@@ -1,6 +1,7 @@
 import React from "react"
 import { Image, StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
+import { colors } from "../../../styles/themes"
 import { width } from "../../../utils/dimensions"
 
 const Tracker = ({ step, active, done }:any) => {
@@ -36,13 +37,13 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
         marginTop: 20,
     },
     title: {
         fontSize: 16,
         fontWeight: "bold",
-        color: "#231F20",
+        color: colors.darkGrey,
     },
     progressBar: {
         flexDirection: "row",
@@ -68,8 +69,8 @@ const styles = StyleSheet.create({
         height: 2,
     },
     active: {
-        backgroundColor: "#489620",
-        color: "#fff",
+        backgroundColor: colors.primary,
+        color: colors.white,
     },
     inActive: {
         backgroundColor: "#C9C2C0",

@@ -5,6 +5,7 @@ import {Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-
 import { WebView } from 'react-native-webview';
 import { BASE_URL } from '../../config';
 import newsStore from '../../store/newsStore';
+import { colors } from '../../styles/themes';
 import {  width } from '../../utils/dimensions';
 
 export const News = observer(({ navigation,route } : any) => {
@@ -109,12 +110,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
     },
     content: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
     },
     back: {
         position: 'absolute',
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1,
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         width: 30,
         height: 30,
         borderRadius: 15,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     backImage: {
         width: 15,
         height: 15,
-        tintColor: '#fff',
+        tintColor: colors.white,
     },
 
 });

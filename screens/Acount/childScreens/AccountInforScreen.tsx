@@ -3,6 +3,7 @@ import { Image, RefreshControl, ScrollView, StyleSheet, Text, View } from "react
 import { HeaderName } from "../../../components/HeaderWithName";
 import { BASE_URL } from "../../../config";
 import userStore from "../../../store/userStore";
+import { colors } from "../../../styles/themes";
 import { width } from "../../../utils/dimensions";
 
 
@@ -19,13 +20,13 @@ export const AccountInforScreen = ({ navigation, route }: any) => {
                     userStore.getInfo();
                 }
                 }
-                colors={["#489620"]}
-                progressBackgroundColor="#fff"
+                colors={[colors.primary]}
+                progressBackgroundColor={colors.white}
             />
             }>
             
                 <View style = {styles.header}>
-                    <Image style={{ width: 100, height: 100, borderRadius: 50, borderColor: '#9E9E9E', borderWidth: 3 }} source={data.avatar? {uri: BASE_URL+data.avatar}: require("../../../assets/Avartar.png")} />
+                    <Image style={{ width: 100, height: 100, borderRadius: 50, borderColor: colors.mediumGrey, borderWidth: 3 }} source={data.avatar? {uri: BASE_URL+data.avatar}: require("../../../assets/Avartar.png")} />
                 </View>
                 <View style = {styles.body}>
                     <Text style = {styles.title}>THÔNG TIN CHUNG</Text>
@@ -54,7 +55,7 @@ const Column = ({title, content}: any) => {
 
 const styles = StyleSheet.create({
     body:{
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         borderRadius: 10,
         height:490,
         marginHorizontal: 20,
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
         top: -50,
         flexDirection: 'column',
         width: width-40,
-        shadowColor: "#000",
+        shadowColor: colors.darkGrey,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: '700',
-        color: '#489620',
+        color: colors.primary,
     },
     info: {
         flexDirection: 'row',
@@ -96,18 +97,18 @@ const styles = StyleSheet.create({
     infoTitle: {
         fontSize: 16,
         fontWeight: '400',
-        color: '#231F20',
+        color: colors.darkGrey,
         width: 130,
     },
     infoContent: {
         fontSize: 16,
         lineHeight: 20,
-        width: width - 170,
+        width: width - 190,
         fontWeight: '500',
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     line: {
-        borderBottomColor: '#9E9E9E',
+        borderBottomColor: colors.mediumGrey,
         borderBottomWidth: 1,
         marginTop: 20,
         marginBottom: 20,

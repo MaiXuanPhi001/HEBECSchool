@@ -8,6 +8,7 @@ import Dashboard from '../../screens/Dashboard/Dashboard';
 import { ListNewsScreen } from '../../screens/News/ListNewScrens';
 import { NotificationScreen } from '../../screens/Notification/NotificationScreen';
 import userStore from '../../store/userStore';
+import { colors } from '../../styles/themes';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,22 +21,22 @@ export const TabNavigator = observer(() => {
 
           if (route.name === 'Trang chủ') {
             iconName = require('../../assets/icons/DashboardIcon.png')
-            color = focused ? '#489620' : '#9E9E9E'
+            color = focused ? colors.primary : colors.mediumGrey
           } 
           else if (route.name === 'Tài khoản') {
             iconName = require('../../assets/icons/AccountIcon.png');
-            color = focused ? '#489620' : '#9E9E9E'
+            color = focused ? colors.primary : colors.mediumGrey
           }
           else if (route.name === 'Tin tức') {
             iconName = require('../../assets/icons/NewsIcon.png');
-            color = focused ? '#489620' : '#9E9E9E'
+            color = focused ? colors.primary : colors.mediumGrey
           }
 
           return <Image source={iconName} style={{ width: 23, height: 23, tintColor: color, marginBottom: 5 }} />;
         },
         tabBarStyle: {
           height: 60,
-          backgroundColor: '#fff',
+          backgroundColor: colors.white,
           borderTopColor: '#C9C2C0',
           borderTopWidth: 1,
           paddingBottom: 5,
@@ -52,8 +53,8 @@ export const TabNavigator = observer(() => {
         tabBarIcon: ({color, focused}) => {
           let iconName;
             iconName = require('../../assets/icons/Union.png');
-            color = focused ? '#489620' : '#9E9E9E'
-          return <View>{userStore.info.totalNotifyNormal >0 && <View style = {{position: 'absolute', backgroundColor: '#F44336', borderRadius: 9, width: 9, height: 9, left: 19, top: 7 }}/>}<Image source={iconName} style={{ width: 23, height: 23, tintColor: color, marginTop: 10, marginBottom: 5 }} /></View>;
+            color = focused ? colors.primary : colors.mediumGrey
+          return <View>{userStore.info.totalNotifyNormal >0 && <View style = {{position: 'absolute', backgroundColor: colors.error, borderRadius: 9, width: 9, height: 9, left: 19, top: 7 }}/>}<Image source={iconName} style={{ width: 23, height: 23, tintColor: color, marginTop: 10, marginBottom: 5 }} /></View>;
         }}} />
       <Tab.Screen name="Tin tức" component={ListNewsScreen} options={{headerShown: false}} />
       <Tab.Screen name="Tài khoản" component={AcountScreen} options={{headerShown: false}}/>
@@ -66,11 +67,11 @@ const styles = StyleSheet.create({
   focused: {
     fontSize: 14, 
     fontWeight: '700', 
-    color: '#489620' 
+    color: colors.primary 
   },
   unfocused: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#9E9E9E'
+    color: colors.mediumGrey
   }
 });

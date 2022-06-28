@@ -1,6 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { PriceText } from "../../../components/Price"
+import { colors } from "../../../styles/themes"
 
 export const ItemProduct = ({book}: any) => {
     return (
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         fontWeight: "400",
-        color:"#231F20",
+        color:colors.darkGrey,
         marginBottom: 3,
     },
     detail: {
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 14,
         fontWeight: "500",
-        color:"#489620",
+        color:colors.primary,
     },
 })
 

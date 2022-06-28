@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-nati
 import paymentStore from "../../../store/paymentStore"
 import { height, width } from "../../../utils/dimensions"
 import Modal from "react-native-modal";
+import { colors } from "../../../styles/themes"
 
 export const ModalList = observer(({onSelectItem, onClose, currentType, modalVisible}:any) => {
     const [data, setData] = useState([]);
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     modalContent: {
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         width: width - 50,
         borderRadius: 5,
         marginTop: 25,
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     modalItemText: {
         fontSize: 16,
         lineHeight: 20,
-        color: '#231F20',
+        color: colors.darkGrey,
         padding: 10,
     }
 })

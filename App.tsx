@@ -2,22 +2,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as React from 'react';
 import {  useState } from 'react';
 import Router from './route/Router';
-import { SplashScreen } from './screens/Splash/SplashScreen';
-import cartStore from './store/cartStore';
 import userStore from './store/userStore';
-import messaging from '@react-native-firebase/messaging';
-import { Alert } from 'react-native';
 import * as Updates from 'expo-updates';
+import * as Font from 'expo-font';
 
 function App() {
+  const [ready, setReady] = useState(false);
   React.useEffect(() => {
-    restoreToken();
+    restoreToken().then(() => {
+      setReady(true);
+      loadFont();
+    });
     checkUpdate()
   }, []);
   const checkUpdate = async () =>{
+   
    const res= await  Updates.checkForUpdateAsync();
    if(res.isAvailable){
      await Updates.fetchUpdateAsync();
+
      await Updates.reloadAsync();
    }
   }
@@ -29,14 +32,21 @@ function App() {
       console.log(error);
     }
   };
-  const [timePassed, setTimePassed] = useState(false);
-  setTimeout(() => {
-    setTimePassed(true);
-  }, 3000)
+
+  const loadFont = async (): Promise<void> => {
+    return await Font.loadAsync({
+      "text-bold": require("@/assets/fonts/Roboto-Bold.ttf"),
+      "text-regular": require("@/assets/fonts/Roboto-Regular.ttf"),
+      "text-medium": require("@/assets/fonts/Roboto-Medium.ttf"),
+      "text-italic": require("@/assets/fonts/Roboto-Italic.ttf"),
+      "text-montserrat": require("@/assets/fonts/Montserrat-Regular.ttf"),
+    });
+  };
+
+
   return (
-    timePassed ? 
-      <Router />:
-    <SplashScreen/>
+    ready ? 
+      <Router />: null
   );
 }
 

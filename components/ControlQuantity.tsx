@@ -1,5 +1,6 @@
 import React from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { colors } from "../styles/themes"
 
 export const ControlQuantity = ({ quantity, onChangeQuantity }: any) => {
     return (
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 14,
-        color: '#231F20',
+        color: colors.darkGrey,
         width: 30,
         marginHorizontal: 5,
         textAlign: 'center',

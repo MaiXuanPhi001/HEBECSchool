@@ -5,6 +5,7 @@ import { HeaderName } from "../../components/HeaderWithName";
 import { Loading } from "../../components/Loading";
 import { NewsItem } from "../../components/News";
 import newsStore from "../../store/newsStore";
+import { colors } from "../../styles/themes";
 import { width } from "../../utils/dimensions";
 
 export const ListNewsScreen = observer(({ navigation }: any) => {
@@ -16,7 +17,7 @@ export const ListNewsScreen = observer(({ navigation }: any) => {
         <NewsItem data = {item} navigation = {navigation}/>
       )};
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={{ flex: 1, backgroundColor: colors.white }}>
             <HeaderName name="Tin tức" navigation={navigation} nonback = {true} />
             <View style={{ flex: 1, marginLeft:10 }}>
                 <FlatList  
@@ -36,8 +37,8 @@ export const ListNewsScreen = observer(({ navigation }: any) => {
                             onRefresh={() => {
                                 newsStore.setNewsList();
                             }}
-                            colors={["#489620"]}
-                            progressBackgroundColor="#fff"
+                            colors={[colors.primary]}
+                            progressBackgroundColor={colors.white}
                         />
                     }
                 />
@@ -56,10 +57,10 @@ const styles = StyleSheet.create({
         right: width / 2 - 25,
         zIndex: 1.5,
         borderRadius: 25,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: '#000',
+        shadowColor: colors.darkGrey,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 2,

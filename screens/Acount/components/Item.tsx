@@ -1,10 +1,21 @@
 
 import React, { useContext } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AlertCustom } from "../../../components/Alert";
 import userStore from "../../../store/userStore";
+import { colors } from "../../../styles/themes";
 
 export const Item = ({user,data, notice, navigation}: any) => {
+    const [showAlert, setShowAlert] = React.useState(false);
+
+    const onConfirm = (confirm: any) => {
+        if (confirm === true) {
+           userStore.logout();
+        }
+        setShowAlert(false)
+    }
     return(
+    <View>
     <TouchableOpacity 
     onPress={() => {
         switch(data.id){
@@ -20,7 +31,7 @@ export const Item = ({user,data, notice, navigation}: any) => {
                 navigation.navigate('ChangePassword');
                 break;
             case 5:
-                userStore.logout();
+               setShowAlert(true);
                 break;
 
             default:
@@ -38,6 +49,15 @@ export const Item = ({user,data, notice, navigation}: any) => {
             <Text style = {styles.noticeText}>{notice}</Text>
             </View> : null}
     </TouchableOpacity>
+    {showAlert && <AlertCustom 
+            title = "Đăng xuất" 
+            message = "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản này?" 
+            callback = {onConfirm}
+            visible = {showAlert} 
+            cancelText = {"Huỷ"}
+            confirmText = {"Đăng xuất"}/>}
+    </View>
+    
     )
 };
 const styles = StyleSheet.create({
@@ -45,7 +65,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         padding: 20,
         justifyContent: 'space-between',
         marginBottom: 2,
@@ -68,7 +88,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         maxHeight: 100,
         flexWrap: 'wrap',
-        color: '#489620',
+        color: colors.primary,
     },
     icon: {
         marginRight: 10,
@@ -79,7 +99,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#F44336',
+        backgroundColor: colors.error,
         width: 30,
         height: 21,
         borderRadius: 10,
@@ -92,7 +112,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '400',
         textAlign: 'center',
-        color: '#fff',
+        color: colors.white,
     },
 
     });

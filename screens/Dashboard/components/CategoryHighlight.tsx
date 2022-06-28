@@ -1,10 +1,11 @@
 import { observer } from "mobx-react";
-import React from "react";
+import React from "react"; 
 import { FlatList,StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import bookStore from "../../../store/bookStore";
 import { width } from "../../../utils/dimensions";
 import { Product } from "../../../components/Product";
 import { Title } from "../../../components/Title";
+import { colors } from "../../../styles/themes";
 
 export const CategoryHighlight = observer(({ data, navigation }: any) => {
     const renderItem = ({ item }: any) => {return(
@@ -42,18 +43,18 @@ export const CategoryHighlight = observer(({ data, navigation }: any) => {
          marginHorizontal: 10,
       },
       button: {
-          backgroundColor: '#489620',
+          backgroundColor: colors.primary,
           paddingVertical: 10,
           paddingHorizontal: 10,
           borderRadius: 60,
           alignItems: 'center',
-          width: 100,
-          marginLeft: width/2-50,
+          width: 200,
+          marginLeft: width/2-100,
           marginTop: 10,
       }
       ,
       textButton: {
-          color: '#fff',
+          color: colors.white,
           fontSize: 16,
           fontWeight: 'bold',
       }

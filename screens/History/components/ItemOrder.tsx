@@ -2,6 +2,7 @@ import { observer } from "mobx-react"
 import React from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { PriceText } from "../../../components/Price"
+import { colors } from "../../../styles/themes"
 import { convertDate } from "../../../types/DateTime"
 import { width } from "../../../utils/dimensions"
 
@@ -70,7 +71,7 @@ export const ItemOrder = observer(({data, navigation} : any) => {
 )
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
         padding: 20,
     },
     content: {
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     textTitle: {
         fontSize: 18,
         fontWeight: "500",
-        color:"#000",
+        color:colors.darkGrey,
     },
     textDetail: {
         fontSize: 14,
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     textStatus: {
         fontSize: 14,
         fontWeight: "500",
-        color:"#489620",
+        color:colors.primary,
     },
     dot: {
         width: 4,

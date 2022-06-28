@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React, { useEffect } from "react";
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native"
 import userStore from "../../store/userStore";
+import { colors } from "../../styles/themes";
 import { AccountMenu, ContactMenu, SupportMenu, UnAuthMenu } from "../../types/Menu";
 import { Avatar } from "./components/Avatar";
 import { GroupMenu } from "./components/GroupMenu";
@@ -18,8 +19,8 @@ export const AcountScreen = observer(({navigation}: any) => {
                 refreshing={userStore.isLoading}
                 onRefresh={() => {
                     userStore.getInfo();}}
-                colors={["#489620"]}
-                progressBackgroundColor="#fff"
+                colors={[colors.primary]}
+                progressBackgroundColor={colors.white}
                 />
         }>
              {userStore.token==null? null: <Avatar data = {userStore.info}/>}

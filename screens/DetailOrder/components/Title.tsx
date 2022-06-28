@@ -1,5 +1,6 @@
 import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
+import { colors } from "../../../styles/themes"
 
 export const Title = ({title, icon, subtitle, styleSub, border}: any) => {
     return (
@@ -39,7 +40,7 @@ export const Title = ({title, icon, subtitle, styleSub, border}: any) => {
         text: {
             fontSize: 18,
             fontWeight: "700",
-            color:"#231F20",
+            color:colors.darkGrey,
         },
         right: {
             flexDirection: "row",
@@ -47,7 +48,7 @@ export const Title = ({title, icon, subtitle, styleSub, border}: any) => {
         },
         border: {
             borderWidth: 1,
-            borderColor: "#489620",
+            borderColor: colors.primary,
             borderRadius: 7,
             width: 100,
             paddingVertical: 7,

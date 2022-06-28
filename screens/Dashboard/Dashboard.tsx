@@ -12,6 +12,7 @@ import cartStore from '../../store/cartStore';
 import notiStore from '../../store/NotificationStore';
 import { NotificationService } from '../../plugins/notificationService';
 import userStore from '../../store/userStore';
+import { colors } from '../../styles/themes';
 
 
 export const Dashboard = observer(({navigation} : any) => {
@@ -49,7 +50,7 @@ export const Dashboard = observer(({navigation} : any) => {
       }, []);
     return (
         <View style={styles.container}>
-            <StatusBar  backgroundColor = "#489620" />
+            <StatusBar  backgroundColor = {colors.primary} />
                 <HeaderName isSearch = {true} icon = {true} nonback={true}  navigation = {navigation}/>
             <ScrollView style = {styles.container}
             refreshControl = {
@@ -65,8 +66,8 @@ export const Dashboard = observer(({navigation} : any) => {
                         notiStore.setNotiList();
                     }
                     }
-                    colors={["#489620"]}
-                    progressBackgroundColor="#fff"
+                    colors={[colors.primary]}
+                    progressBackgroundColor={colors.white}
                     />
             }
             >
@@ -89,13 +90,13 @@ export const Dashboard = observer(({navigation} : any) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         flex:1
     },
     bgBanner: {
         width: width,
         height:100,
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         position: 'absolute',
         top: 0,
         zIndex: -1,
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
     }
 });
 export default Dashboard;

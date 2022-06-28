@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
-import { Loading } from '../../components/Loading';
+import { ActivityIndicator } from 'react-native-paper';
+import { AlertCustom } from '../../components/Alert';
+import { colors } from '../../styles/themes';
   
 //get with and height of screen
 const { width, height } = Dimensions.get('window');
@@ -12,13 +14,31 @@ export const LoginScreen =  observer(({navigation}: any) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [hidePass, setHidePass] = useState(true);
+    const[showAlert, setShowAlert] = useState(false);
+    const[message, setMessage] = useState('');
+    const onClose = () => {
+      setShowAlert(false)
+  }
+  const checkInvalid = () => {
+    if (userName === '' || password === '') {
+      setMessage('Vui lòng nhập đầy đủ thông tin')
+      setShowAlert(true)
+    }
+    else {
+      userStore.login(userName, password).then(() => {
+        if(userStore.messageError !== ""){
+          setMessage(userStore.messageError)
+          setShowAlert(true)}})
+    }
+  }
+
     return (
       <View style={styles.container}>
       <StatusBar style="auto" />
       <TouchableOpacity
-        onPress={() => {userStore.login(userName, password)}}
+        onPress={() => {checkInvalid()}}
           style = {styles.button}>
-          <Text style = {styles.buttonText}>Đăng nhập</Text>
+            {userStore.isLoadingLogin ? <ActivityIndicator size={"small"} color = {colors.white} /> : <Text style = {styles.buttonText}>Đăng nhập</Text>}
       </TouchableOpacity>
       <TouchableOpacity 
       onPress={() => {
@@ -50,11 +70,17 @@ export const LoginScreen =  observer(({navigation}: any) => {
           defaultValue={userName}
           onChangeText = {newText => setUserName(newText)}/>
       </View>
+      {showAlert && <AlertCustom 
+            title = {"Thông báo"}
+            message = {message}
+            callback = {onClose}
+            visible = {showAlert} 
+            confirmText = {"OK"}/>}
   
       <Image source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
   
       <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', width: 207, height: 150,opacity: 0.7, transform: [{rotate:'180deg'}]}}/>
-      <Image source={require('../../assets/WaterMark.png')} style = {{position: 'absolute',opacity: 0.7, top: height-223}}/>
+      <Image source={require('../../assets/WaterMark.png')} style = {{position: 'absolute',opacity: 0.7, top: height-200}}/>
     </View>
     )
 }
@@ -66,7 +92,7 @@ const styles = StyleSheet.create({
       flex: 1,
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: '#fff',
+      backgroundColor: colors.white,
       justifyContent: 'space-between',
     },
     password:{
@@ -97,7 +123,7 @@ const styles = StyleSheet.create({
     input:{
       marginTop: 5,
       borderWidth: 1,
-      borderColor: '#9E9E9E',
+      borderColor: colors.mediumGrey,
       width: width-40,
       height: 50,
       borderRadius: 7,
@@ -121,12 +147,13 @@ const styles = StyleSheet.create({
     },
     textRegister:{
       fontSize: 14,
-      color: '#489620',
+      color: colors.primary,
     },
     button: {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-start',
+      alignItems: 'center',
+      justifyContent: 'center',
       paddingHorizontal: 13,
       paddingVertical: 10,
       position: 'absolute',
@@ -134,13 +161,13 @@ const styles = StyleSheet.create({
       height: 50,
       left: 107,
       top: 478,
-      backgroundColor: '#489620',
+      backgroundColor: colors.primary,
       borderRadius: 7,
       zIndex: 1.5,
       marginTop: 50,
     },
     buttonText: {
-      color: '#fff',
+      color: colors.white,
       fontSize: 16,
       fontWeight: 'bold',
       alignSelf: 'center',

@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { BackHandler, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { colors } from "../../../styles/themes";
 import { width } from "../../../utils/dimensions";
 export const SuccessScreen = ({navigation}: any) => {
     const onBackPress = () => {
@@ -47,7 +48,7 @@ export const SuccessScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         alignItems: 'center',
     },
     content: {
@@ -62,12 +63,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#231F20',
+        color: colors.darkGrey,
         marginTop: 25,
     },
     desc: {
         fontSize: 16,
-        color: '#231F20',
+        color: colors.darkGrey,
         marginTop: 20,
         textAlign: 'center',
         lineHeight: 24,
@@ -75,30 +76,30 @@ const styles = StyleSheet.create({
     buttonHome: {
         width: width-40,
         height: 50,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         borderRadius: 7,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 20,
         borderWidth: 1,
-        borderColor: '#489620',
+        borderColor: colors.primary,
     },
     buttonHomeText: {
-        color: '#489620',
+        color: colors.primary,
         fontSize: 16,
         fontWeight: 'bold',
     },
     buttonHistory: {
         width: width-40,
         height: 50,
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         borderRadius: 7,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 20,
     },
     buttonHistoryText: {
-        color: '#fff',
+        color: colors.white,
         fontSize: 16,
         fontWeight: 'bold',
     }

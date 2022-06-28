@@ -4,6 +4,7 @@ import {  FlatList, RefreshControl, StyleSheet, View } from "react-native";
 import { Loading } from "../../../components/Loading";
 import { Product } from "../../../components/Product";
 import bookStore from "../../../store/bookStore";
+import { colors } from "../../../styles/themes";
 import { width } from "../../../utils/dimensions";
 
 export const ListProduct = observer(({navigation, cateId, style, key }: any) => {
@@ -34,8 +35,8 @@ export const ListProduct = observer(({navigation, cateId, style, key }: any) => 
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              colors={["#489620"]}
-              progressBackgroundColor="#fff"
+              colors={[colors.primary]}
+              progressBackgroundColor={colors.white}
               />
           }
         />
@@ -60,10 +61,10 @@ export const ListProduct = observer(({navigation, cateId, style, key }: any) => 
           right: width / 2 - 25,
           zIndex: 1.5,
           borderRadius: 25,
-          backgroundColor: '#fff',
+          backgroundColor: colors.white,
           alignItems: 'center',
           justifyContent: 'center',
-          shadowColor: '#000',
+          shadowColor: colors.darkGrey,
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.8,
           shadowRadius: 2,

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import { ScrollView, StyleSheet, View } from "react-native";
 import { HeaderName } from "../../components/HeaderWithName";
 import paymentStore from "../../store/paymentStore";
@@ -8,10 +8,11 @@ import { Delivery } from "./component/Delivery";
 import { observer } from "mobx-react";
 import { Loading } from "../../components/Loading";
 import { PayMentMethod } from "./component/PaymentMethod";
+import { colors } from "../../styles/themes";
 
 export const PaymentProcessScreen = observer(({navigation}:any) => {
     return (
-        <View style = {{flex:1, backgroundColor: "#fff"}}>
+        <View style = {{flex:1, backgroundColor: colors.white}}>
             <HeaderName name = "Thanh toán" navigation = {navigation}/>
            <ScrollView style = {styles.container}>
             <StepHeader step = {paymentStore.step} />
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     container: {
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
     },
     content: {
         flex: 1,

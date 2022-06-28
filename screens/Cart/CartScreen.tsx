@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import React from "react";
+import React from "react"; 
 import { Image, RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { AlertCustom } from "../../components/Alert";
@@ -7,6 +7,7 @@ import { HeaderName } from "../../components/HeaderWithName";
 import { PriceText } from "../../components/Price";
 import cartStore from "../../store/cartStore";
 import paymentStore from "../../store/paymentStore";
+import { colors } from "../../styles/themes";
 import { RowItem } from "./components/RowItem";
 
 export const CartScreen = observer(({ navigation }: any) => {
@@ -18,7 +19,7 @@ export const CartScreen = observer(({ navigation }: any) => {
         setShowAlert(false)
     }
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={{ flex: 1, backgroundColor: colors.white }}>
             <HeaderName name="Giỏ hàng" navigation={navigation} />
             <ScrollView 
              refreshControl={
@@ -28,8 +29,8 @@ export const CartScreen = observer(({ navigation }: any) => {
                    cartStore.reloadCart();
                 }
                 }
-                colors={["#489620"]}
-                progressBackgroundColor="#fff"
+                colors={[colors.primary]}
+                progressBackgroundColor={colors.white}
                 />
              }
             showsVerticalScrollIndicator={false}
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginLeft: 10,
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     content: {
         flex: 1,
@@ -110,17 +111,17 @@ const styles = StyleSheet.create({
     footerText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#489620',
+        color: colors.primary,
     }
     ,
     footerTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#231F20',
+        color: colors.darkGrey,
     }
     ,
     button: {
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         paddingVertical: 10,
         margin: 20,
         borderRadius: 5,
@@ -128,12 +129,12 @@ const styles = StyleSheet.create({
     }
     ,
     buttonText: {
-        color: '#fff',
+        color: colors.white,
         fontSize: 16,
         fontWeight: 'bold',
     },
     clear: {
-        color: '#F44336',
+        color: colors.error,
         fontSize: 14,
     },
     buttonDisable: {
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     clearDisable: {
-        color: '#9E9E9E',
+        color: colors.mediumGrey,
         fontSize: 14,
     }
 

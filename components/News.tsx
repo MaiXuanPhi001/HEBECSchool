@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { TouchableOpacity, Image, View, Text, StyleSheet } from "react-native";
 import { BASE_URL } from "../config";
+import { colors } from "../styles/themes";
 import { convertDate } from "../types/DateTime";
 import { width } from "../utils/dimensions";
 
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         justifyContent: 'center',
         textAlign: 'left',
-        color: '#9E9E9E',
+        color: colors.mediumGrey,
         flexWrap: 'wrap',
         lineHeight: 14,
     },
@@ -48,9 +49,9 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         height: 100,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         borderRadius: 7,
-        shadowColor: "#000",
+        shadowColor: colors.darkGrey,
         shadowOffset: {
             width: 3,
             height: 3,

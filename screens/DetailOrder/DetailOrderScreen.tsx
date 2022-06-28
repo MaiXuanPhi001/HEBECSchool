@@ -6,6 +6,7 @@ import { HeaderName } from "../../components/HeaderWithName"
 import { Loading } from "../../components/Loading"
 import { PriceText } from "../../components/Price"
 import historyOrdersStore from "../../store/HistoryStore"
+import { colors } from "../../styles/themes"
 import { getStatus } from "../History/components/ItemOrder"
 import { ItemProduct } from "./components/ItemProduct"
 import { Title } from "./components/Title"
@@ -65,7 +66,7 @@ export const DetailOrderScreen = observer(({navigation, route}: any) => {
     
     return (
         <View style = {styles.container}>
-             <View style = {{backgroundColor: "#489620",height: 20}}/>
+             <View style = {{backgroundColor: colors.primary,height: 20}}/>
             <HeaderName name = "Chi tiết đơn hàng" navigation = {navigation}/>
             <ScrollView style = {styles.content}>
                 <Title title = {"Trạng thái đơn"} icon = {require("../../assets/icons/StatusOrder.png")}  subtitle = {status} styleSub = {status =="Đã hủy"? styles.statusCancel:styles.status}/>
@@ -127,7 +128,7 @@ export const DetailOrderScreen = observer(({navigation, route}: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
     },
     content: {
         flex: 1,
@@ -147,19 +148,19 @@ const styles = StyleSheet.create({
     },
     status: {
         fontSize: 16,
-        color: "#489620",
+        color: colors.primary,
         fontWeight: "500",
     },
     name_phone: {
         fontSize: 16,
-        color: "#489620",
+        color: colors.primary,
         fontWeight: "700",
         marginHorizontal: 20,
         marginBottom: 5,
     },
     address: {
         fontSize: 16,
-        color: "#231F20",
+        color: colors.darkGrey,
         fontWeight: "400",
         marginHorizontal: 20,
         marginBottom: 10,
@@ -177,22 +178,22 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        color: "#231F20",
+        color: colors.darkGrey,
         fontWeight: "400",
     },
     value: {
         fontSize: 16,
-        color: "#489620",
+        color: colors.primary,
         fontWeight: "500",
     },
     promotionCode: {
         fontSize: 16,
-        color: "#231F20",
+        color: colors.darkGrey,
         fontFamily: "Montserrat-Regular",
     },
     promotionValue: {
         fontSize: 14,
-        color: "#489620",
+        color: colors.primary,
         fontWeight: "500",
     },
     total: {
@@ -204,12 +205,12 @@ const styles = StyleSheet.create({
     },
     total_title: {
         fontSize: 20,
-        color: "#231F20",
+        color: colors.darkGrey,
         fontWeight: "700",
     },
     total_value: {
         fontSize: 20,
-        color: "#489620",
+        color: colors.primary,
         fontWeight: "700",
     },
     button: {
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
     },
    textButton: {
         fontSize: 16,
-        color: "#fff",
+        color: colors.white,
         fontWeight: "700",
     },
     buttonDisable: {

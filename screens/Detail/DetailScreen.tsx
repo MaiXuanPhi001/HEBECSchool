@@ -1,7 +1,6 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { observer } from "mobx-react";
 import React, { useCallback, useEffect, useState } from "react"
-import { Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { ControlQuantity } from "../../components/ControlQuantity";
 import { HeaderName } from "../../components/HeaderWithName"
 import { ListProductHorizontal } from "../../components/ListProductHorizontal";
@@ -9,6 +8,7 @@ import { PriceText } from "../../components/Price";
 import bookStore from "../../store/bookStore";
 import cartStore from "../../store/cartStore";
 import paymentStore from "../../store/paymentStore";
+import { colors } from "../../styles/themes";
 import { width } from "../../utils/dimensions";
 import { ImageGallery } from "./components/ImageGallery";
 
@@ -78,6 +78,11 @@ export const DetailScreen = observer(({navigation, route} : any) => {
         }, 2000);
        
     }
+    const promotionCalculate = () => {
+        let promotion = (data.originPrice-data.finalPrice)/data.originPrice*100;
+        promotion = Math.round(promotion);
+        return promotion;
+    }
 
     return (
         <View style={styles.container}>
@@ -91,17 +96,21 @@ export const DetailScreen = observer(({navigation, route} : any) => {
         //             bookStore.setBookRelations(data.id);
         //         }
         //         }
-        //         colors={["#489620"]}
-        //         progressBackgroundColor="#fff"
+        //         colors={[colors.primary]}
+        //         progressBackgroundColor={colors.white}
         //     />
         // }
         >
+            {promotionCalculate()!=0?
+                <View style = {styles.promotion}>
+                    <Text style = {styles.promotionText}>{promotionCalculate()+"%"}</Text>
+                </View>:null}
                 <ImageGallery data = {data.bookGalleries.length == 0? dataDefault: data.bookGalleries}/>
                 <Text style = {styles.title}>{data.name}</Text>
                 <PriceText price = {data.finalPrice} style = {styles.price}/>
                 <View>
                     <Title title = "Thông tin chi tiết" icon = {require("../../assets/icons/HEBECInfor.png")}/>
-                    <InfoDetail title = "Danh mục" content = {/*(data.category.parent1 !=null? data.category.parent1.name +" | ":"" )+*/data.category.name}/>
+                    <InfoDetail title = "Danh mục" content = {data.category.name}/>
                 </View>
                 <View>
                     <Title title = "Mô tả sản phẩm" icon = {require("../../assets/icons/HDSDIcon.png")}/>
@@ -147,7 +156,7 @@ export const DetailScreen = observer(({navigation, route} : any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
     },
     title: {
         fontSize: 20,
@@ -155,7 +164,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 5,
         marginHorizontal: 20,
-        color: "#231F20",
+        color: colors.darkGrey,
         lineHeight: 30,
     },
     price: {
@@ -183,27 +192,27 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     btn: {
-        backgroundColor: "#489620",
+        backgroundColor: colors.primary,
         paddingVertical: 10,
         paddingHorizontal: 20,
     },
     btnAdd: {
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
         paddingVertical: 9,
-        borderColor: "#489620",
+        borderColor: colors.primary,
         borderWidth: 1,
         paddingHorizontal: 20,
     },
     btnText: {
         fontSize: 16,
         fontWeight: "700",
-        color: "#fff",
+        color: colors.white,
         textAlign: "center",
     },
     btnTextAdd: {
         fontSize: 16,
         fontWeight: "700",
-        color: "#489620",
+        color: colors.primary,
         textAlign: "center",
     },
     titleIcon: {
@@ -213,7 +222,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 16,
         fontWeight: "700",
-        color: "#489620",
+        color: colors.primary,
         marginLeft: 10,
     },
     secondTitle: {
@@ -231,19 +240,19 @@ const styles = StyleSheet.create({
     infoDetailText: {
         fontSize: 16,
         fontWeight: "500",
-        color: "#231F20",
+        color: colors.darkGrey,
         lineHeight: 30,
     },
     infoTitle: {
         fontSize: 16,
         fontWeight: "400",
-        color: "#231F20",
+        color: colors.darkGrey,
         width: 120,
     },
     description: {
         fontSize: 16,
         fontWeight: "400",
-        color: "#231F20",
+        color: colors.darkGrey,
         marginHorizontal: 20,
         lineHeight: 24,
         marginTop: 10,
@@ -251,22 +260,22 @@ const styles = StyleSheet.create({
     readMore: {
         fontSize: 14,
         fontWeight: "400",
-        color: "#489620",
+        color: colors.primary,
         marginHorizontal: 20,
         fontStyle: "italic",
     },
     toast: {
         width: 250,
         position: "absolute",
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 25,
         bottom: 100,
         left: (width - 250) / 2,
-        borderColor: "#489620",
+        borderColor: colors.primary,
         borderWidth: 1,
-        shadowColor: "#000",
+        shadowColor: colors.darkGrey,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -281,13 +290,36 @@ const styles = StyleSheet.create({
     toastText: {
         fontSize: 16,
         fontWeight: "500",
-        color: "#489620",
+        color: colors.primary,
         textAlign: "center",
     },
     toastIcon: {
         width: 30,
         height: 30,
         marginRight: 10,
-    }
+    },
+    promotion: {
+        position: "absolute",
+        transform: [{ rotate: "45deg" }],
+        top: (width)/20,
+        zIndex: 1.2,
+        right: -(width)/10,
+        width: Math.sqrt(((width)/5)*((width)/5)*2),
+        height: 22,
+        backgroundColor: "#F44336",
+        paddingHorizontal: 50,
+        paddingVertical: 5,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    promotionText: {
+        color: colors.primary,
+        fontSize: 14,
+        fontWeight: "700",
+        position: "absolute",
+        zIndex: 1.3,
+        width: Math.sqrt(((width)/5)*((width)/5)*2),
+        right: -(width)/10+7,
+    },
 
 })

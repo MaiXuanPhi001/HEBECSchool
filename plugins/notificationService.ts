@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { firebase } from '@react-native-firebase/messaging';
 import { Platform } from 'react-native';
-import PushNotification, { PushNotification as PushNotificationType } from 'react-native-push-notification';
+import PushNotification from "react-native-push-notification";
+import notifee from '@notifee/react-native';
 export class NotificationService {
 
     private lastId: number
@@ -40,10 +41,10 @@ export class NotificationService {
     }
     
     init() {
-        this.subscribeOnMsg = firebase.messaging().onMessage((message) => {
-            console.log('Remotemessage', message);
+        this.subscribeOnMsg = firebase.messaging().onMessage(async (remoteMessage) => {
+            console.log('Remotemessage', remoteMessage);
             if(typeof this._onReceive === 'function') {
-                this._onReceive(message?.data)
+                this._onReceive(remoteMessage?.data)
             }
             console.log('this._isMessageForeGround', this._isMessageForeground);
 
@@ -53,14 +54,29 @@ export class NotificationService {
 
             if(Platform.OS == 'android' && this._isMessageForeground && typeof this._isMessageForeground =='boolean') {
                 PushNotification.presentLocalNotification({
-                    title: message?.notification?.title,
-                    message: message?.notification?.body,
+                    title: remoteMessage.notification?.title,
+                    message: (remoteMessage.notification?.body)? remoteMessage.notification?.body: "",
                     soundName: 'default',
-                    channelId: message.notification?.android?.channelId,
-                    userInfo: message?.data,
+                    channelId: remoteMessage.notification?.android?.channelId,
+                    userInfo: remoteMessage.data,
 
             })
         }
+
+        // const channelId = await notifee.createChannel({
+        //     id: 'default',
+        //     name: 'Default Channel',
+        //   });
+      
+        //   // Display a notification
+        //   await notifee.displayNotification({
+        //     title: 'Thông báo',
+        //     body: 'Thông báo test',
+        //     android: {
+        //       channelId,
+        //       smallIcon: 'ic_launcher', // optional, defaults to 'ic_launcher'.
+        //     },
+        //   });
     });
 
         Platform.OS == 'android' && firebase.messaging().setBackgroundMessageHandler(async (message) => {

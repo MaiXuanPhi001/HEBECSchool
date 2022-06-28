@@ -4,6 +4,7 @@ import { ListProduct } from "./components/ListProduct";
 import bookStore from "../../store/bookStore";
 import { observer } from "mobx-react";
 import { HeaderName } from "../../components/HeaderWithName";
+import { colors } from "../../styles/themes";
 
 export const ListProductScreen = observer( ({ navigation, route }: any) => {
     const { id } = route.params;
@@ -13,9 +14,9 @@ export const ListProductScreen = observer( ({ navigation, route }: any) => {
 
 
     return (
-        <View style = {{flex:1,backgroundColor: "#fff",}}>
+        <View style = {{flex:1,backgroundColor: colors.white,}}>
             <HeaderName isSearch = {true} style = {styles.titlebar} icon = {true}  navigation = {navigation} />
-            <Text style = {{fontSize: 16, color: "#231F20", marginLeft: 20, marginTop: 20}}>Có <Text style = {{color: '#489620', fontWeight:'700'}}>{bookStore.booksCount}</Text> kết quả phù hợp</Text>
+            <Text style = {{fontSize: 16, color: colors.darkGrey, marginLeft: 20, marginTop: 20}}>Có <Text style = {{color: colors.primary, fontWeight:'700'}}>{bookStore.booksCount}</Text> kết quả phù hợp</Text>
             <ListProduct style = {styles.container} cateId = {id} navigation = {navigation}/>
         </View>
     )

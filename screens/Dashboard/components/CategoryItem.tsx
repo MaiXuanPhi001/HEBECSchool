@@ -1,7 +1,8 @@
-import React from "react";
+import React from "react"; 
 import { Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { BASE_URL } from "../../../config";
 import bookStore from "../../../store/bookStore";
+import { colors } from "../../../styles/themes";
 export const Item = ({ data, navigation }: any) => (
     <TouchableOpacity 
     onPress={() => {
@@ -31,7 +32,7 @@ export const Item = ({ data, navigation }: any) => (
         maxWidth: 85,
         maxHeight: 100,
         flexWrap: 'wrap',
-        color: '#231F20',
+        color: colors.darkGrey,
     },
     icon: {
         width: 60,

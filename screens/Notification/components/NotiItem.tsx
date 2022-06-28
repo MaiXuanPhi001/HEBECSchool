@@ -1,7 +1,8 @@
 import { observer } from "mobx-react";
-import React from "react";
+import React from "react"; 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import notiStore from "../../../store/NotificationStore";
+import { colors } from "../../../styles/themes";
 import { convertDate } from "../../../types/DateTime";
 import { width } from "../../../utils/dimensions";
 
@@ -42,7 +43,7 @@ export const NotificationItem = observer(({navigation,item}:any) => {
 );
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
         flex: 1,
     },
    
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        color: "#231F20",
+        color: colors.darkGrey,
         fontWeight: "500",
     },
     titleSeened: {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     },
     content: {
         fontSize: 14,
-        color: "#231F20",
+        color: colors.darkGrey,
         marginVertical: 5,
     },
     contentSeened: {
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     },
     imgUnseen: {
         width: 40,
-        tintColor: "#489620",
+        tintColor: colors.primary,
         resizeMode: "contain",
         top: -10
     },

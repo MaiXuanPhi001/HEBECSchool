@@ -6,6 +6,7 @@ import { Text } from "react-native-paper"
 import { HeaderName } from "../../components/HeaderWithName";
 import { Loading } from "../../components/Loading";
 import historyOrdersStore from "../../store/HistoryStore";
+import { colors } from "../../styles/themes";
 import { ItemOrder } from "./components/ItemOrder";
 
 export const HistoryScreen = observer(({navigation}: any) => {
@@ -16,7 +17,7 @@ export const HistoryScreen = observer(({navigation}: any) => {
     return (
         <View style = {styles.container}>
             <StatusBar style="light" />
-            <View style = {{backgroundColor: "#489620",height: 20}}/>
+            <View style = {{backgroundColor: colors.primary,height: 20}}/>
             <HeaderName name = "Lịch sử mua hàng" navigation = {navigation}/>
             {historyOrdersStore.isLoadingHistoryOrders? <Loading large = {true} style = {styles.loading} /> : 
             <View style = {styles.content}>
@@ -33,7 +34,7 @@ export const HistoryScreen = observer(({navigation}: any) => {
                         <RefreshControl
                             refreshing={historyOrdersStore.isLoadingHistoryOrders}
                             onRefresh={() => historyOrdersStore.setHistoryOrders()}
-                            colors={["#489620"]}
+                            colors={[colors.primary]}
                         />
                     }
                       data={historyOrdersStore.historyOrders}
@@ -52,7 +53,7 @@ export const HistoryScreen = observer(({navigation}: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: colors.white,
     },
     header: {
         paddingVertical:15,
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     },
     textHeader: {
         fontSize: 16,
-        color: "#489620",
+        color: colors.primary,
         fontWeight: "bold",
         lineHeight: 24
     },

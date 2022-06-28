@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Dimensions, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Dimensions, ScrollView, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import userStore from '../../store/userStore';
@@ -7,6 +7,7 @@ import { height, width } from '../../utils/dimensions';
 import { InputPass } from '../Acount/childScreens/ChangePasswordScreeen';
 import { Input } from '../PaymentProcess/component/DeliveryAddress';
 import { AlertCustom } from '../../components/Alert';
+import { colors } from '../../styles/themes';
   
 
 export const RegisterScreen =  observer(({navigation}: any) => {
@@ -45,6 +46,8 @@ export const RegisterScreen =  observer(({navigation}: any) => {
     }
     const onConfirm = () => {
        setShowAlert(false);
+       if(userStore.messageError == ''){
+        navigation.navigate('Login');}
     }
         
     return (
@@ -79,10 +82,22 @@ export const RegisterScreen =  observer(({navigation}: any) => {
                 <TouchableOpacity
                     onPress={() => {
                         checkValidate();
-
+                        if(checkValidate()){
+                            userStore.register(userName, password, name).then(() => {
+                                if(userStore.messageError != ''){
+                                    setMessage(userStore.messageError);
+                                    setShowAlert(true);
+                                }
+                                else{
+                                    setMessage("Chúc mừng bạn đã tạo tài khoản thành công! Vui lòng đăng nhập để tiếp tục");
+                                    setShowAlert(true);
+                                }
+                            }
+                            )
+                        }
                     }}
                     style = {styles.button}>
-                    <Text style = {styles.buttonText}>Đăng ký</Text>
+                        {userStore.isLoadingLogin ? <ActivityIndicator size={"small"} color = {colors.white} /> : <Text style={styles.buttonText}>Đăng ký</Text>}
                 </TouchableOpacity>
                 {showAlert && <AlertCustom 
                 title = "Thông báo" 
@@ -101,7 +116,7 @@ export const RegisterScreen =  observer(({navigation}: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
     },
     logo: {
         width: 250,
@@ -112,7 +127,7 @@ const styles = StyleSheet.create({
     form: {
         width: width,
         height: height/2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         borderRadius: 10,
         alignSelf: 'center',
         marginTop: 20,
@@ -120,7 +135,7 @@ const styles = StyleSheet.create({
     button: {
         width: 200,
         height: 50,
-        backgroundColor: '#489620',
+        backgroundColor: colors.primary,
         borderRadius: 7,
         alignSelf: 'center',
         marginTop: 20,
@@ -130,12 +145,12 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         fontWeight: '700',
-        color: '#fff',
+        color: colors.white,
     },
     login: {
         fontSize: 14,
         fontWeight: '400',
-        color: '#489620',
+        color: colors.primary,
         alignSelf: 'flex-end',
         marginHorizontal: 20,
         marginTop: -10,
@@ -144,7 +159,7 @@ const styles = StyleSheet.create({
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
     },
     topWarterMark: {
         position: 'absolute',
