@@ -5,7 +5,7 @@ import bookStore from "../../../store/bookStore";
 import { width } from "../../../utils/dimensions";
 import { Product } from "../../../components/Product";
 import { Title } from "../../../components/Title";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 
 export const CategoryHighlight = observer(({ data, navigation }: any) => {
     const renderItem = ({ item }: any) => {return(
@@ -55,7 +55,7 @@ export const CategoryHighlight = observer(({ data, navigation }: any) => {
       ,
       textButton: {
           color: colors.white,
-          fontSize: 16,
+          fontSize: sizes.size16,
           fontWeight: 'bold',
       }
       

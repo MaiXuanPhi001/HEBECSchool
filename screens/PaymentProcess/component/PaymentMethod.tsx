@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Vi
 import paymentStore from "../../../store/paymentStore"
 import { height, width } from "../../../utils/dimensions"
 import { AlertCustom } from "../../../components/Alert"
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 
 const RadioButton = ({ label, checked, onPress }: any) => {
     return (
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     titleText: {
-        fontSize: 18,
+        fontSize: sizes.size18,
         fontWeight: "bold",
         color: colors.darkGrey,
     },
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     label: {
-        fontSize: 16,
-        fontWeight: "400",
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         color: colors.darkGrey,
         marginLeft: 10,
     },
@@ -148,9 +148,9 @@ const styles = StyleSheet.create({
     },
     buttonTextPrev: {
         color: colors.primary,
-        fontSize: 16,
+        fontSize: sizes.size16,
         textAlign: 'center',
-        fontWeight: '700',
+        fontFamily: "text-bold",
     },
     buttonNext: {
         width: (width - 60)/2,
@@ -163,9 +163,9 @@ const styles = StyleSheet.create({
     },
     buttonTextNext: {
         color: colors.white,
-        fontSize: 16,
+        fontSize: sizes.size16,
         textAlign: 'center',
-        fontWeight: '700',
+        fontFamily: "text-bold",
     },
     loading: {
         position: "absolute",

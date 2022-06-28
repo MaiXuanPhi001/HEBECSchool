@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import React, { useEffect } from "react";
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native"
 import userStore from "../../store/userStore";
-import { colors } from "../../styles/themes";
+import { colors, sizes } from "../../styles/themes";
 import { AccountMenu, ContactMenu, SupportMenu, UnAuthMenu } from "../../types/Menu";
 import { Avatar } from "./components/Avatar";
 import { GroupMenu } from "./components/GroupMenu";
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     sectionName: {
-        fontSize: 16,
-        fontWeight: "500",
+        fontSize: sizes.size16,
+        fontFamily: "text-medium",
         marginHorizontal: 20,
         marginVertical: 10,
     },

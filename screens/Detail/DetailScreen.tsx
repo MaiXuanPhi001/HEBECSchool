@@ -8,7 +8,7 @@ import { PriceText } from "../../components/Price";
 import bookStore from "../../store/bookStore";
 import cartStore from "../../store/cartStore";
 import paymentStore from "../../store/paymentStore";
-import { colors } from "../../styles/themes";
+import { colors, sizes } from "../../styles/themes";
 import { width } from "../../utils/dimensions";
 import { ImageGallery } from "./components/ImageGallery";
 
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: "500",
+        fontFamily: "text-medium",
         marginTop: 15,
         marginBottom: 5,
         marginHorizontal: 20,
@@ -169,10 +169,10 @@ const styles = StyleSheet.create({
     },
     price: {
         fontSize: 30,
-        fontWeight: "500",
+        fontFamily: "text-medium",
         marginBottom: 10,
        marginHorizontal: 20,
-        color: "#F44336",
+        color: colors.error,
         lineHeight: 35,
     },
     control: {
@@ -190,11 +190,15 @@ const styles = StyleSheet.create({
     },
     ctaButton: {
         flexDirection: "row",
+        marginLeft: 10,
+        height: 50,
     },
     btn: {
         backgroundColor: colors.primary,
         paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
+        alignItems: "center",
+        justifyContent: "center",
     },
     btnAdd: {
         backgroundColor: colors.white,
@@ -202,16 +206,18 @@ const styles = StyleSheet.create({
         borderColor: colors.primary,
         borderWidth: 1,
         paddingHorizontal: 20,
+        alignItems: "center",
+        justifyContent: "center",
     },
     btnText: {
-        fontSize: 16,
-        fontWeight: "700",
+        fontSize: sizes.size16,
+        fontFamily: "text-bold",
         color: colors.white,
         textAlign: "center",
     },
     btnTextAdd: {
-        fontSize: 16,
-        fontWeight: "700",
+        fontSize: sizes.size16,
+        fontFamily: "text-bold",
         color: colors.primary,
         textAlign: "center",
     },
@@ -220,8 +226,8 @@ const styles = StyleSheet.create({
         height: 20,
     },
     titleText: {
-        fontSize: 16,
-        fontWeight: "700",
+        fontSize: sizes.size16,
+        fontFamily: "text-bold",
         color: colors.primary,
         marginLeft: 10,
     },
@@ -238,31 +244,31 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     infoDetailText: {
-        fontSize: 16,
-        fontWeight: "500",
+        fontSize: sizes.size16,
+        fontFamily: "text-medium",
         color: colors.darkGrey,
         lineHeight: 30,
     },
     infoTitle: {
-        fontSize: 16,
-        fontWeight: "400",
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         color: colors.darkGrey,
         width: 120,
     },
     description: {
-        fontSize: 16,
-        fontWeight: "400",
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         color: colors.darkGrey,
         marginHorizontal: 20,
         lineHeight: 24,
         marginTop: 10,
     },
     readMore: {
-        fontSize: 14,
-        fontWeight: "400",
+         fontSize: sizes.size14,
+        fontFamily: "text-italic",
         color: colors.primary,
         marginHorizontal: 20,
-        fontStyle: "italic",
+        
     },
     toast: {
         width: 250,
@@ -288,8 +294,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     toastText: {
-        fontSize: 16,
-        fontWeight: "500",
+        fontSize: sizes.size16,
+        fontFamily: "text-medium",
         color: colors.primary,
         textAlign: "center",
     },
@@ -306,16 +312,16 @@ const styles = StyleSheet.create({
         right: -(width)/10,
         width: Math.sqrt(((width)/5)*((width)/5)*2),
         height: 22,
-        backgroundColor: "#F44336",
+        backgroundColor: colors.error,
         paddingHorizontal: 50,
         paddingVertical: 5,
         alignItems: "center",
         justifyContent: "center",
     },
     promotionText: {
-        color: colors.primary,
-        fontSize: 14,
-        fontWeight: "700",
+        color: colors.white,
+         fontSize: sizes.size14,
+        fontFamily: "text-bold",
         position: "absolute",
         zIndex: 1.3,
         width: Math.sqrt(((width)/5)*((width)/5)*2),

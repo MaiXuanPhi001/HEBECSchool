@@ -9,7 +9,7 @@ import { NotificationItem } from "./components/NotiItem";
 import notifee from '@notifee/react-native';
 import PushNotification from "react-native-push-notification";
 import { NotificationService } from "../../plugins/notificationService";
-import { colors } from "../../styles/themes";
+import { colors, sizes } from "../../styles/themes";
 
 export const NotificationScreen = observer(({ navigation }: any) => {
     useEffect(() => {
@@ -23,9 +23,10 @@ export const NotificationScreen = observer(({ navigation }: any) => {
             title:"TEST",
             message: "Thông báo nè",
             soundName: 'default',
-            channelId: "new-order"
+            channelId: "ORDER",
     })
     }
+    console.log(notiStore.notiList)
 
     return (
         <View style={{ flex: 1, backgroundColor:colors.white }}>
@@ -35,7 +36,7 @@ export const NotificationScreen = observer(({ navigation }: any) => {
             nonback={true}
         />
        <View>
-      {/* <Button title="Display Notification" onPress={() => onDisplayNotification()} /> */}
+      <Button title="Display Notification" onPress={() => onDisplayNotification()} />
     </View>
         <View style={styles.container}>
         {notiStore.notiList.length ==0 ? 
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     title: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.primary,
         fontWeight: "bold",
         lineHeight: 24,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     text: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
         marginLeft: 20,
         marginTop: 20,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
         elevation: 1,
     },
     mark : {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.primary,
         alignSelf: "flex-end",
         marginBottom: 10

@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { PriceText } from "../../../components/Price"
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 
 export const ItemProduct = ({book}: any) => {
     return (
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
     },
     text: {
-        fontSize: 16,
-        fontWeight: "400",
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         color:colors.darkGrey,
         marginBottom: 3,
     },
@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     priceDetail: {
-        fontSize: 16,
-        fontWeight: "400",
-        color:"#9E9E9E",
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
+        color:colors.mediumGrey,
     },
     right: {
         flexDirection: "row",
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
 
     },
     price: {
-        fontSize: 14,
-        fontWeight: "500",
+         fontSize: sizes.size14,
+        fontFamily: "text-medium",
         color:colors.primary,
     },
 })

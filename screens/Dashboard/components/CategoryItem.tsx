@@ -1,9 +1,15 @@
-import React from "react"; 
+import React, { useState } from "react"; 
 import { Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { BASE_URL } from "../../../config";
 import bookStore from "../../../store/bookStore";
-import { colors } from "../../../styles/themes";
-export const Item = ({ data, navigation }: any) => (
+import { colors, sizes } from "../../../styles/themes";
+import { width } from "../../../utils/dimensions";
+export const Item = ({ data, navigation }: any) => {
+  const [imageError, setimageError] = useState(false);
+  const onImageError = () => {
+      setimageError(true);
+  }
+  return(
     <TouchableOpacity 
     onPress={() => {
       navigation.navigate("ListProduct",{
@@ -11,25 +17,25 @@ export const Item = ({ data, navigation }: any) => (
       bookStore.setKey("");
   }}
     style={styles.item}>
-      <Image style = {styles.icon} source={{uri: BASE_URL+data.thumbnail}}/>
+      <Image style = {styles.icon} source={imageError?require("../../../assets/HEBEC.png"):{uri: BASE_URL+data.thumbnail}} onError={onImageError}/>
       <Text numberOfLines={2} style={styles.title}>{data.name}</Text>
     </TouchableOpacity>
-  );
+)};
 
   const styles = StyleSheet.create({
     item: {
-        flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        width: 100,
+        width: (width-10)/4,
         marginBottom: 20,
     },
     title: {
-        fontSize: 14,
+         fontSize: sizes.size14,
         justifyContent: 'center',
+        alignSelf: 'center',
         textAlign: 'center',
-        maxWidth: 85,
+        maxWidth: (width-10)/4-10,
         maxHeight: 100,
         flexWrap: 'wrap',
         color: colors.darkGrey,
@@ -37,6 +43,7 @@ export const Item = ({ data, navigation }: any) => (
     icon: {
         width: 60,
         height: 60,
+        resizeMode: "contain",
         },
 
   }

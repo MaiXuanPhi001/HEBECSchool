@@ -5,7 +5,7 @@ import userStore from '../../store/userStore';
 import { observer } from 'mobx-react';
 import { ActivityIndicator } from 'react-native-paper';
 import { AlertCustom } from '../../components/Alert';
-import { colors } from '../../styles/themes';
+import { colors, sizes } from '../../styles/themes';
   
 //get with and height of screen
 const { width, height } = Dimensions.get('window');
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
       marginEnd: 20,
     },
     textRegister:{
-      fontSize: 14,
+       fontSize: sizes.size14,
       color: colors.primary,
     },
     button: {
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
       color: colors.white,
-      fontSize: 16,
+      fontSize: sizes.size16,
       fontWeight: 'bold',
       alignSelf: 'center',
       marginTop: 2,

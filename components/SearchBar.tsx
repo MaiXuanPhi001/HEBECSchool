@@ -3,18 +3,16 @@ import { observer } from "mobx-react";
 import React from "react"; 
 import { View, TextInput, StyleSheet, Image, TouchableOpacity, Keyboard } from "react-native";
 import bookStore from "../store/bookStore";
-import { colors } from "../styles/themes";
+import { colors, fonts } from "../styles/themes";
 
 export const SearchBar = observer(({style, navigation}:any) => {
     const router = useRoute();
     const Search = () => {
-        if(bookStore.key != "") {
             Keyboard.dismiss();
             bookStore.setBooks(0);
             if (router.name == "Trang chủ") {
                 navigation.navigate("ListProduct", {id: 0});
             }
-        }
     }
 
     return (
@@ -55,6 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         paddingLeft: 20,
         paddingRight: 60,
+        fontFamily: "text-regular",
     },
     icon: {
         width: 20,

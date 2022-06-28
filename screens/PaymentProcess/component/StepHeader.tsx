@@ -1,7 +1,7 @@
 import React from "react"
 import { Image, StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 import { width } from "../../../utils/dimensions"
 
 const Tracker = ({ step, active, done }:any) => {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     title: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         fontWeight: "bold",
         color: colors.darkGrey,
     },
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     trackerText: {
-        fontSize: 18,
+        fontSize: sizes.size18,
         fontWeight: "bold",
     },
     
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
         color: colors.white,
     },
     inActive: {
-        backgroundColor: "#C9C2C0",
-        color: "#9E9E9E",
+        backgroundColor: colors.grey,
+        color: colors.mediumGrey,
     }
 
 })

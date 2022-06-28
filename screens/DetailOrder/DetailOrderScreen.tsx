@@ -6,7 +6,7 @@ import { HeaderName } from "../../components/HeaderWithName"
 import { Loading } from "../../components/Loading"
 import { PriceText } from "../../components/Price"
 import historyOrdersStore from "../../store/HistoryStore"
-import { colors } from "../../styles/themes"
+import { colors, sizes } from "../../styles/themes"
 import { getStatus } from "../History/components/ItemOrder"
 import { ItemProduct } from "./components/ItemProduct"
 import { Title } from "./components/Title"
@@ -135,33 +135,33 @@ const styles = StyleSheet.create({
     },
     line: {
         borderBottomWidth: 1,
-        borderBottomColor: "#C9C2C0",
+        borderBottomColor: colors.grey,
         marginTop: 20,
         marginBottom: 10,
     },
     line_short: {
         borderBottomWidth: 1,
-        borderBottomColor: "#C9C2C0",
+        borderBottomColor: colors.grey,
         marginTop: 10,
         marginBottom: 10,
         marginHorizontal: 20,
     },
     status: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.primary,
-        fontWeight: "500",
+        fontFamily: "text-medium",
     },
     name_phone: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.primary,
-        fontWeight: "700",
+        fontFamily: "text-bold",
         marginHorizontal: 20,
         marginBottom: 5,
     },
     address: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
-        fontWeight: "400",
+        fontFamily: "text-regular",
         marginHorizontal: 20,
         marginBottom: 10,
     },
@@ -177,24 +177,24 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     title: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
-        fontWeight: "400",
+        fontFamily: "text-regular",
     },
     value: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.primary,
-        fontWeight: "500",
+        fontFamily: "text-medium",
     },
     promotionCode: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
-        fontFamily: "Montserrat-Regular",
+        fontFamily: "text-montserrat",
     },
     promotionValue: {
-        fontSize: 14,
+         fontSize: sizes.size14,
         color: colors.primary,
-        fontWeight: "500",
+        fontFamily: "text-medium",
     },
     total: {
         flexDirection: "row",
@@ -206,36 +206,36 @@ const styles = StyleSheet.create({
     total_title: {
         fontSize: 20,
         color: colors.darkGrey,
-        fontWeight: "700",
+        fontFamily: "text-bold",
     },
     total_value: {
         fontSize: 20,
         color: colors.primary,
-        fontWeight: "700",
+        fontFamily: "text-bold",
     },
     button: {
         alignItems: "center",
         padding: 10,
         margin: 20,
-        backgroundColor: "#F44336",
+        backgroundColor: colors.error,
         borderRadius: 7,
     },
    textButton: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.white,
-        fontWeight: "700",
+        fontFamily: "text-bold",
     },
     buttonDisable: {
         alignItems: "center",
         padding: 10,
         margin: 20,
-        backgroundColor: "#C9C2C0",
+        backgroundColor: colors.grey,
         borderRadius: 7,
     },
     statusCancel: {
-        fontSize: 16,
-        color: "#F44336",
-        fontWeight: "500",
+        fontSize: sizes.size16,
+        color: colors.error,
+        fontFamily: "text-medium",
     },
     loading: {
         position: "absolute",

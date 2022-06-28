@@ -2,7 +2,7 @@ import { observer } from "mobx-react"
 import React from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { PriceText } from "../../../components/Price"
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 import { convertDate } from "../../../types/DateTime"
 import { width } from "../../../utils/dimensions"
 
@@ -93,20 +93,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     textTitle: {
-        fontSize: 18,
-        fontWeight: "500",
+        fontSize: sizes.size18,
+        fontFamily: "text-medium",
         color:colors.darkGrey,
     },
     textDetail: {
-        fontSize: 14,
-        fontWeight: "400",
-        color:"#9E9E9E",
+         fontSize: sizes.size14,
+        fontFamily: "text-regular",
+        color:colors.mediumGrey,
         alignItems: "center",
     },
     textValue: {
-        fontSize: 14,
-        fontWeight: "500",
-        color:"#9E9E9E",
+         fontSize: sizes.size14,
+        fontFamily: "text-medium",
+        color:colors.mediumGrey,
         marginLeft: 5,
         maxWidth: width - 140,
     },
@@ -115,25 +115,25 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     textStatus: {
-        fontSize: 14,
-        fontWeight: "500",
+         fontSize: sizes.size14,
+        fontFamily: "text-medium",
         color:colors.primary,
     },
     dot: {
         width: 4,
         height: 4,
         borderRadius: 2,
-        backgroundColor: "#9E9E9E",
+        backgroundColor: colors.mediumGrey,
         marginHorizontal: 10,
     },
     line: {
         borderBottomWidth: 1,
-        borderBottomColor: "#C9C2C0",
+        borderBottomColor: colors.grey,
     },
     textPrice: {
-        fontSize: 16,
-        fontWeight: "700",
-        color:"#F44336",
+        fontSize: sizes.size16,
+        fontFamily: "text-bold",
+        color:colors.error,
     },
     row: {
         flexDirection: "row",
@@ -141,9 +141,9 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     textStatusCancel: {
-        fontSize: 14,
-        fontWeight: "500",
-        color:"#F44336",
+         fontSize: sizes.size14,
+        fontFamily: "text-medium",
+        color:colors.error,
     },
 }
 )

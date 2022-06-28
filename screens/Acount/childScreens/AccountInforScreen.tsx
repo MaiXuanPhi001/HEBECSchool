@@ -3,7 +3,7 @@ import { Image, RefreshControl, ScrollView, StyleSheet, Text, View } from "react
 import { HeaderName } from "../../../components/HeaderWithName";
 import { BASE_URL } from "../../../config";
 import userStore from "../../../store/userStore";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 import { width } from "../../../utils/dimensions";
 
 
@@ -31,7 +31,7 @@ export const AccountInforScreen = ({ navigation, route }: any) => {
                 <View style = {styles.body}>
                     <Text style = {styles.title}>THÔNG TIN CHUNG</Text>
                     <Column title = {'Họ & tên'} content = {data.name}/>
-                    <Column title = {'Giới tính'} content = {data.gender}/>
+                    <Column title = {'Giới tính'} content = {data.gender=="MALE"?"Nam":"Nữ"}/>
                     <Column title = {'Ngày sinh'} content = {data.dob}/>
                     <Column title = {'Lớp'} content = {data.classroom}/>
                     <Column title = {'Mã số'} content = {data.id}/>
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
         
     },
     title: {
-        fontSize: 18,
-        fontWeight: '700',
+        fontSize: sizes.size18,
+        fontFamily: "text-bold",
         color: colors.primary,
     },
     info: {
@@ -95,16 +95,16 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     infoTitle: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         color: colors.darkGrey,
         width: 130,
     },
     infoContent: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         lineHeight: 20,
         width: width - 190,
-        fontWeight: '500',
+        fontFamily: "text-medium",
         color: colors.darkGrey,
     },
     line: {

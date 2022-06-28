@@ -1,6 +1,7 @@
 import React from "react"
 import { Text } from "react-native"
 import NumberFormat from "react-number-format"
+import Typo from "./Typo"
 
 export const PriceText = ({ price, style }: any) => {
     return (
@@ -9,6 +10,6 @@ export const PriceText = ({ price, style }: any) => {
                 displayType ={'text'} 
                 thousandSeparator = '.'
                 decimalSeparator=","
-                renderText={(value) => <Text style = {style}>{value} đ</Text>} />
+                renderText={(value) => <Typo style = {style}>{value} đ</Typo>} />
     )
 }

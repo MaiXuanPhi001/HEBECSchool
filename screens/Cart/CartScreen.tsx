@@ -7,7 +7,7 @@ import { HeaderName } from "../../components/HeaderWithName";
 import { PriceText } from "../../components/Price";
 import cartStore from "../../store/cartStore";
 import paymentStore from "../../store/paymentStore";
-import { colors } from "../../styles/themes";
+import { colors, sizes } from "../../styles/themes";
 import { RowItem } from "./components/RowItem";
 
 export const CartScreen = observer(({ navigation }: any) => {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         height: 25,
     },
     titleText: {
-        fontSize: 18,
+        fontSize: sizes.size18,
         fontWeight: 'bold',
         marginLeft: 10,
         color: colors.darkGrey,
@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
     ,
     buttonText: {
         color: colors.white,
-        fontSize: 16,
+        fontSize: sizes.size16,
         fontWeight: 'bold',
     },
     clear: {
         color: colors.error,
-        fontSize: 14,
+         fontSize: sizes.size14,
     },
     buttonDisable: {
         backgroundColor: 'gray',
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     },
     clearDisable: {
         color: colors.mediumGrey,
-        fontSize: 14,
+         fontSize: sizes.size14,
     }
 
 

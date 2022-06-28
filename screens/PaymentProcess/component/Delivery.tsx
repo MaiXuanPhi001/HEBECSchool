@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Image, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
 import { PriceText } from "../../../components/Price"
 import paymentStore from "../../../store/paymentStore"
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 import { height, width } from "../../../utils/dimensions"
 
 const RowItem = ({ title, value, icon, stylePrice }: any) => {
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     rowItemTitle: {
-        fontSize: 18,
+        fontSize: sizes.size18,
         fontWeight: 'bold',
         color: colors.darkGrey,
     },
@@ -128,12 +128,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     rowItemValue: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
     },
     rowItemPrice: {
-        fontSize: 16,
-        fontWeight: '500',
+        fontSize: sizes.size16,
+        fontFamily: "text-medium",
         color: colors.primary,
     },
     rowItemInput: {
@@ -144,25 +144,24 @@ const styles = StyleSheet.create({
         borderColor: '#C9C2C0',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
         backgroundColor: colors.white,
     },
     promotionText: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         color: colors.darkGrey,
     },
     promotionValue: {
-        fontSize: 16,
-        fontWeight: '500',
+        fontSize: sizes.size16,
+        fontFamily: "text-medium",
         color: colors.primary,
     },
     promotionFail: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: sizes.size16,
+        fontFamily: "text-italic",
         color: colors.error,
-        fontStyle: 'italic',
     },
     noteInput: {
         width: '100%',
@@ -172,7 +171,7 @@ const styles = StyleSheet.create({
         borderColor: '#C9C2C0',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
         backgroundColor: colors.white,
         marginTop: 20,
@@ -192,8 +191,8 @@ const styles = StyleSheet.create({
         
     },
     priceTotal: {
-        fontSize: 18,
-        fontWeight: '700',
+        fontSize: sizes.size18,
+        fontFamily: "text-bold",
         color: colors.primary,
     },
     footer: {
@@ -215,9 +214,9 @@ const styles = StyleSheet.create({
     },
     buttonTextPrev: {
         color: colors.primary,
-        fontSize: 16,
+        fontSize: sizes.size16,
         textAlign: 'center',
-        fontWeight: '700',
+        fontFamily: "text-bold",
     },
     buttonNext: {
         width: (width - 60)/2,
@@ -230,9 +229,9 @@ const styles = StyleSheet.create({
     },
     buttonTextNext: {
         color: colors.white,
-        fontSize: 16,
+        fontSize: sizes.size16,
         textAlign: 'center',
-        fontWeight: '700',
+        fontFamily: "text-bold",
     },
     buttonDisable: {
         width: (width - 60)/2,

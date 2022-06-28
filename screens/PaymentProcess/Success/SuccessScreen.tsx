@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { BackHandler, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 import { width } from "../../../utils/dimensions";
 export const SuccessScreen = ({navigation}: any) => {
     const onBackPress = () => {
@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
     },
     text: {
         alignSelf: 'center',
-        fontSize: 18,
+        fontSize: sizes.size18,
         fontWeight: 'bold',
         color: colors.darkGrey,
         marginTop: 25,
     },
     desc: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
         marginTop: 20,
         textAlign: 'center',
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     buttonHomeText: {
         color: colors.primary,
-        fontSize: 16,
+        fontSize: sizes.size16,
         fontWeight: 'bold',
     },
     buttonHistory: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     buttonHistoryText: {
         color: colors.white,
-        fontSize: 16,
+        fontSize: sizes.size16,
         fontWeight: 'bold',
     }
 

@@ -143,13 +143,33 @@ export class NotificationService {
     createChanel() {
         PushNotification.createChannel(
             {
-                channelId: 'new-order',
-                channelName: `new-order`,
-                channelDescription: "new-order",
+                channelId: 'ORDER',
+                channelName: `order`,
+                channelDescription: "order",
                 soundName: 'default',
                 importance: 4,
                 vibrate: true,
-            }, (created) => console.log('createChannel "New-Order"', created)
+            }, (created) => console.log('createChannel "Order"', created)
+        );
+        PushNotification.createChannel(
+            {
+                channelId: 'NEWS',
+                channelName: `news`,
+                channelDescription: "news",
+                soundName: 'default',
+                importance: 4,
+                vibrate: true,
+            }, (created) => console.log('createChannel "News"', created)
+        );
+        PushNotification.createChannel(
+            {
+                channelId: 'NOTIFICATION',
+                channelName: `notification`,
+                channelDescription: "notification",
+                soundName: 'default',
+                importance: 4,
+                vibrate: true,
+            }, (created) => console.log('createChannel "Notification"', created)
         );
         PushNotification.createChannel(
             {

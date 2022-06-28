@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import React from "react"; 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import notiStore from "../../../store/NotificationStore";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 import { convertDate } from "../../../types/DateTime";
 import { width } from "../../../utils/dimensions";
 
@@ -64,28 +64,28 @@ const styles = StyleSheet.create({
         width: width - 90,
     },
     title: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
-        fontWeight: "500",
+        fontFamily: "text-medium",
     },
     titleSeened: {
-        fontSize: 16,
-        color: "#9E9E9E",
-        fontWeight: "400",
+        fontSize: sizes.size16,
+        color: colors.mediumGrey,
+        fontFamily: "text-regular",
     },
     content: {
-        fontSize: 14,
+         fontSize: sizes.size14,
         color: colors.darkGrey,
         marginVertical: 5,
     },
     contentSeened: {
-        fontSize: 14,
-        color: "#9E9E9E",
+         fontSize: sizes.size14,
+        color: colors.mediumGrey,
         marginVertical: 5,
     },
     time: {
-        fontSize: 12,
-        color: "#9E9E9E",
+        fontSize: sizes.size12,
+        color: colors.mediumGrey,
     },
     imgSeened: {
         width: 40,

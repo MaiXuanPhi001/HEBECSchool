@@ -6,7 +6,7 @@ import { Text } from "react-native-paper"
 import { HeaderName } from "../../components/HeaderWithName";
 import { Loading } from "../../components/Loading";
 import historyOrdersStore from "../../store/HistoryStore";
-import { colors } from "../../styles/themes";
+import { colors, sizes } from "../../styles/themes";
 import { ItemOrder } from "./components/ItemOrder";
 
 export const HistoryScreen = observer(({navigation}: any) => {
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         borderBottomColor: "#E5E5E5",
     },
     textHeader: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.primary,
         fontWeight: "bold",
         lineHeight: 24
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     textContent: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: "#757575",
         lineHeight: 24
     },
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     },
     separator: {
         height: 1,
-        backgroundColor: "#C9C2C0",
+        backgroundColor: colors.grey,
         marginHorizontal: 20,
     },
    

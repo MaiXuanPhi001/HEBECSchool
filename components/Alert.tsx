@@ -1,7 +1,7 @@
 import React from "react"
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import Modal from "react-native-modal";
-import { colors } from "../styles/themes";
+import { colors, sizes } from "../styles/themes";
 import { height, width } from "../utils/dimensions";
 import Typo from "./Typo";
 
@@ -22,23 +22,30 @@ export const AlertCustom = ({title, message, callback, visible,cancelText, confi
                 <View style={{ backgroundColor: colors.white, width: width - 40, borderRadius: 7, padding: 30 }}>
                     <Typo 
                         size18
+                        bold
+                        style={{ color: colors.darkGrey, marginBottom: 10 }}>{title}</Typo>
 
-                    style={{ fontSize: 18, fontWeight: "bold", color: colors.darkGrey, marginBottom: 10 }}
-                    >
-                        {title}
-                    </Typo>
-                    <Text style={{ fontSize: 16, fontWeight: "400", color: colors.darkGrey, marginBottom: 10 }}>{message}</Text>
+                    <Typo 
+                    size16
+                    regular
+                    style={{color: colors.darkGrey, marginBottom: 10 }}>{message}</Typo>
                     <View style={cancelText ? styles.modalButton2 : styles.modalButton1}>
                         {cancelText &&
                             <TouchableOpacity onPress={() => {
                                 callback(false);
                             } }>
-                                <Text style={{ fontSize: 16, fontWeight: "400", color: "#F44336", marginRight: 10 }}>{cancelText}</Text>
+                                <Typo
+                                size16
+                                regular
+                                style={{ fontSize: sizes.size16, fontFamily: "text-regular", color: colors.error, marginRight: 10 }}>{cancelText}</Typo>
                             </TouchableOpacity>}
                         <TouchableOpacity onPress={() => {
                             callback(true);
                         } }>
-                            <Text style={{ fontSize: 16, fontWeight: "400", color: colors.primary }}>{confirmText}</Text>
+                            <Typo 
+                            size16
+                            regular
+                            style={{color: colors.primary }}>{confirmText}</Typo>
                         </TouchableOpacity>
                     </View>
                 </View>

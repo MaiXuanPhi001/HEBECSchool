@@ -3,19 +3,22 @@ import React, { useEffect, useState } from "react";
 import { Alert, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AlertCustom } from "../../../components/Alert";
 import paymentStore from "../../../store/paymentStore";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 import { height, width } from "../../../utils/dimensions";
 import { Dropdown } from "./Dropdown";
 export const Input = ({ label, value, onChangeText, placeholder }: any) => {
+
     return (
         <View style={styles.inputItem}>
             <Text style={styles.labelStyle}>{label}<Text style={{color:colors.error}}> *</Text></Text>
             <TextInput
+                keyboardType={label === "Số điện thoại" ? "numeric" : "default"}
                 placeholder={placeholder}
-                placeholderTextColor="#C9C2C0"
+                placeholderTextColor={colors.grey}
                 style={styles.inputStyle}
                 value={value}
                 onChangeText={(text) => onChangeText(text)}
+                
             />
         </View>
     )
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 50,
         paddingVertical: 15,
-        fontSize: 16,
+        fontSize: sizes.size16,
         lineHeight: 20,
         height: 50,
         borderColor: colors.mediumGrey,
@@ -94,7 +97,7 @@ const styles = StyleSheet.create({
         borderRadius: 7,
     },
     labelStyle: {
-        fontSize: 14,
+         fontSize: sizes.size14,
         lineHeight: 16,
         marginBottom: 5,
         color: colors.darkGrey,
@@ -116,9 +119,9 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: colors.white,
-        fontSize: 16,
+        fontSize: sizes.size16,
         textAlign: 'center',
-        fontWeight: '700',
+        fontFamily: "text-bold",
     },
     footer: {
         flexDirection: 'row',

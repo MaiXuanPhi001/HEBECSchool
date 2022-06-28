@@ -7,7 +7,7 @@ import { height, width } from '../../utils/dimensions';
 import { InputPass } from '../Acount/childScreens/ChangePasswordScreeen';
 import { Input } from '../PaymentProcess/component/DeliveryAddress';
 import { AlertCustom } from '../../components/Alert';
-import { colors } from '../../styles/themes';
+import { colors, sizes } from '../../styles/themes';
   
 
 export const RegisterScreen =  observer(({navigation}: any) => {
@@ -143,13 +143,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     buttonText: {
-        fontSize: 16,
-        fontWeight: '700',
+        fontSize: sizes.size16,
+        fontFamily: "text-bold",
         color: colors.white,
     },
     login: {
-        fontSize: 14,
-        fontWeight: '400',
+         fontSize: sizes.size14,
+        fontFamily: "text-regular",
         color: colors.primary,
         alignSelf: 'flex-end',
         marginHorizontal: 20,

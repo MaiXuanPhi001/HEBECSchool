@@ -35,11 +35,11 @@ function App() {
 
   const loadFont = async (): Promise<void> => {
     return await Font.loadAsync({
-      "text-bold": require("@/assets/fonts/Roboto-Bold.ttf"),
-      "text-regular": require("@/assets/fonts/Roboto-Regular.ttf"),
-      "text-medium": require("@/assets/fonts/Roboto-Medium.ttf"),
-      "text-italic": require("@/assets/fonts/Roboto-Italic.ttf"),
-      "text-montserrat": require("@/assets/fonts/Montserrat-Regular.ttf"),
+      "text-bold": require("./assets/fonts/Roboto-Bold.ttf"),
+      "text-regular": require("./assets/fonts/Roboto-Regular.ttf"),
+      "text-medium": require("./assets/fonts/Roboto-Medium.ttf"),
+      "text-italic": require("./assets/fonts/Roboto-Italic.ttf"),
+      "text-montserrat": require("./assets/fonts/Montserrat-Regular.ttf"),
     });
   };
 

@@ -1,6 +1,6 @@
 import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 
 export const Title = ({title, icon, subtitle, styleSub, border}: any) => {
     return (
@@ -38,8 +38,8 @@ export const Title = ({title, icon, subtitle, styleSub, border}: any) => {
             marginRight: 10,
         },
         text: {
-            fontSize: 18,
-            fontWeight: "700",
+            fontSize: sizes.size18,
+            fontFamily: "text-bold",
             color:colors.darkGrey,
         },
         right: {

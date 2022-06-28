@@ -38,7 +38,8 @@ export const apiUser = {
             customer: {
                 username: username,
                 password: password,
-                name: name
+                name: name,
+                phone: username,
             }
         }
     }),

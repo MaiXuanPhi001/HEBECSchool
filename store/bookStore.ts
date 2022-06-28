@@ -4,7 +4,7 @@ import userStore from "./userStore";
 
 export const apiBook = {
     getCategories: () => request({
-        url: "/v1/customer/category?limit=12",
+        url: "/v1/customer/category?",
         method: "GET"
     }),
     getCategoryHightlight: () => request({

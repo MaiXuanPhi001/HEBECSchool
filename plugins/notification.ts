@@ -32,9 +32,9 @@ const switchNotification = async (data: any, trigger: any) => {
     userStore.getInfo();
     notiStore.setNotiList();
     try{
-    if(data.type === "order"){
+    if(data.type === "ORDER"){
         handleOrderNotification(trigger);
-    }else if(data.type === "news"){
+    }else if(data.type === "NEWS"){
         handleNewsNotification(data,trigger);
     }
     else{

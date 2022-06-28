@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AlertCustom } from "../../../components/Alert";
 import userStore from "../../../store/userStore";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 
 export const Item = ({user,data, notice, navigation}: any) => {
     const [showAlert, setShowAlert] = React.useState(false);
@@ -76,15 +76,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         textAlign: 'center',
         maxHeight: 100,
         flexWrap: 'wrap',
     },
     titleLogin: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         textAlign: 'center',
         maxHeight: 100,
         flexWrap: 'wrap',
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     noticeText: {
-        fontSize: 12,
-        fontWeight: '400',
+        fontSize: sizes.size12,
+        fontFamily: "text-regular",
         textAlign: 'center',
         color: colors.white,
     },

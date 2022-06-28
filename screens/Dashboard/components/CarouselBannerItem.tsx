@@ -1,6 +1,7 @@
 import React from 'react'
 import {  StyleSheet, Image, TouchableOpacity } from "react-native"
 import { BASE_URL } from '../../../config'
+import { colors } from '../../../styles/themes'
 import { width } from '../../../utils/dimensions'
 
 export const SLIDER_WIDTH = width + 80

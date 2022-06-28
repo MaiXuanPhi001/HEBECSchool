@@ -2,13 +2,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { NotificationService } from '../../plugins/notificationService';
 import { AcountScreen } from '../../screens/Acount/AccountMenuScreen';
 import Dashboard from '../../screens/Dashboard/Dashboard';
 import { ListNewsScreen } from '../../screens/News/ListNewScrens';
 import { NotificationScreen } from '../../screens/Notification/NotificationScreen';
 import userStore from '../../store/userStore';
-import { colors } from '../../styles/themes';
+import { colors, sizes } from '../../styles/themes';
 
 const Tab = createBottomTabNavigator();
 
@@ -65,13 +64,13 @@ export const TabNavigator = observer(() => {
 );
 const styles = StyleSheet.create({
   focused: {
-    fontSize: 14, 
-    fontWeight: '700', 
+     fontSize: sizes.size14, 
+    fontFamily: "text-bold", 
     color: colors.primary 
   },
   unfocused: {
-    fontSize: 14,
-    fontWeight: '400',
+     fontSize: sizes.size14,
+    fontFamily: "text-regular",
     color: colors.mediumGrey
   }
 });

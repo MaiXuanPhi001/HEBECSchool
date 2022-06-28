@@ -5,7 +5,7 @@ import { AlertCustom } from "../../../components/Alert";
 import { ControlQuantity } from "../../../components/ControlQuantity";
 import { PriceText } from "../../../components/Price";
 import cartStore from "../../../store/cartStore";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 
 export const RowItem = observer(({ item }: any) => {
     const [showAlert, setShowAlert] = React.useState(false);
@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     name: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         color: colors.darkGrey,
     },
     price: {
-        fontSize: 14,
-        fontWeight: '400',
+         fontSize: sizes.size14,
+        fontFamily: "text-regular",
         color: colors.primary,
     },
 });

@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         height:60,
         borderRadius:10,
         borderWidth:1,
-        borderColor:"#C9C2C0",
+        borderColor:colors.grey,
         alignItems:"center",
         overflow:"hidden",
        marginLeft:10,

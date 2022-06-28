@@ -1,6 +1,7 @@
 import React from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { colors } from "../styles/themes"
+import { colors, sizes } from "../styles/themes"
+import Typo from "./Typo"
 
 export const ControlQuantity = ({ quantity, onChangeQuantity }: any) => {
     return (
@@ -8,7 +9,7 @@ export const ControlQuantity = ({ quantity, onChangeQuantity }: any) => {
             <TouchableOpacity  onPress={() => quantity > 0? onChangeQuantity(quantity - 1): null}>
                 <Image source={require("../assets/icons/MinusCircle.png")} style={styles.image} />
             </TouchableOpacity>
-            <Text style={styles.text}>{quantity}</Text>
+            <Typo style={styles.text}>{quantity}</Typo>
             <TouchableOpacity onPress={() => onChangeQuantity(quantity + 1)}>
                 <Image source={require("../assets/icons/PlusCircle.png")} style={styles.image} />
             </TouchableOpacity>
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        fontSize: 14,
+         fontSize: sizes.size14,
         color: colors.darkGrey,
         width: 30,
         marginHorizontal: 5,

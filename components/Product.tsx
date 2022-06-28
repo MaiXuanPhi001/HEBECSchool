@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import NumberFormat from 'react-number-format';
 import { BASE_URL } from "../config";
-import { colors } from "../styles/themes";
+import { colors, sizes } from "../styles/themes";
 import { width } from "../utils/dimensions";
 import { PriceText } from "./Price";
+import Typo from "./Typo";
 
 export const Product = observer(({data, navigation}:any) => {
     const [imageError, setimageError] = useState(false);
@@ -28,11 +29,11 @@ export const Product = observer(({data, navigation}:any) => {
         style = {styles.container}
         onPress = {() => navigation.navigate('Detail', {data})}>
             <View>
-                {data.isOutOfStock?  <><View style={styles.mask}></View><Text style={styles.textMask}>Hết hàng</Text></>:null}
+                {data.isOutOfStock?  <><View style={styles.mask}></View><Typo style={styles.textMask}>Hết hàng</Typo></>:null}
 
                 {(promotionCalculate() != 0) ?  
                 <View style = {styles.promotion}>
-                    <Text  style = {styles.promotionText}>{promotionCalculate() + "%"}</Text>
+                    <Typo  style = {styles.promotionText}>{promotionCalculate() + "%"}</Typo>
                 </View>
                 :null}
                 <Image source={imageError?require("../assets/HEBEC.png"):{uri: BASE_URL+data.thumbnail}} 
@@ -41,7 +42,7 @@ export const Product = observer(({data, navigation}:any) => {
             </View>
 
             <View style = {styles.content}>
-                <Text numberOfLines={2} style = {styles.name}>{data.name}</Text>
+                <Typo numberOfLines={2} style = {styles.name}>{data.name}</Typo>
                 <PriceText price = {data.finalPrice} style = {styles.price}/>
                 <PriceText price = {data.originPrice} style = {styles.oldPrice}/>
             </View>
@@ -54,20 +55,20 @@ export const Product = observer(({data, navigation}:any) => {
         container: {
             flexDirection: "column",
             width: (width-60)/2,
-            height: 269,
             borderRadius: 7,
             backgroundColor: colors.white,
             shadowColor: colors.darkGrey,
             shadowOffset: {
-                width: 3,
-                height: 3,
+                width: 0,
+                height: 2,
             },
-            shadowOpacity: 0.29,
-            shadowRadius: 7,
-            elevation: 2,
+            shadowOpacity: 0.23,
+            shadowRadius: 2.62,
+            elevation: 4,
             marginBottom: 10,
             marginHorizontal: 10,
             overflow: "hidden",
+            marginTop: 1,
         },
         image: {
             height: 177,
@@ -80,24 +81,25 @@ export const Product = observer(({data, navigation}:any) => {
             marginHorizontal: 10,
         },
         name: {
-            fontSize: 14,
-            fontWeight: "400",
+             fontSize: sizes.size14,
+            fontFamily: "text-regular",
             color: colors.darkGrey,
             marginTop: 10,
+            height: 36,
+            lineHeight: 18,
         },
         price: {
-            fontSize: 14,
-            color: "#F44336",
-            fontWeight: "700",
-            marginTop: 5,
+             fontSize: sizes.size14,
+            color: colors.error,
+            fontFamily: "text-bold",
         },
         oldPrice: {
-            fontSize: 12,
-            color: "#9E9E9E",
-            fontWeight: "400",
-            marginTop: 5,
+            fontSize: sizes.size12,
+            color: colors.mediumGrey,
+            fontFamily: "text-regular",
             marginBottom: 10,
             textDecorationLine: "line-through",
+            lineHeight: 18,
         },
         content: {
             flexDirection: "column",
@@ -115,8 +117,8 @@ export const Product = observer(({data, navigation}:any) => {
         },
         textMask: {
             color: colors.white,
-            fontSize: 14,
-            fontWeight: "700",
+             fontSize: sizes.size14,
+            fontFamily: "text-bold",
             alignSelf: "center",
             top: "40%",
             justifyContent: "center",
@@ -131,7 +133,7 @@ export const Product = observer(({data, navigation}:any) => {
             right: -width/10,
             width: Math.sqrt(((width)/5)*((width)/5)*2),
             height: 22,
-            backgroundColor: "#F44336",
+            backgroundColor: colors.error,
             paddingHorizontal: 50,
             paddingVertical: 5,
             alignItems: "center",
@@ -139,8 +141,8 @@ export const Product = observer(({data, navigation}:any) => {
         },
         promotionText: {
             color: colors.white,
-            fontSize: 14,
-            fontWeight: "700",
+             fontSize: sizes.size14,
+            fontFamily: "text-bold",
             position: "absolute",
             zIndex: 1.3,
             width: Math.sqrt(((width)/5)*((width)/5)*2),

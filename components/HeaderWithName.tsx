@@ -2,21 +2,23 @@ import { observer } from "mobx-react";
 import React, {  } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import cartStore from "../store/cartStore";
-import { colors } from "../styles/themes";
+import { colors, sizes } from "../styles/themes";
 import { SearchBar } from "./SearchBar";
+import Typo from "./Typo";
 
 export const HeaderName = observer(({ isSearch,name, navigation, icon, nonback }: any) => {
 
     return (
         <View style={styles.header}>
             {!nonback ?<TouchableOpacity
+            style={styles.backArea}
             onPress={() => {navigation.goBack() }}>
-                <Image style = {styles.back}  source={require("../assets/icons/icBack.png")}/>
+                <Image  source={require("../assets/icons/icBack.png")}/>
             </TouchableOpacity>:null}
             {
-                isSearch ? <SearchBar style = {styles.searchBar} navigation ={navigation}/> :  
+                isSearch ? <SearchBar style = {!nonback ?styles.searchBar:styles.searchBarNonback} navigation ={navigation}/> :  
                 <View style = {{flex: 1, alignItems: 'center'}}>
-                <Text style = {!nonback? styles.nameBack: styles.nameNonBack}>{name}</Text>
+                <Typo style = {!nonback? styles.nameBack: styles.nameNonBack}>{name}</Typo>
             </View>
             }
           
@@ -44,18 +46,15 @@ header: {
     alignItems: 'center',
 },
 nameBack: {
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: sizes.size18,
+    fontFamily: "text-bold",
     color: colors.white,
     marginLeft: -30,
 },
 nameNonBack: {
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: sizes.size18,
+    fontFamily: "text-bold",
     color: colors.white,
-},
-back: {
-    marginLeft: 20,
 },
 icon: {
         alignSelf: "center",
@@ -65,7 +64,11 @@ icon: {
     },
 searchBar: {
         flex: 1,
-        marginHorizontal: 20,
+        marginRight: 20,
+},
+searchBarNonback: {
+    flex: 1,
+    marginHorizontal: 20,
 },
 badge: {
     position: 'absolute',
@@ -83,6 +86,11 @@ badge: {
 textBadge: {
     fontSize: 7,
     color: colors.white,
-    fontWeight: '700',
-} 
+    fontFamily: "text-bold",
+},
+backArea: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width:60
+}, 
 })

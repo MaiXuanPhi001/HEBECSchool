@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-nati
 import paymentStore from "../../../store/paymentStore"
 import { height, width } from "../../../utils/dimensions"
 import Modal from "react-native-modal";
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 
 export const ModalList = observer(({onSelectItem, onClose, currentType, modalVisible}:any) => {
     const [data, setData] = useState([]);
@@ -24,7 +24,6 @@ export const ModalList = observer(({onSelectItem, onClose, currentType, modalVis
         }
     }
         , [])
-
     return (
         <Modal
             isVisible={modalVisible}
@@ -47,7 +46,7 @@ export const ModalList = observer(({onSelectItem, onClose, currentType, modalVis
                     {data.map((item: any, index: number) => {
                         return (
                             <TouchableOpacity key={index} onPress={() => onSelectItem({item})}>
-                                    <Text style={styles.modalItemText}>{item.name}</Text>
+                                    <Text style={styles.modalItemText}>{currentType==1? item.name: item.nameWithType}</Text>
                             </TouchableOpacity>
                         )})}
                 </ScrollView>
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     modalItemText: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         lineHeight: 20,
         color: colors.darkGrey,
         padding: 10,

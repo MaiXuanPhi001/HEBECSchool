@@ -4,7 +4,7 @@ import { ActivityIndicator, Alert, Image, StyleSheet, Text, TextInput, Touchable
 import { AlertCustom } from "../../../components/Alert"
 import { HeaderName } from "../../../components/HeaderWithName"
 import userStore from "../../../store/userStore"
-import { colors } from "../../../styles/themes"
+import { colors, sizes } from "../../../styles/themes"
 
 export const ChangePassWordScreen = observer(({ navigation }: any) => {
     const [password, setPassword] = useState("")
@@ -72,7 +72,7 @@ export const InputPass = ({ label, value, onChangeText, placeholder }: any) => {
             <TextInput
                 secureTextEntry= {hidePass}
                 placeholder={placeholder}
-                placeholderTextColor="#C9C2C0"
+                placeholderTextColor={colors.grey}
                 autoCorrect={false}
                 style={styles.inputStyle}
                 value={value}
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 50,
         paddingVertical: 15,
-        fontSize: 16,
+        fontSize: sizes.size16,
         lineHeight: 20,
         height: 50,
         borderColor: colors.mediumGrey,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         borderRadius: 7,
     },
     labelStyle: {
-        fontSize: 14,
+         fontSize: sizes.size14,
         lineHeight: 16,
         marginBottom: 5,
         color: colors.darkGrey,
@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: colors.white,
-        fontSize: 16,
-        fontWeight: '700',
+        fontSize: sizes.size16,
+        fontFamily: "text-bold",
     }
 
 })

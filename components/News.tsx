@@ -2,9 +2,10 @@ import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { TouchableOpacity, Image, View, Text, StyleSheet } from "react-native";
 import { BASE_URL } from "../config";
-import { colors } from "../styles/themes";
+import { colors, sizes } from "../styles/themes";
 import { convertDate } from "../types/DateTime";
 import { width } from "../utils/dimensions";
+import Typo from "./Typo";
 
 export const NewsItem = observer(({data, navigation}: any) => {
     const [imageError, setimageError] = useState(false);
@@ -22,8 +23,8 @@ export const NewsItem = observer(({data, navigation}: any) => {
                 style = {imageError? styles.imageErr:styles.imageRow} 
                 onError = {() => onImageError()}/>
         <View style={styles.content}>
-            <Text numberOfLines={2} style={styles.titleRow}>{data.title}</Text>
-            <Text style={styles.date}>{convertDate(data.createdAt)}</Text>
+            <Typo numberOfLines={2} style={styles.titleRow}>{data.title}</Typo>
+            <Typo style={styles.date}>{convertDate(data.createdAt)}</Typo>
         </View>
     </TouchableOpacity>
 )}
@@ -34,9 +35,8 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     date: {
-        fontSize: 12,
-        fontFamily: 'Roboto-Regular',
-        fontWeight: '400',
+        fontSize: sizes.size12,
+        fontFamily: "text-regular",
         justifyContent: 'center',
         textAlign: 'left',
         color: colors.mediumGrey,
@@ -71,9 +71,8 @@ const styles = StyleSheet.create({
     titleRow: {
         marginTop: 10,
         marginBottom: 5,
-        fontSize: 16,
-        fontFamily: 'Roboto-Regular',
-        fontWeight: '400',
+        fontSize: sizes.size16,
+        fontFamily: "text-regular",
         justifyContent: 'center',
         textAlign: 'left',
         lineHeight: 24,

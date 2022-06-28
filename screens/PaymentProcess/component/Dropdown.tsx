@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react"
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import paymentStore from "../../../store/paymentStore";
-import { colors } from "../../../styles/themes";
+import { colors, sizes } from "../../../styles/themes";
 import { ModalList } from "./ModalList";
 
 export const Dropdown = observer(({type}: any) => {
@@ -48,7 +48,7 @@ export const Dropdown = observer(({type}: any) => {
             style = {styles.dropdownItem}>
               <TextInput
                   placeholder={placeholder}
-                  placeholderTextColor="#C9C2C0"
+                  placeholderTextColor={colors.grey}
                   style={styles.inputStyle}
                    value={type == 1 ? paymentStore.city.name : type == 2 ? paymentStore.district.name : paymentStore.ward.name}
                   editable={false}
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
       paddingLeft: 20,
       paddingRight: 50,
       paddingVertical: 15,
-      fontSize: 16,
+      fontSize: sizes.size16,
       lineHeight: 20,
       height: 50,
       borderColor: colors.mediumGrey,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
       borderRadius: 7,
   },
   labelStyle: {
-      fontSize: 14,
+       fontSize: sizes.size14,
       lineHeight: 16,
       marginBottom: 5,
       color: colors.darkGrey,

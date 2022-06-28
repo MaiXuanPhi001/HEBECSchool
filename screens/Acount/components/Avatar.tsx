@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { BASE_URL } from "../../../config";
 import * as Updates from 'expo-updates';
 import appJSON from '../../../app.json'
+import { colors, sizes } from "../../../styles/themes";
 
 export const Avatar = ({ data }: any) => {
 
@@ -30,25 +31,25 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderWidth: 2,
-        borderColor: "#9E9E9E",
+        borderColor: colors.mediumGrey,
         marginTop: 20,
     },
     name: {
         fontSize: 20,
-        fontWeight: '700',
+        fontFamily: "text-bold",
         color: colors.darkGrey,
         marginTop: 10,
     },
     info: {
-        fontSize: 16,
+        fontSize: sizes.size16,
         color: colors.darkGrey,
-        fontWeight: '400',
+        fontFamily: "text-regular",
         marginTop: 5,
     },
     info2: {
         fontSize: 10,
         color: colors.darkGrey,
-        fontWeight: '400',
+        fontFamily: "text-regular",
         marginTop: 5,
     },
 });

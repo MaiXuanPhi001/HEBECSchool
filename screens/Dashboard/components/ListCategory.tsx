@@ -6,16 +6,18 @@ export  const CategoriesRender = ({ data, navigation }: any) => {
     const renderItem = ({ item }: any) => (
       <Item data = {item}  navigation = {navigation}/>
     );
+    const numColumns = Math.round(data.length / 2);
   
     return (
       <View>
         <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false}>
         <FlatList style={styles.flatList}
+          key = {numColumns}
           data={data}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           horizontal = {false}
-          numColumns = {6}
+          numColumns = {numColumns}
           showsHorizontalScrollIndicator = {false}
         />
         </ScrollView>
@@ -28,7 +30,8 @@ const styles = StyleSheet.create({
     flatList: {
         display: 'flex',
         flexDirection: 'row',
-        marginRight: 10,
+       marginRight: 10,
+        
     },
     
 });
