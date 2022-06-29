@@ -13,6 +13,7 @@ import notiStore from '../../store/NotificationStore';
 import { NotificationService } from '../../plugins/notificationService';
 import userStore from '../../store/userStore';
 import { colors } from '../../styles/themes';
+import {switchNotification} from '../../plugins/notification';
 
 
 export const Dashboard = observer(({navigation} : any) => {
@@ -109,7 +110,3 @@ const styles = StyleSheet.create({
     }
 });
 export default Dashboard;
-
-function switchNotification(data: any, trigger: any) {
-    throw new Error('Function not implemented.');
-}

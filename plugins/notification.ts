@@ -28,7 +28,7 @@ const handleNotification = async ( data:any,trigger: any) => {
     }
 }
 
-const switchNotification = async (data: any, trigger: any) => {
+export const switchNotification = async (data: any, trigger: any) => {
     userStore.getInfo();
     notiStore.setNotiList();
     try{
