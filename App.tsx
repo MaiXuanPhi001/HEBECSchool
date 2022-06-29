@@ -5,7 +5,14 @@ import Router from './route/Router';
 import userStore from './store/userStore';
 import * as Updates from 'expo-updates';
 import * as Font from 'expo-font';
-
+import * as Sentry from "@sentry/react-native";
+Sentry.init({
+  dsn: "https://d515835df6a14d27923ee6356268cd38@o1300759.ingest.sentry.io/6535699",
+  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+  // We recommend adjusting this value in production.
+  tracesSampleRate: 1.0,
+  enableNative:false
+});
 function App() {
   const [ready, setReady] = useState(false);
   React.useEffect(() => {
@@ -50,4 +57,4 @@ function App() {
   );
 }
 
-export default App;
+export default Sentry.wrap(App);

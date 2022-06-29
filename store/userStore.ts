@@ -3,6 +3,8 @@ import { makeAutoObservable } from "mobx";
 import { action, computed, observable,  } from "mobx";
 import { NotificationService } from "../plugins/notificationService";
 import request from "../utils/request";
+import * as Sentry from "@sentry/react-native";
+
 export const apiUser = {
     login: (username: string, password: string) => request({
         url: "/v1/customer/auth/login",
@@ -126,6 +128,7 @@ async updatePassword(password: string, newPassword: string){
     }
     ).catch(err => {
         this.setMessageChangePassword(err.response.data.message);
+        Sentry.captureMessage("TEST SENTRY",err.response.data.message);
     }
     );
     this.setIsLoadingChangePassword(false);
