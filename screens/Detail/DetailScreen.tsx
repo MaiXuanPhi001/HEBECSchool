@@ -109,7 +109,7 @@ export const DetailScreen = observer(({navigation, route} : any) => {
                 <Text style = {styles.title}>{data.name}</Text>
                 <PriceText price = {data.finalPrice} style = {styles.price}/>
                 <View>
-                    <Title title = "Thông tin chi tiết" icon = {require("../../assets/icons/HEBECInfor.png")}/>
+                    <Title title = "Thông tin chi tiết" icon = {require("../../assets/icons/HEBECInforIcon.png")}/>
                     <InfoDetail title = "Danh mục" content = {data.category.name}/>
                 </View>
                 <View>

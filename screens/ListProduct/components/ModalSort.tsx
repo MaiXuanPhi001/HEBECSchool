@@ -30,7 +30,7 @@ export const ModalSort = observer(({visible, onClose}:any) => {
             <View style = {styles.header}>
                 <Text style = {styles.textHeader}>BỘ LỌC</Text>
                 <TouchableOpacity style = {styles.buttonClose} onPress={() => onClose()}>
-                    <Image source={require("../../../assets/icons/Path.png")}/>
+                    <Image style = {{width: 20, height: 20}} source={require("../../../assets/icons/Path.png")}/>
                 </TouchableOpacity>
             </View>
             <View style = {{width: '100%', height: 1, backgroundColor: colors.primary}}/>
@@ -125,7 +125,9 @@ const styles = StyleSheet.create({
     icon: {
         position: 'absolute',
         right: 20,
-        top: 22
+        top: 22,
+        height: 8,
+        width: 14,
     },
     buttonWhite: {
         backgroundColor: colors.white,

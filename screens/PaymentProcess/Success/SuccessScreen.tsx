@@ -18,7 +18,7 @@ export const SuccessScreen = ({navigation}: any) => {
             <StatusBar style="auto" />
             <View style={styles.content}>
                 <View>
-                <Image style = {{alignSelf: "center"}} source={require("../../../assets/DatSachSuccess.png")} />
+                <Image style = {{alignSelf: "center", marginLeft:10,width: 150, height:150}} source={require("../../../assets/DatSachSuccess.png")} />
                <Text style={styles.text}>
                      Đặt đơn thành công
                 </Text>

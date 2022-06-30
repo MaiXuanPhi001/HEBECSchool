@@ -81,7 +81,7 @@ export const InputPass = ({ label, value, onChangeText, placeholder }: any) => {
             <TouchableOpacity
             onPress={() => {setHidePass(!hidePass) }}
             style = {styles.showPass}>
-                <Image source={!hidePass?require('../../../assets/icons/HidePass.png') : require('../../../assets/icons/EyeIcon.png')}/>
+                <Image style = {{width:20, height: 20}} source={!hidePass?require('../../../assets/icons/HidePass.png') : require('../../../assets/icons/ShowPass.png')}/>
             </TouchableOpacity>
            
         </View>

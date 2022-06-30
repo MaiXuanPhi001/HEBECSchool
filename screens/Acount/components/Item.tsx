@@ -44,7 +44,7 @@ export const Item = ({user,data, notice, navigation}: any) => {
             <Image style = {styles.icon} source={data.icon}/>
             <Text style={data.id != 14? styles.title : styles.titleLogin}>{data.title}</Text>
         </View>
-        {data.arrow?  <Image source={require("../../../assets/icons/ArrowIcon.png")}/> : null}
+        {data.arrow?  <Image style = {{width:20, height: 20}} source={require("../../../assets/icons/ArrowIcon.png")}/> : null}
         {(notice != null && data.id ==10)?  <View style = {styles.notice}>
             <Text style = {styles.noticeText}>{notice}</Text>
             </View> : null}

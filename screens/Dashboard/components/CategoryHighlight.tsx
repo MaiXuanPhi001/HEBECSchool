@@ -46,10 +46,10 @@ export const CategoryHighlight = observer(({ data, navigation }: any) => {
           backgroundColor: colors.primary,
           paddingVertical: 10,
           paddingHorizontal: 10,
-          borderRadius: 60,
+          borderRadius: 10,
           alignItems: 'center',
-          width: 200,
-          marginLeft: width/2-100,
+          width: 150,
+          marginLeft: width/2-75,
           marginTop: 10,
       }
       ,

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     icon: {
-        width: 20,
-        height: 20,
+        width: 30,
+        height: 30,
     }
 });

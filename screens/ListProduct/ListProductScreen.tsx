@@ -37,7 +37,7 @@ export const ListProductScreen = observer( ({ navigation, route }: any) => {
                     console.log("sort", showModalSort);
                 } }>
                     <Text style = {styles.buttonText}>Lọc</Text>
-                    <Image style = {styles.buttonImage} source = {require("../../assets/icons/FilterWhite.png")}/>
+                    <Image style = {styles.buttonImage} source = {require("../../assets/icons/Filter.png")}/>
                 </TouchableOpacity>
             </View>
             {showModalCategory && <ModalCate visible = {showModalCategory} onClose = {onClose}/>}

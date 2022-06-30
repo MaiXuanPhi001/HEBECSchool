@@ -7,7 +7,7 @@ import { width } from "../../../utils/dimensions"
 const Tracker = ({ step, active, done }:any) => {
     return (
         <View style={[styles.tracker, active ? styles.active : styles.inActive]}>
-            {done ? <Image source={require("../../../assets/icons/Check.png")}/> :
+            {done ? <Image style = {{width: 15, height: 15}} source={require("../../../assets/icons/Check.png")}/> :
             <Text style={[styles.trackerText, active ? styles.active : styles.inActive]}>{step}</Text>}
         </View>
     )

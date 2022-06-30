@@ -14,13 +14,13 @@ export const NotificationItem = observer(({navigation,item}:any) => {
                 navigation.navigate("History")
                 item.isSeen? null:notiStore.seenNoti(item.id)
             }
-            if(item.type == 'NEWS'){
+            else if(item.type == 'NEWS'){
                 navigation.navigate('News',{
                     id: item.news.id,
                   })
                 item.isSeen? null:notiStore.seenNoti(item.id)
             }
-            else{
+            else if(item.type == 'NOTIFICATION'){
                 navigation.navigate('NotiDetail',{
                     title: item.title,
                     body: item.content,

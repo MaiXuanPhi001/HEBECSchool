@@ -19,15 +19,15 @@ export const TabNavigator = observer(() => {
           let iconName;
 
           if (route.name === 'Trang chủ') {
-            iconName = require('../../assets/icons/DashboardIcon.png')
+            iconName = require('../../assets/icons/Dashboard.png')
             color = focused ? colors.primary : colors.mediumGrey
           } 
           else if (route.name === 'Tài khoản') {
-            iconName = require('../../assets/icons/AccountIcon.png');
+            iconName = require('../../assets/icons/Account.png');
             color = focused ? colors.primary : colors.mediumGrey
           }
           else if (route.name === 'Tin tức') {
-            iconName = require('../../assets/icons/NewsIcon.png');
+            iconName = require('../../assets/icons/News.png');
             color = focused ? colors.primary : colors.mediumGrey
           }
 
@@ -51,7 +51,7 @@ export const TabNavigator = observer(() => {
       <Tab.Screen name='Thông báo' component={NotificationScreen} options={{headerShown: false,
         tabBarIcon: ({color, focused}) => {
           let iconName;
-            iconName = require('../../assets/icons/Union.png');
+            iconName = require('../../assets/icons/Notification.png');
             color = focused ? colors.primary : colors.mediumGrey
           return <View>{userStore.info.totalNotifyNormal >0 && <View style = {{position: 'absolute', backgroundColor: colors.error, borderRadius: 9, width: 9, height: 9, left: 19, top: 7 }}/>}<Image source={iconName} style={{ width: 23, height: 23, tintColor: color, marginTop: 10, marginBottom: 5 }} /></View>;
         }}} />

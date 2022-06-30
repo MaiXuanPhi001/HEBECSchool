@@ -1,25 +1,30 @@
 import { observer } from "mobx-react";
 import React, {  } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Svg from "react-native-svg";
 import cartStore from "../store/cartStore";
 import { colors, sizes } from "../styles/themes";
 import { SearchBar } from "./SearchBar";
 import Typo from "./Typo";
+import {Cart} from "../assets/icons/Cart";
+import {Back} from "../assets/icons/icBack";
 
 export const HeaderName = observer(({ isSearch,name, navigation, icon, nonback }: any) => {
 
     return (
         <View style={styles.header}>
+            
             {!nonback ?<TouchableOpacity
             style={styles.backArea}
             onPress={() => {navigation.goBack() }}>
-                <Image  source={require("../assets/icons/icBack.png")}/>
+               <Back/>
             </TouchableOpacity>:null}
             {
                 isSearch ? <SearchBar style = {!nonback ?styles.searchBar:styles.searchBarNonback} navigation ={navigation}/> :  
                 <View style = {{flex: 1, alignItems: 'center'}}>
                 <Typo style = {!nonback? styles.nameBack: styles.nameNonBack}>{name}</Typo>
             </View>
+            
             }
           
             {icon? <TouchableOpacity
@@ -27,7 +32,9 @@ export const HeaderName = observer(({ isSearch,name, navigation, icon, nonback }
                 () => {
                     navigation.navigate('Cart')
             }}>
-            <Image style={styles.icon} source={require("../assets/icons/Cart.svg")}/>
+            <View style = {styles.icon}>
+                <Cart/>
+            </View>   
             {cartStore.totalQuantity > 0?   <View style = {styles.badge}>
                 <Text style = {styles.textBadge}>{cartStore.totalQuantity >9?"9+": cartStore.totalQuantity}</Text>
             </View>: null}

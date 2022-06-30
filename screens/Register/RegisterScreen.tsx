@@ -119,10 +119,11 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     logo: {
-        width: 250,
-        resizeMode: 'contain',
-        alignSelf: 'center',
-        marginTop: 120,
+        marginTop: 150,
+      marginLeft: 80,
+      zIndex: 1.2,
+      width: width-160,
+      height: (width-160)*34/100,
     },
     form: {
         width: width,
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         justifyContent: 'center',
         alignItems: 'center',
+        zIndex: 1.5,
     },
     buttonText: {
         fontSize: sizes.size16,
@@ -162,12 +164,12 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     topWarterMark: {
-        position: 'absolute',
-        top: -50,
-        right: 0,
-        width: 200,
-        resizeMode: 'contain',
-        transform: [{ rotate: '180deg' }],
+        alignSelf: 'flex-end', 
+        position: "absolute",
+        width:width/1.5, 
+        height: width/1.5*0.7,
+        opacity: 0.7, 
+        transform: [{rotate:'180deg'}]
         
     },
     password: {
@@ -177,6 +179,10 @@ const styles = StyleSheet.create({
     bottomWaterMark: {
        alignSelf: 'flex-start',
        zIndex: -1,
+       opacity: 0.7,
+       marginTop: height-700-(width-60)*34/100,
+        width:width/1.5,
+        height: width/1.5*0.7,
     }
 }
 )

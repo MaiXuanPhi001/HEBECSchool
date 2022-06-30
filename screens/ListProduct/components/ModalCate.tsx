@@ -13,7 +13,7 @@ const itemHeader = ({item, onClose}:any) => {
     return (
         <View style={{flexDirection: 'row'}}>
             {item.id ==0? null:
-            <Image  style={styles.image} source={require("../../../assets/icons/grayArrrow.png")} />}
+            <Image  style={styles.image} source={require("../../../assets/icons/ArrowIcon.png")} />}
             <TouchableOpacity onPress={() => { bookStore.setCurrentCategory(item.id, item.level); onClose(); } }>
                     <Text style={styles.text}>{item.name}</Text>
                 </TouchableOpacity>
@@ -79,6 +79,8 @@ const styles = StyleSheet.create({
     image: {
         marginHorizontal: 10,
         visibility: 'visible',
+        width: 20,
+        height: 20,
     },
     imageHiden: {
         marginHorizontal: 10,
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     component: {
         backgroundColor: colors.white,
         position: 'absolute',
-        top: 115,
+        top: 112,
         width: width,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,

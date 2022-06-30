@@ -4,6 +4,7 @@ import React from "react";
 import { View, TextInput, StyleSheet, Image, TouchableOpacity, Keyboard } from "react-native";
 import bookStore from "../store/bookStore";
 import { colors, fonts } from "../styles/themes";
+import {  SearchIc } from "../assets/icons/Search";
 
 export const SearchBar = observer(({style, navigation}:any) => {
     const router = useRoute();
@@ -49,7 +50,7 @@ export const SearchBar = observer(({style, navigation}:any) => {
               Search();
             }}
             style={styles.icon}>
-            <Image source={require("../assets/Vector.png")}/>
+            <SearchIc />
             </TouchableOpacity>
         </View>
     );

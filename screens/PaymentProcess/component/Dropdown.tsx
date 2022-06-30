@@ -91,7 +91,9 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       position: 'absolute',
       right: 20,
-      top: 20
+      top: 20,
+      width: 14,
+      height: 8,
   }
 }
 );

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import userStore from '../../store/userStore';
@@ -35,18 +35,16 @@ export const LoginScreen =  observer(({navigation}: any) => {
     return (
       <View style={styles.container}>
       <StatusBar style="auto" />
-      <TouchableOpacity
-        onPress={() => {checkInvalid()}}
-          style = {styles.button}>
-            {userStore.isLoadingLogin ? <ActivityIndicator size={"small"} color = {colors.white} /> : <Text style = {styles.buttonText}>Đăng nhập</Text>}
-      </TouchableOpacity>
-      <TouchableOpacity 
-      onPress={() => {
-        navigation.navigate('Register')
-      }}
-      style = {styles.register} >
-      <Text style={styles.textRegister}>Đăng ký tài khoản</Text>
-      </TouchableOpacity>
+      <ScrollView>
+      <Image  source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
+      <View style = {styles.userName}>
+        <Text style={styles.titleInput}>Tên đăng nhập</Text>
+        <TextInput
+          style = {styles.input} 
+          placeholder = "Nhập tên đăng nhập"
+          defaultValue={userName}
+          onChangeText = {newText => setUserName(newText)}/>
+      </View>
       <View style = {styles.password}>
         <Text style={styles.titleInput}>Mật khẩu</Text>
         <TextInput 
@@ -58,29 +56,32 @@ export const LoginScreen =  observer(({navigation}: any) => {
         <TouchableOpacity
           onPress={() => {setHidePass(!hidePass)}}
           style = {styles.eye}>
-        <Image source={!hidePass? require('../../assets/icons/HidePass.png') :require('../../assets/icons/EyeIcon.png')}/>
+        <Image style = {{width:20, height: 20}} source={!hidePass? require('../../assets/icons/HidePass.png') :require('../../assets/icons/ShowPass.png')}/>
         </TouchableOpacity>
       </View>
-  
-      <View style = {styles.userName}>
-        <Text style={styles.titleInput}>Tên đăng nhập</Text>
-        <TextInput
-          style = {styles.input} 
-          placeholder = "Nhập tên đăng nhập"
-          defaultValue={userName}
-          onChangeText = {newText => setUserName(newText)}/>
-      </View>
+     
       {showAlert && <AlertCustom 
             title = {"Thông báo"}
             message = {message}
             callback = {onClose}
             visible = {showAlert} 
             confirmText = {"OK"}/>}
-  
-      <Image source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
-  
-      <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', width: 207, height: 150,opacity: 0.7, transform: [{rotate:'180deg'}]}}/>
-      <Image source={require('../../assets/WaterMark.png')} style = {{position: 'absolute',opacity: 0.7, top: height-200}}/>
+            <View style = {{alignItems:"flex-end", marginTop: 55, marginRight: 20}}>
+                <TouchableOpacity 
+                  onPress={() => {navigation.navigate('Register')}}
+                  style = {styles.register} >
+                  <Text style={styles.textRegister}>Đăng ký tài khoản</Text>
+                </TouchableOpacity>
+      </View>
+      <TouchableOpacity
+        onPress={() => {checkInvalid()}}
+          style = {styles.button}>
+            {userStore.isLoadingLogin ? <ActivityIndicator size={"small"} color = {colors.white} /> : <Text style = {styles.buttonText}>Đăng nhập</Text>}
+      </TouchableOpacity>
+      
+      <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', position: "absolute",width:width/1.5, height: width/1.5*0.7,opacity: 0.7, transform: [{rotate:'180deg'}]}}/>
+      <Image source={require('../../assets/WaterMark.png')} style = {{ alignSelf: 'flex-start',opacity: 0.7, zIndex: -1, marginTop: height-675-(width-60)*34/100,width:width/1.2, height: width/1.2*0.7}}/>
+      </ScrollView>
     </View>
     )
 }
@@ -90,35 +91,27 @@ export const LoginScreen =  observer(({navigation}: any) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      display: 'flex',
       flexDirection: 'column',
       backgroundColor: colors.white,
-      justifyContent: 'space-between',
     },
     password:{
-      display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-start',
-      position: 'absolute',
       width: width-40,
       height: 50,
-      left: 20,
-      top: 341,
+      marginTop: 40,
+      marginLeft: 20,
     },
     userName:{
-      display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-start',
-      position: 'absolute',
       width: width-40,
       height: 50,
-      left: 20,
-      top: 250,
+      marginTop: 50,
+      marginLeft: 20,
     },
     titleInput: {
       fontSize: 15,
       marginTop:20,
-      fontWeight: 'normal',
+      fontFamily: 'text-regular',
     },
     input:{
       marginTop: 5,
@@ -128,50 +121,37 @@ const styles = StyleSheet.create({
       height: 50,
       borderRadius: 7,
       paddingHorizontal: 20,
-      alignSelf: 'stretch',
-      flexGrow : 0,
     },
     logo:{
-      top: 100,
-      left:82,
-      position: 'absolute',
+      marginTop: 150,
+      marginLeft: 80,
       zIndex: 1.2,
+      width: width-160,
+      height: (width-160)*34/100,
     },
     register:{
-      position: 'absolute',
-      display: 'flex',
       alignItems: 'center',
-      right: 10,
-      top: 450,
-      marginEnd: 20,
+
     },
     textRegister:{
        fontSize: sizes.size14,
       color: colors.primary,
     },
     button: {
-      display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      paddingHorizontal: 13,
-      paddingVertical: 10,
-      position: 'absolute',
       width: 200,
       height: 50,
-      left: 107,
-      top: 478,
+      marginLeft: width/2-100,
+      marginTop: 50,
       backgroundColor: colors.primary,
       borderRadius: 7,
-      zIndex: 1.5,
-      marginTop: 50,
     },
     buttonText: {
       color: colors.white,
       fontSize: sizes.size16,
       fontWeight: 'bold',
       alignSelf: 'center',
-      marginTop: 2,
     },
     eye: {
       position: 'absolute',
