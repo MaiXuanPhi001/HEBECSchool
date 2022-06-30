@@ -20,7 +20,13 @@ export const NotificationItem = observer(({navigation,item}:any) => {
                   })
                 item.isSeen? null:notiStore.seenNoti(item.id)
             }
-
+            else{
+                navigation.navigate('NotiDetail',{
+                    title: item.title,
+                    body: item.content,
+                })
+                item.isSeen? null:notiStore.seenNoti(item.id)
+            }
         }}
 
         style = {styles.container}>

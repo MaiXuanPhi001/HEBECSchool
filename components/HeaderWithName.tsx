@@ -27,7 +27,7 @@ export const HeaderName = observer(({ isSearch,name, navigation, icon, nonback }
                 () => {
                     navigation.navigate('Cart')
             }}>
-            <Image style={styles.icon} source={require("../assets/icons/CartIcon.png")}/>
+            <Image style={styles.icon} source={require("../assets/icons/Cart.svg")}/>
             {cartStore.totalQuantity > 0?   <View style = {styles.badge}>
                 <Text style = {styles.textBadge}>{cartStore.totalQuantity >9?"9+": cartStore.totalQuantity}</Text>
             </View>: null}
@@ -49,7 +49,7 @@ nameBack: {
     fontSize: sizes.size18,
     fontFamily: "text-bold",
     color: colors.white,
-    marginLeft: -30,
+    marginLeft: -50,
 },
 nameNonBack: {
     fontSize: sizes.size18,

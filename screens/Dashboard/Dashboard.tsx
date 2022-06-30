@@ -23,6 +23,7 @@ export const Dashboard = observer(({navigation} : any) => {
         bannerApi.getBanner().then(res => {
             setBanner(res.data.data);
         });
+        bookStore.setCategoryParent();
         bookStore.setCategoryHightlight([]);
         cartStore.getCartFromStore();
         notiStore.setNotiList();
@@ -41,7 +42,7 @@ export const Dashboard = observer(({navigation} : any) => {
     }, [])
 
     const handleNotification = useCallback((data, trigger) => {
-        switchNotification(data, trigger);
+        switchNotification(data, trigger, navigation);
       }, []);
     
       const checkNotificationPermission = useCallback(async () => {

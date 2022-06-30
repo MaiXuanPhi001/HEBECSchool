@@ -1,4 +1,5 @@
 import { action, computed, makeAutoObservable, observable } from "mobx";
+import { Children } from "react";
 import request from "../utils/request";
 import userStore from "./userStore";
 
@@ -11,13 +12,14 @@ export const apiBook = {
         url: "/v1/customer/category/highlight",
         method: "GET"
     }),
-    getBooks: ( page: number,categoryId: number, search: string) => request({
+    getBooks: ( page: number,categoryId: number, search: string, sort: string) => request({
         url: "/v1/customer/book",
         method: "GET",
         params: {
             page: page,
             categoryId: categoryId,
-            search: search
+            search: search,
+            sortPrice: sort
         }
     }),
     getBook: (id: number) => request({
@@ -27,7 +29,11 @@ export const apiBook = {
     getBookRelations: (id: number) => request({
         url: `/v1/customer/book/${id}/relations?limit=10`,
         method: "GET"
-    })
+    }),
+    getCategoryParent: () => request({
+        url: "/v1/customer/category/parent",
+        method: "GET"
+    }),
     };
 
     class Store {
@@ -46,6 +52,11 @@ export const apiBook = {
         @observable page: number = 1;
         @observable key: string = "";
         @observable isLoadingMore:boolean = false;
+        @observable categoryParent: any[] = [];
+        @observable currentCategory: number = 0;
+        @observable level: number = 0;
+        @observable cate: any[] = [];
+        @observable sort: string = "";
 
 
         @computed get getCategories(){
@@ -81,6 +92,22 @@ export const apiBook = {
         @computed get getKey(){
             return this.key;
         }
+        @computed get getCategoryParent(){
+            return this.categoryParent;
+        }
+        @computed get getCurrentCategory(){
+            return this.currentCategory;
+        }
+        @computed get getLevel(){
+            return this.level;
+        }
+        @computed get getCateL1(){
+            return this.cate;
+        }
+        @computed get getSort(){
+            return this.sort;
+        }
+
 
         @action 
          setCategories = async (categories: any[]) => {
@@ -100,9 +127,11 @@ export const apiBook = {
         }
         @action
         setBooks = async (categoryId: number) => {
-            const res = await apiBook.getBooks(1,categoryId, this.key);
+            this.isLoadingBooks = true;
+            const res = await apiBook.getBooks(1,categoryId, this.key, this.sort);
             this.books = res.data.data;
             this.booksCount = res.data.total;
+            this.isLoadingBooks = false;
         }
         @action
         setBook = async (id: number) => {
@@ -119,7 +148,7 @@ export const apiBook = {
             this.isLoadingMore = true;
             if(this.books.length < this.booksCount){
             this.page += 1;
-            const res = await apiBook.getBooks(this.page,categoryId, this.key);
+            const res = await apiBook.getBooks(this.page,categoryId, this.key, this.sort);
             this.books = [...this.books, ...res.data.data];
             }
             this.isLoadingMore = false;
@@ -128,6 +157,51 @@ export const apiBook = {
         setKey = (key: string) => {
             this.key = key;
         }
+        @action
+        setSort = (sort: string) => {
+            this.sort = sort;
+            this.setBooks(this.currentCategory);
+        }
+        @action
+        setCategoryParent = async () => {
+            const res = await apiBook.getCategoryParent();
+            this.categoryParent = res.data;
+        }
+        @action
+        setCurrentCategory = (id: number, level: number) => {
+            this.currentCategory = id;
+            this.level = level;
+            this.cate[0]= {
+                id: 0,
+                name: "Tất cả",
+                level: 0,
+                children1: this.categoryParent
+            }
+            if(this.level === 1){
+                this.cate[1] = this.categoryParent.find(item => item.id === id);
+                this.cate[2] = {
+                    id: 0,
+                };
+            }
+            if(this.level === 2){
+                this.cate[2] = this.cate[1].children1.find((item: { id: number; }) => item.id === id);
+                this.cate[2].children1 = [];
+
+            }
+            if(this.level === 0){
+              
+                this.cate[1] = {
+                    id: 0,
+                };
+                this.cate[2] = {
+                    id: 0,
+                };
+            }
+            this.setBooks(this.currentCategory);
+        }
+
+       
+
     }
     const bookStore = new Store();
     export default bookStore;

@@ -25,9 +25,9 @@ export const CategoryHighlight = observer(({ data, navigation }: any) => {
           />
            <TouchableOpacity style = {styles.button}
            onPress={() => {
-            navigation.navigate("ListProduct",{
-              id: data.id,});
             bookStore.setKey("");
+            bookStore.setCurrentCategory(data.id,1);
+            navigation.navigate("ListProduct");
         }}>
             <Text style = {styles.textButton}>Xem thêm</Text>
         </TouchableOpacity>

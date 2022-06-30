@@ -11,6 +11,7 @@ import { PaymentProcessScreen } from '../../screens/PaymentProcess/PaymentProces
 import { SuccessScreen } from '../../screens/PaymentProcess/Success/SuccessScreen';
 import { HistoryScreen } from '../../screens/History/HistoryScreen';
 import { DetailOrderScreen } from '../../screens/DetailOrder/DetailOrderScreen';
+import { NotiDetail } from '../../screens/Notification/NotiDetail';
 
 const Stack = createNativeStackNavigator();
 export function AuthStack() {
@@ -27,6 +28,7 @@ export function AuthStack() {
         <Stack.Screen name = 'PaymentSuccess' component = {SuccessScreen} options={{headerShown: false}}/>
         <Stack.Screen name = 'History' component = {HistoryScreen} options={{headerShown: false}}/>
         <Stack.Screen name = 'OrderDetail' component = {DetailOrderScreen} options={{headerShown: false}}/>
+        <Stack.Screen name = "NotiDetail" component = {NotiDetail} options={{headerShown: false}}/>
       </Stack.Navigator>
   );
 }

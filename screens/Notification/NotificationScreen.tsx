@@ -6,9 +6,6 @@ import { Loading } from "../../components/Loading";
 import notiStore from "../../store/NotificationStore";
 import { width } from "../../utils/dimensions";
 import { NotificationItem } from "./components/NotiItem";
-import notifee from '@notifee/react-native';
-import PushNotification from "react-native-push-notification";
-import { NotificationService } from "../../plugins/notificationService";
 import { colors, sizes } from "../../styles/themes";
 
 export const NotificationScreen = observer(({ navigation }: any) => {
@@ -17,17 +14,7 @@ export const NotificationScreen = observer(({ navigation }: any) => {
     }, [])
 
 
-    async function onDisplayNotification() {
-        const notifyService = new NotificationService();
-        PushNotification.presentLocalNotification({
-            title:"TEST",
-            message: "Thông báo nè",
-            soundName: 'default',
-            channelId: "ORDER",
-    })
-    }
-    console.log(notiStore.notiList)
-
+console.log(notiStore.notiList)
     return (
         <View style={{ flex: 1, backgroundColor:colors.white }}>
         <HeaderName
@@ -36,7 +23,6 @@ export const NotificationScreen = observer(({ navigation }: any) => {
             nonback={true}
         />
        <View>
-      <Button title="Display Notification" onPress={() => onDisplayNotification()} />
     </View>
         <View style={styles.container}>
         {notiStore.notiList.length ==0 ? 

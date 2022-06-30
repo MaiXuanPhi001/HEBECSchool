@@ -12,9 +12,10 @@ export const Item = ({ data, navigation }: any) => {
   return(
     <TouchableOpacity 
     onPress={() => {
-      navigation.navigate("ListProduct",{
-        id: data.id,});
+      bookStore.setCurrentCategory(data.id, 1);
       bookStore.setKey("");
+      navigation.navigate("ListProduct");
+      
   }}
     style={styles.item}>
       <Image style = {styles.icon} source={imageError?require("../../../assets/HEBEC.png"):{uri: BASE_URL+data.thumbnail}} onError={onImageError}/>

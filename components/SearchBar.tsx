@@ -9,15 +9,28 @@ export const SearchBar = observer(({style, navigation}:any) => {
     const router = useRoute();
     const Search = () => {
             Keyboard.dismiss();
-            bookStore.setBooks(0);
             if (router.name == "Trang chủ") {
-                navigation.navigate("ListProduct", {id: 0});
+                bookStore.setCurrentCategory(0,0);
+                navigation.navigate("ListProduct");
+            }
+            else{
+                bookStore.setBooks(bookStore.currentCategory);
             }
     }
-
     return (
         <View style = {style}>
-            <TextInput
+             {router.name == "Trang chủ"? 
+                <TouchableOpacity
+                onPress={Search}
+                activeOpacity={0.9}
+                >
+                <TextInput
+                style={styles.input}
+                placeholder="Bạn cần tìm sản phẩm gì?"
+                placeholderTextColor="#8A8F9E"
+                editable={false}
+                />
+                </TouchableOpacity>: <TextInput
                 value={bookStore.key}
                 style={styles.input}
                 placeholder="Bạn cần tìm sản phẩm gì?"
@@ -29,7 +42,8 @@ export const SearchBar = observer(({style, navigation}:any) => {
                 }
                 }
                onSubmitEditing={Search}
-            />
+            />   
+            }
             <TouchableOpacity
             onPress={() => {
               Search();
