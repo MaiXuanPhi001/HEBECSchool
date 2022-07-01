@@ -35,7 +35,8 @@ if (!__DEV__) {
     dist: "1.0.0",
     debug: __DEV__ ? true : false,
     enableAutoSessionTracking: true,
-    tracesSampleRate: 0.5,
+    tracesSampleRate: 1,
+    enableNative: false,
   });
 }
 function App() {

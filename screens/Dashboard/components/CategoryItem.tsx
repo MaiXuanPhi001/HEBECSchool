@@ -4,10 +4,13 @@ import { BASE_URL } from "../../../config";
 import bookStore from "../../../store/bookStore";
 import { colors, sizes } from "../../../styles/themes";
 import { width } from "../../../utils/dimensions";
+import * as Sentry from "@sentry/react-native";
+
 export const Item = ({ data, navigation }: any) => {
   const [imageError, setimageError] = useState(false);
   const onImageError = () => {
       setimageError(true);
+      Sentry.captureException(new Error("Image not found"));
   }
   return(
     <TouchableOpacity 
