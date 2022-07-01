@@ -68,7 +68,7 @@ export const DetailOrderScreen = observer(({navigation, route}: any) => {
         <View style = {styles.container}>
              <View style = {{backgroundColor: colors.primary,height: 20}}/>
             <HeaderName name = "Chi tiết đơn hàng" navigation = {navigation}/>
-            <ScrollView style = {styles.content}>
+            <ScrollView showsVerticalScrollIndicator = {false} style = {styles.content}>
                 <Title title = {"Trạng thái đơn"} icon = {require("../../assets/icons/StatusOrder.png")}  subtitle = {status} styleSub = {status =="Đã hủy"? styles.statusCancel:styles.status}/>
                 <View style = {styles.line}/>
                 <Title title = {"Giao đến"} icon = {require("../../assets/icons/Location.png")} />

@@ -55,6 +55,7 @@ export const Dashboard = observer(({navigation} : any) => {
             <StatusBar  backgroundColor = {colors.primary} />
                 <HeaderName isSearch = {true} icon = {true} nonback={true}  navigation = {navigation}/>
             <ScrollView style = {styles.container}
+            showsVerticalScrollIndicator = {false}
             refreshControl = {
                 <RefreshControl
                     refreshing={bookStore.isLoadingCategories}

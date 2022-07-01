@@ -10,7 +10,7 @@ export const NotiDetail = observer(({navigation, route} : any) => {
         <View style = {styles.container}>
             <StatusBar  backgroundColor = {colors.primary} />
             <HeaderName name={title}  navigation = {navigation}/>
-            <ScrollView style = {styles.content}>
+            <ScrollView showsVerticalScrollIndicator = {false} style = {styles.content}>
                 <Text style = {styles.textContent}>{body}</Text>
 
             </ScrollView>

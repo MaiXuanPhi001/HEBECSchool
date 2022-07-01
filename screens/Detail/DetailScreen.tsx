@@ -87,7 +87,7 @@ export const DetailScreen = observer(({navigation, route} : any) => {
     return (
         <View style={styles.container}>
               <HeaderName name="Thông tin sách" navigation={navigation} icon = {true}/>
-        <ScrollView style = {styles.container}
+        <ScrollView showsVerticalScrollIndicator = {false} style = {styles.container}
         // refreshControl={
         //     <RefreshControl
         //         refreshing={bookStore.isLoadingBooks}

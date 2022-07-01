@@ -13,7 +13,7 @@ export const AcountScreen = observer(({navigation}: any) => {
     }, [])
     
     return (
-        <ScrollView style = {{flexGrow: 1, flex: 1}} 
+        <ScrollView showsVerticalScrollIndicator = {false} style = {{flexGrow: 1, flex: 1}} 
         refreshControl = {
             <RefreshControl
                 refreshing={userStore.isLoading}

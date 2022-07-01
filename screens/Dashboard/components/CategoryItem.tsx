@@ -28,7 +28,7 @@ export const Item = ({ data, navigation }: any) => {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        width: (width-10)/4,
+        width: (width-4)/4,
         marginBottom: 20,
     },
     title: {

@@ -12,7 +12,7 @@ export const AccountInforScreen = ({ navigation, route }: any) => {
     return (
         <View style={{ flex: 1}}>
             <HeaderName name = {'Thông tin cá nhân'} navigation = {navigation}/>
-            <ScrollView style={{ flex: 1, marginTop: 20 }}
+            <ScrollView showsVerticalScrollIndicator = {false} style={{ flex: 1, marginTop: 20 }}
             refreshControl={
                 <RefreshControl
                 refreshing={userStore.isLoading}

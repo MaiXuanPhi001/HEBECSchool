@@ -14,7 +14,7 @@ export const PaymentProcessScreen = observer(({navigation}:any) => {
     return (
         <View style = {{flex:1, backgroundColor: colors.white}}>
             <HeaderName name = "Thanh toán" navigation = {navigation}/>
-           <ScrollView style = {styles.container}>
+           <ScrollView showsVerticalScrollIndicator = {false} style = {styles.container}>
             <StepHeader step = {paymentStore.step} />
             {
                 paymentStore.step == 1 ? <DeliveryAddress /> : (
