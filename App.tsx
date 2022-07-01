@@ -6,13 +6,38 @@ import userStore from './store/userStore';
 import * as Updates from 'expo-updates';
 import * as Font from 'expo-font';
 import * as Sentry from "@sentry/react-native";
-Sentry.init({
-  dsn: "https://d515835df6a14d27923ee6356268cd38@o1300759.ingest.sentry.io/6535699",
-  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-  // We recommend adjusting this value in production.
-  tracesSampleRate: 1.0,
-  enableNative:false
+import { Platform } from 'react-native';
+import { RewriteFrames } from "@sentry/integrations";
+
+const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
+const rewriteFramesIntegration = new RewriteFrames({
+  iteratee: (frame) => {
+    if (frame.filename && frame.filename !== "[native code]") {
+      frame.filename =
+        Platform.OS === "android"
+          ? "app:///index.android.bundle"
+          : "app:///main.jsbundle";
+    }
+    return frame;
+  },
 });
+
+const rewriteTracing = new Sentry.ReactNativeTracing({
+  tracingOrigins: ["localhost", "https://163clone.bmdapp.store", /^\//],
+  routingInstrumentation,
+  // ... other options
+});
+if (!__DEV__) {
+  Sentry.init({
+    dsn: "https://d515835df6a14d27923ee6356268cd38@o1300759.ingest.sentry.io/6535699",
+    integrations: [rewriteFramesIntegration, rewriteTracing],
+    environment: __DEV__ ? "development" : "production",
+    dist: "1.0.0",
+    debug: __DEV__ ? true : false,
+    enableAutoSessionTracking: true,
+    tracesSampleRate: 0.5,
+  });
+}
 function App() {
   const [ready, setReady] = useState(false);
   React.useEffect(() => {
