@@ -38,8 +38,7 @@ export const ModalCate = observer(({visible, onClose}:any) => {
             isVisible={visible}
             style={styles.modal}
             backdropOpacity={0}
-            animationInTiming={500}
-            animationOutTiming={500}
+            animationInTiming={1}
             animationIn="zoomIn"
             animationOut="zoomOut"
             onBackdropPress={() => onClose()}
@@ -57,10 +56,11 @@ export const ModalCate = observer(({visible, onClose}:any) => {
                 </View>
             </ScrollView>
             <View style = {{width: '100%', height: 1, backgroundColor: colors.primary}}/>
+            {bookStore.cate[bookStore.level].children1.length >0?
             <ScrollView
             showsVerticalScrollIndicator = {false}>
                     {bookStore.cate[bookStore.level].children1.length >0? bookStore.cate[bookStore.level].children1.map((item:any) => itemContent({item, onClose})):null }
-            </ScrollView>
+            </ScrollView>:null}
             
         </View>
         

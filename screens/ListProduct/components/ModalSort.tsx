@@ -56,6 +56,7 @@ export const ModalSort = observer(({visible, onClose}:any) => {
                 <TouchableOpacity style = {styles.buttonWhite} onPress={() => {
                     setselected("");
                     bookStore.setSort("");
+                    onClose();
                 }}>
                     <Text style = {styles.textButtonWhite}>Xoá</Text>
                 </TouchableOpacity>

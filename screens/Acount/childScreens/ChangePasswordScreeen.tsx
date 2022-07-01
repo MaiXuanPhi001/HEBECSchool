@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
 import React, { useState } from "react"
-import { ActivityIndicator, Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { ActivityIndicator, Alert, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { AlertCustom } from "../../../components/Alert"
 import { HeaderName } from "../../../components/HeaderWithName"
 import userStore from "../../../store/userStore"
@@ -39,7 +39,7 @@ export const ChangePassWordScreen = observer(({ navigation }: any) => {
     return (
         <View style={{ flex: 1, backgroundColor: colors.white }}>
             <HeaderName name="Đổi mật khẩu" navigation={navigation} />
-            <View style={{ flex: 1, marginHorizontal:20, marginTop: 20 }}>
+            <ScrollView showsVerticalScrollIndicator = {false} style={{ flex: 1, marginHorizontal:20, marginTop: 20 }}>
                 <InputPass onChangeText = {setPassword} label="Mật khẩu hiện tại" placeholder='Nhập mật khẩu hiện tại'isShow ={false}/>
                 <InputPass onChangeText = {setNewPassword} label="Mật khẩu mới" placeholder='Nhập mật khẩu mới' isShow ={false}/>
                 <InputPass onChangeText = {setConfirmPassword} label="Xác nhận mật khẩu mới" placeholder='Xác nhận mật khẩu mới'isShow ={false}/>
@@ -50,7 +50,7 @@ export const ChangePassWordScreen = observer(({ navigation }: any) => {
                     {userStore.isLoadingChangePassword ? <ActivityIndicator size="small" color={colors.white} /> : <Text style={styles.buttonText}>Lưu</Text>}
                 </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
             {showAlert && <AlertCustom 
             title = {title}
             message = {message}

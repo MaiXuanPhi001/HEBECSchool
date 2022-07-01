@@ -35,52 +35,56 @@ export const LoginScreen =  observer(({navigation}: any) => {
     return (
       <View style={styles.container}>
       <StatusBar style="auto" />
-      <ScrollView>
-      <Image  source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
-      <View style = {styles.userName}>
-        <Text style={styles.titleInput}>Tên đăng nhập</Text>
-        <TextInput
-          style = {styles.input} 
-          placeholder = "Nhập tên đăng nhập"
-          defaultValue={userName}
-          onChangeText = {newText => setUserName(newText)}/>
+
+      <View style ={{justifyContent: 'space-between', height: height+40}}>
+        <View/>
+        <Image source={require('../../assets/WaterMark.png')} style = {styles.bottomWaterMark}/>
       </View>
-      <View style = {styles.password}>
-        <Text style={styles.titleInput}>Mật khẩu</Text>
-        <TextInput 
-          secureTextEntry = {hidePass} 
-          style = {styles.input} 
-          placeholder = "Nhập mật khẩu"
-          defaultValue={password}
-          onChangeText = {newText => setPassword(newText)}/>
-        <TouchableOpacity
-          onPress={() => {setHidePass(!hidePass)}}
-          style = {styles.eye}>
-        <Image style = {{width:20, height: 20}} source={!hidePass? require('../../assets/icons/HidePass.png') :require('../../assets/icons/ShowPass.png')}/>
-        </TouchableOpacity>
-      </View>
-     
-      {showAlert && <AlertCustom 
-            title = {"Thông báo"}
-            message = {message}
-            callback = {onClose}
-            visible = {showAlert} 
-            confirmText = {"OK"}/>}
-            <View style = {{alignItems:"flex-end", marginTop: 55, marginRight: 20}}>
-                <TouchableOpacity 
-                  onPress={() => {navigation.navigate('Register')}}
-                  style = {styles.register} >
-                  <Text style={styles.textRegister}>Đăng ký tài khoản</Text>
-                </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        onPress={() => {checkInvalid()}}
-          style = {styles.button}>
-            {userStore.isLoadingLogin ? <ActivityIndicator size={"small"} color = {colors.white} /> : <Text style = {styles.buttonText}>Đăng nhập</Text>}
-      </TouchableOpacity>
+
+      <ScrollView showsVerticalScrollIndicator = {false} style = {{position: 'absolute', top:0, bottom: 0}}>
+          <Image source={require('../../assets/WaterMark.png')} style = {styles.topWarterMark}/>
+          <Image  source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
+        <View style = {styles.userName}>
+          <Text style={styles.titleInput}>Tên đăng nhập</Text>
+          <TextInput
+            style = {styles.input} 
+            placeholder = "Nhập tên đăng nhập"
+            defaultValue={userName}
+            onChangeText = {newText => setUserName(newText)}/>
+        </View>
+        <View style = {styles.password}>
+          <Text style={styles.titleInput}>Mật khẩu</Text>
+          <TextInput 
+            secureTextEntry = {hidePass} 
+            style = {styles.input} 
+            placeholder = "Nhập mật khẩu"
+            defaultValue={password}
+            onChangeText = {newText => setPassword(newText)}/>
+          <TouchableOpacity
+            onPress={() => {setHidePass(!hidePass)}}
+            style = {styles.eye}>
+          <Image style = {{width:20, height: 20}} source={!hidePass? require('../../assets/icons/HidePass.png') :require('../../assets/icons/ShowPass.png')}/>
+          </TouchableOpacity>
+        </View>
       
-      <Image source={require('../../assets/WaterMark.png')} style = {{alignSelf: 'flex-end', position: "absolute",width:width/1.5, height: width/1.5*0.7,opacity: 0.7, transform: [{rotate:'180deg'}]}}/>
-      <Image source={require('../../assets/WaterMark.png')} style = {{ alignSelf: 'flex-start',opacity: 0.7, zIndex: -1, marginTop: height-675-(width-60)*34/100,width:width/1.2, height: width/1.2*0.7}}/>
+        {showAlert && <AlertCustom 
+              title = {"Thông báo"}
+              message = {message}
+              callback = {onClose}
+              visible = {showAlert} 
+              confirmText = {"OK"}/>}
+        <View style = {{alignItems:"flex-end", marginTop: 55, marginRight: 20}}>
+                  <TouchableOpacity 
+                    onPress={() => {navigation.navigate('Register')}}
+                    style = {styles.register} >
+                    <Text style={styles.textRegister}>Đăng ký tài khoản</Text>
+                  </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          onPress={() => {checkInvalid()}}
+            style = {styles.button}>
+              {userStore.isLoadingLogin ? <ActivityIndicator size={"small"} color = {colors.white} /> : <Text style = {styles.buttonText}>Đăng nhập</Text>}
+        </TouchableOpacity>
       </ScrollView>
     </View>
     )
@@ -123,7 +127,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 20,
     },
     logo:{
-      marginTop: 150,
+      marginTop: - height * 0.02,
       marginLeft: 80,
       zIndex: 1.2,
       width: width-160,
@@ -162,5 +166,19 @@ const styles = StyleSheet.create({
       position: 'absolute',
       top: height/2,
       left: width/2,
-    }
+    },
+    topWarterMark: {
+      alignSelf: 'flex-end', 
+      width:height/4, 
+      height: height/4*0.7,
+      opacity: 0.7, 
+      transform: [{rotate:'180deg'}]
+      
+  },
+  bottomWaterMark: {
+     alignSelf: 'flex-start',
+     opacity: 0.7,
+      width:height/3,
+      height: height/3*0.7,
+  }
   });

@@ -25,14 +25,16 @@ export const ListProductScreen = observer( ({ navigation, route }: any) => {
         <View style = {{flex:1,backgroundColor: colors.white,}}>
             <HeaderName isSearch = {true} style = {styles.titlebar} icon = {true}  navigation = {navigation} />
             <View style = {styles.toolbar}>
-                <TouchableOpacity style = {styles.button} onPress = {() => {
+            {showModalCategory && <ModalCate visible = {showModalCategory} onClose = {onClose}/>}
+            {showModalSort && <ModalSort visible = {showModalSort} onClose = {onClose}/>}
+                <TouchableOpacity activeOpacity={0.8} style = {styles.button} onPress = {() => {
                     setShowModalCategory(true);
                 } }>
                     <Text style = {styles.buttonText}>Danh mục</Text>
                     <Image style = {styles.buttonImage} source = {require("../../assets/icons/Books.png")}/>
                 </TouchableOpacity>
                 <View style = {{backgroundColor: colors.white, width: 1, height: 40}}/>
-                <TouchableOpacity style = {styles.button} onPress = {() => {
+                <TouchableOpacity activeOpacity={0.8} style = {styles.button} onPress = {() => {
                     setShowModalSort(true);
                     console.log("sort", showModalSort);
                 } }>
@@ -40,8 +42,7 @@ export const ListProductScreen = observer( ({ navigation, route }: any) => {
                     <Image style = {styles.buttonImage} source = {require("../../assets/icons/Filter.png")}/>
                 </TouchableOpacity>
             </View>
-            {showModalCategory && <ModalCate visible = {showModalCategory} onClose = {onClose}/>}
-            {showModalSort && <ModalSort visible = {showModalSort} onClose = {onClose}/>}
+           
             <Text style = {{fontSize: 16, color: colors.darkGrey, marginLeft: 20, marginTop: 20}}>Có <Text style = {{color: colors.primary, fontWeight:'700'}}>{bookStore.booksCount}</Text> kết quả phù hợp</Text>
             <ListProduct style = {styles.container} cateId = {bookStore.currentCategory} navigation = {navigation}/>
             {bookStore.isLoadingBooks && <Loading large={true} style = {styles.loading}/>}

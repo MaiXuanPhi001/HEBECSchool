@@ -53,9 +53,17 @@ export const RegisterScreen =  observer(({navigation}: any) => {
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <ScrollView style = {styles.content}>
-            <Image source={require('../../assets/WaterMark.png')} style = {styles.topWarterMark}/>
-            <Image source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
+        <View style = {{ justifyContent: 'space-between', height: height+40}}>
+            <View></View>
+      
+        <Image source={require('../../assets/WaterMark.png')} style = {styles.bottomWaterMark}/>
+        </View>
+        <ScrollView showsVerticalScrollIndicator = {false} style = {styles.content}>
+            <View style  ={{justifyContent:'space-evenly', height:height}}>
+            <View>
+                <Image source={require('../../assets/WaterMark.png')} style = {styles.topWarterMark}/>
+                <Image source={require('../../assets/HEBEC_School.png')} style = {styles.logo} />
+            </View>
             <View style = {styles.form}>
                 <Input 
                     label = "Họ và tên" 
@@ -79,7 +87,16 @@ export const RegisterScreen =  observer(({navigation}: any) => {
                >
                     <Text style={styles.login}>Đăng nhập</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
+               
+                {showAlert && <AlertCustom 
+                title = "Thông báo" 
+                message = {message}
+                callback = {onConfirm}
+                visible = {showAlert} 
+                confirmText = {"OK"}/>}
+               
+        </View>
+        <TouchableOpacity
                     onPress={() => {
                         checkValidate();
                         if(checkValidate()){
@@ -99,16 +116,9 @@ export const RegisterScreen =  observer(({navigation}: any) => {
                     style = {styles.button}>
                         {userStore.isLoadingLogin ? <ActivityIndicator size={"small"} color = {colors.white} /> : <Text style={styles.buttonText}>Đăng ký</Text>}
                 </TouchableOpacity>
-                {showAlert && <AlertCustom 
-                title = "Thông báo" 
-                message = {message}
-                callback = {onConfirm}
-                visible = {showAlert} 
-                confirmText = {"OK"}/>}
         </View>
-     
-        <Image source={require('../../assets/WaterMark.png')} style = {styles.bottomWaterMark}/>
         </ScrollView>
+       
     </View>
     )
 }
@@ -119,19 +129,16 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     logo: {
-        marginTop: 150,
-      marginLeft: 80,
+        marginTop: - height * 0.08,
+      marginLeft: 90,
       zIndex: 1.2,
-      width: width-160,
-      height: (width-160)*34/100,
+      width: width-180,
+      height: (width-180)*34/100,
     },
     form: {
         width: width,
-        height: height/2,
-        backgroundColor: colors.white,
         borderRadius: 10,
         alignSelf: 'center',
-        marginTop: 20,
     },
     button: {
         width: 200,
@@ -143,6 +150,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1.5,
+        marginBottom: 10,
     },
     buttonText: {
         fontSize: sizes.size16,
@@ -158,16 +166,16 @@ const styles = StyleSheet.create({
         marginTop: -10,
     },
     content: {
-        flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: colors.white,
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
     },
     topWarterMark: {
         alignSelf: 'flex-end', 
-        position: "absolute",
-        width:width/1.5, 
-        height: width/1.5*0.7,
+        width:height/4, 
+        height: height/4*0.7,
         opacity: 0.7, 
         transform: [{rotate:'180deg'}]
         
@@ -178,11 +186,9 @@ const styles = StyleSheet.create({
     },
     bottomWaterMark: {
        alignSelf: 'flex-start',
-       zIndex: -1,
        opacity: 0.7,
-       marginTop: height-700-(width-60)*34/100,
-        width:width/1.5,
-        height: width/1.5*0.7,
+        width:height/4,
+        height: height/4*0.7,
     }
 }
 )

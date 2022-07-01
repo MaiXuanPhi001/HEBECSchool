@@ -19,7 +19,7 @@ const RowItem = ({ title, value, icon, stylePrice }: any) => {
         </View>
     )
 }
-
+const marginFooter = height > 693 ? height-673 : 20
 export const Delivery = observer(() => {
     const [promotion, setPromotion] = useState(paymentStore.promotionCode);
     const [note , setNote] = useState(paymentStore.note);
@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         marginTop: 30,
         marginHorizontal: 20,
-        height: height - 200,
         justifyContent: 'space-between'
     },
     rowItem: {
@@ -200,6 +199,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 20,
+        marginTop: marginFooter,
     },
     buttonPrev: {
         width: (width - 60)/2,
