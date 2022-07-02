@@ -27,7 +27,6 @@ const rewriteTracing = new Sentry.ReactNativeTracing({
   routingInstrumentation,
   // ... other options
 });
-if (!__DEV__) {
   Sentry.init({
     dsn: "https://d515835df6a14d27923ee6356268cd38@o1300759.ingest.sentry.io/6535699",
     integrations: [rewriteFramesIntegration, rewriteTracing],
@@ -38,7 +37,6 @@ if (!__DEV__) {
     tracesSampleRate: 1,
     enableNative: false,
   });
-}
 function App() {
   const [ready, setReady] = useState(false);
   React.useEffect(() => {
