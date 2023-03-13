@@ -1,32 +1,32 @@
 import { useScrollToTop } from '@react-navigation/native';
 import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
-import {Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { BASE_URL } from '../../config';
 import newsStore from '../../store/newsStore';
 import { colors } from '../../styles/themes';
-import {  width } from '../../utils/dimensions';
+import { width } from '../../utils/dimensions';
 
-export const News = observer(({ navigation,route } : any) => {
+export const News = observer(({ navigation, route }: any) => {
     const { id } = route.params;
     const [opacity, setOpacity] = useState(0.8);
     useEffect(() => {
         newsStore.setNews(id);
     }, [])
     return (
-        <View style = {styles.container}>
-            
-            <Animated.View style = {[styles.back, {opacity: opacity}]}>
-            <TouchableOpacity 
-            onPress = {() => navigation.goBack()}>
-                <Image source = {require('../../assets/icons/icBack.png')} style = {styles.backImage}/>
-            </TouchableOpacity>
+        <View style={styles.container}>
+
+            <Animated.View style={[styles.back, { opacity: opacity }]}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}>
+                    <Image source={require('../../assets/icons/icBack.png')} style={styles.backImage} />
+                </TouchableOpacity>
             </Animated.View>
             <WebView
-            originWhitelist={['*']}
-            source={{
-                html: `<!DOCTYPE html>
+                originWhitelist={['*']}
+                source={{
+                    html: `<!DOCTYPE html>
                 <html lang="en">
                 <head>
                 <meta charset="UTF-8">
@@ -62,7 +62,7 @@ export const News = observer(({ navigation,route } : any) => {
                     height: auto;
                 }
                 div.content {
-                   width: ${width-40}px;
+                   width: ${width - 40}px;
                    margin: 20px;
                 }
                 h1.title{
@@ -87,22 +87,22 @@ export const News = observer(({ navigation,route } : any) => {
                 </div>
                 </body>
                 </html>`
-            }}
-            style = {styles.content}
-            showsVerticalScrollIndicator={false}
-            onScroll={(event) => {
-                const { contentOffset } = event.nativeEvent;
-                const { y } = contentOffset;
-                if (y > 0) {
-                  setOpacity(0.8-y/200);
-                }
-                else {
-                    setOpacity(0.8);
-                }
-            }}
+                }}
+                style={styles.content}
+                showsVerticalScrollIndicator={false}
+                onScroll={(event) => {
+                    const { contentOffset } = event.nativeEvent;
+                    const { y } = contentOffset;
+                    if (y > 0) {
+                        setOpacity(0.8 - y / 200);
+                    }
+                    else {
+                        setOpacity(0.8);
+                    }
+                }}
             />
         </View>
-      
+
     );
 }
 );
